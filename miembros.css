@@ -1,7 +1,5 @@
 html {
-
-    scroll-behavior: smooth;
-
+    scroll-behavior: smooth; /* Hace scroll al clickar el enlace de una persona*/
 }
 
 body {
