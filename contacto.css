@@ -3,9 +3,10 @@ body {
     background-color: #88F2D9;
 }
 
-p{
-    margin: 25px 80px;
+br {
+    margin: 5px 0;
 }
+
 footer{
     text-align: left;
     position: absolute;
