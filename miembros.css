@@ -30,6 +30,7 @@ body {
 }
 
 #nav-miembros li a:hover {
+    transform: scale(1.2);
     background-color: rgb(209, 112, 68);
 
 }

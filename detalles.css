@@ -1,6 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(98, 241, 194);
+    text-align: justify;
     margin: 0 auto;
     width: 800px;
 }
