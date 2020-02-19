@@ -1,9 +1,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #88F2D9;
-    text-align: center;
+    background-color: rgb(98, 241, 194);
     margin: 0 auto;
-    width: 500px;
+    width: 800px;
 }
 
 dt {
