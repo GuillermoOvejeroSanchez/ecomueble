@@ -45,7 +45,7 @@ nav li a:hover {
     float: left;
 }
 
-#logo {
+/*#logo {
     margin: 0;
     padding: 0;
     float: left;
@@ -54,12 +54,12 @@ nav li a:hover {
    
 #logo a{
     margin: 5px 0px 5px 5px;
-   }
+   }*/
 
 p{
     text-align: center;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 footer{
     text-align: left;

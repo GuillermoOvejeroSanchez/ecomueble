@@ -15,3 +15,39 @@ footer{
     width: 100%;
     height: 40px;
 }
+nav {
+    text-align: center;
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(156, 51, 3);
+
+}
+
+nav li {
+    float: right;
+}
+
+nav li a {
+    color: white;
+    float: left;
+    display: block;
+    padding: 6px 16px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+nav li a:hover {
+    transform: scale(1.2);
+    background-color: rgb(209, 112, 68);
+}
+
+#home {
+    float: left;
+}
