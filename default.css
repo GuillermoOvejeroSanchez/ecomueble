@@ -33,12 +33,16 @@ nav li a {
     display: block;
     padding: 6px 16px;
     text-decoration: none;
-
+    margin-left: 10px;
 }
 
 nav li a:hover {
     transform: scale(1.2);
     background-color: rgb(209, 112, 68);
+}
+
+#home {
+    float: left;
 }
 
 #logo {
