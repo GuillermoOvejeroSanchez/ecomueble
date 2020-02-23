@@ -3,6 +3,7 @@ body {
     background-color: rgb(98, 241, 194);
     
 }
+
 .texto {
     text-align: justify;
     margin: 0 auto;
@@ -47,18 +48,6 @@ nav li a:hover {
     float: left;
 }
 
-#logo {
-    margin: 0;
-    padding: 0;
-    float: left;
-    
-   }
-
-   
-#logo a{
-    margin: 5px 0px 5px 5px;
-   }
-
 dt {
     font-weight: bold;
     font-size: large;
@@ -81,7 +70,6 @@ img {
     height: 55px;
     width: 110px;
 }
-
 
 hr {
     width: 35%;

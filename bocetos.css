@@ -3,16 +3,11 @@ body {
     background-color: rgb(98, 241, 194);
 
 }
+
 h1 {
     text-align: center;
 }
-/*img  {
-    float: none;
-    height: 300px;
-    width: 300px;
-    margin: 10px auto;
-    display: block;
-}*/
+
 nav {
     text-align: center;
     font-size: 16pt;
@@ -49,17 +44,3 @@ nav li a:hover {
 #home {
     float: left;
 }
-
-
- /*#logo {
-    margin: 0;
-    padding: 0;
-    float: left;
-    width: 100px;
-    height: 55px;
-   }
-
-   
-#logo a{
-    margin: 5px 0px 5px 5px;
-   }*/

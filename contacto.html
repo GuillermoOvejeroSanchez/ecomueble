@@ -1,81 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Contacto</title>
-  <link rel="stylesheet" href="contacto.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="contacto.css">
+  </head>
 
-<body>
-  <id=logo><a href="index.html"><img src="img/logo.jpg" width="110" height="55" alt="Logo"></a>
-    
-       <nav>
-            <ul> <!--Lista en orden inverso-->
-                <li><a href="miembros.html">Miembros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="bocetos.html">Bocetos</a></li>
-                <li><a href="detalles.html">Detalles</a></li>
-                
-                <li id="home"><a class="active" href="index.html">Inicio</a></li>
-                
-               
-            </ul>
-            <!-- <a href="detalles.html">Detalles</a> <a href="miembros.html">Miembros</a> <a href="contacto.html">Contacto</a> -->
+  <body>
+    <id=logo><a href="index.html"><img src="img/logo.jpg" width="110" height="55" alt="Logo"></a>
+      
+        <nav>
+              <ul> <!--Lista en orden inverso-->
+                  <li><a href="miembros.html">Miembros</a></li>
+                  <li><a href="contacto.html">Contacto</a></li>
+                  <li><a href="bocetos.html">Bocetos</a></li>
+                  <li><a href="detalles.html">Detalles</a></li>
+                  
+                  <li id="home"><a class="active" href="index.html">Inicio</a></li>   
+              </ul>
         </nav>
 
-  <br>
-  <h1>Contacta con nosotros</h1>
-  <div class="container">
+    <br>
+    <h1>Contacta con nosotros</h1>
+    <div class="container">
 
-    <form method="POST" action="https://formspree.io/vsantama@ucm.es">
+      <form method="POST" action="https://formspree.io/vsantama@ucm.es">
 
+        <label for="fname">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido">
+        <br>
+        <label for="femail">Email</label>
+        <input type="email" name="email" placeholder="Your email">
+        <br>
+        <label for="consulta">Motivo de la consulta:</label><br>
+        <input type="radio" name="motivo" value="evaluacion"> Evaluación
+        <input type="radio" name="motivo" value="sugerencias"> Sugerencias
+        <input type="radio" name="motivo" value="criticas"> Críticas  
+        <br>
+        <textarea name="message" placeholder="Test Message" style="width: 500px; height: 100px"></textarea>
+        <br>
+        <input type="checkbox" required name="tyc"  value="tyc">He leido y acepto los términos y condiciones
+        <br>
+        <button type="submit">Enviar</button>
+        <input type="reset" name="reset" value="Reset" />
+      </form>
+      <!--
 
-      <label for="fname">Nombre</label>
-      <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido">
-      <br>
-      <label for="femail">Email</label>
-      <input type="email" name="email" placeholder="Your email">
-      <br>
-      <label for="consulta">Motivo de la consulta:</label><br>
-      <input type="radio" name="motivo" value="evaluacion"> Evaluación
-      <input type="radio" name="motivo" value="sugerencias"> Sugerencias
-      <input type="radio" name="motivo" value="criticas"> Críticas  
-
-      <br>
-      <textarea name="message" placeholder="Test Message" style="width: 500px; height: 100px"></textarea>
-      <br>
-      <input type="checkbox" required name="tyc"  value="tyc">He leido y acepto los términos y condiciones
-      <br>
-      <button type="submit">Enviar</button>
-      <input type="reset" name="reset" value="Reset" />
-    </form>
-    <!--
-
-      <form action="https://formspree.io/vsantama@ucm.es" method="POST" enctype="text/plain">
+        <form action="https://formspree.io/vsantama@ucm.es" method="POST" enctype="text/plain">
         
-  
-      
-      
-      <br>
-      <label for="subject">Subject</label>
-      <br>
-      <textarea id="subject" name="subject" placeholder="Write something.."
-      style="width: 500px; height: 100px"></textarea>
-      
-      <br>
-      <input type="checkbox" name="tyc" value="tyc">He leido y acepto los términos y condiciones
-      <br>
-      <p><input type="submit" name="submit" value="Send" />
-        <input type="reset" name="reset" value="Clear Form" />
-      </p>
-      
-    </form>
-  -->
-  </div>
+        <br>
+        <label for="subject">Subject</label>
+        <br>
+        <textarea id="subject" name="subject" placeholder="Write something.."
+        style="width: 500px; height: 100px"></textarea>
+        <br>
+        <input type="checkbox" name="tyc" value="tyc">He leido y acepto los términos y condiciones
+        <br>
+        <p><input type="submit" name="submit" value="Send" />
+          <input type="reset" name="reset" value="Clear Form" />
+        </p>
+        
+      </form>
+    -->
+    </div>
 
-</body>
-
+  </body>
 </html>
