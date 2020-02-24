@@ -75,6 +75,7 @@ h3 {
     font-size: 15pt;    
 }
 
+
 p {
     font-weight: normal;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -87,6 +88,17 @@ img {
     height: 55px;
     width: 110px;
 }
+
+.cdu {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.cdu li{
+    font-weight: normal;
+    list-style-type: disc;
+}
+
 
 hr {
     width: 35%;
