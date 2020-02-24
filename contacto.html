@@ -30,42 +30,24 @@
 
       <form method="POST" action="https://formspree.io/vsantama@ucm.es">
 
-        <label for="fname">Nombre</label>
+        <label>Nombre</label>
         <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido">
         <br>
-        <label for="femail">Email</label>
+        <label>Email</label>
         <input type="email" name="email" placeholder="Dirección de email">
         <br>
-        <label for="consulta">Motivo de la consulta:</label><br>
+        <label >Motivo de la consulta:</label><br>
         <input type="radio" name="motivo" value="evaluacion"> Evaluación
         <input type="radio" name="motivo" value="sugerencias"> Sugerencias
         <input type="radio" name="motivo" value="criticas"> Críticas  
         <br>
         <textarea name="message" placeholder="Motivo del mensaje" style="width: 500px; height: 100px"></textarea>
         <br>
-        <input type="checkbox" required name="tyc"  value="tyc">He leido y acepto los términos y condiciones
+        <input type="checkbox" required>He leido y acepto los términos y condiciones
         <br>
         <button type="submit">Enviar</button>
         <input type="reset" name="reset" value="Cancelar" />
       </form>
-      <!--
-
-        <form action="https://formspree.io/vsantama@ucm.es" method="POST" enctype="text/plain">
-        
-        <br>
-        <label for="subject">Subject</label>
-        <br>
-        <textarea id="subject" name="subject" placeholder="Write something.."
-        style="width: 500px; height: 100px"></textarea>
-        <br>
-        <input type="checkbox" name="tyc" value="tyc">He leido y acepto los términos y condiciones
-        <br>
-        <p><input type="submit" name="submit" value="Send" />
-          <input type="reset" name="reset" value="Clear Form" />
-        </p>
-        
-      </form>
-    -->
     </div>
 
   </body>
