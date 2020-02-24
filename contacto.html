@@ -28,23 +28,38 @@
   <h1>Contacta con nosotros</h1>
   <div class="container">
     <form method="POST" action="https://formspree.io/vsantama@ucm.es">
-      <label>Nombre</label>
-      <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido">
-      <br>
-      <label>Email</label>
-      <input type="email" name="email" placeholder="Dirección de email">
-      <br>
-      <label>Motivo de la consulta:</label><br>
-      <input type="radio" name="motivo" value="evaluacion"> Evaluación
-      <input type="radio" name="motivo" value="sugerencias"> Sugerencias
-      <input type="radio" name="motivo" value="criticas"> Críticas
-      <br>
-      <textarea name="message" placeholder="Motivo del mensaje" style="width: 500px; height: 100px"></textarea>
-      <br>
-      <input type="checkbox" required>He leido y acepto los términos y condiciones
-      <br>
-      <button type="submit">Enviar</button>
-      <input type="reset" name="reset" value="Cancelar" />
+      <div>
+        <label>Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido">
+        <!--<br>-->
+      </div>
+      <div> 
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Dirección de email">
+        <!--<br>-->
+      </div>
+      <div>
+        <label>Motivo de la consulta:</label>
+        <!--<br>-->
+      </div>
+      <div>
+        <input type="radio" name="motivo" value="evaluacion"> Evaluación
+        <input type="radio" name="motivo" value="sugerencias"> Sugerencias
+        <input type="radio" name="motivo" value="criticas"> Críticas
+        <!--<br>-->
+      </div>
+      <div>
+        <textarea name="message" placeholder="Motivo del mensaje" style="width: 500px; height: 100px"></textarea>
+        <!--<br>-->
+      </div>
+      <div>
+        <input type="checkbox" required>He leido y acepto los términos y condiciones
+        <!--<br>-->
+      </div>
+      <div>
+        <button type="submit">Enviar</button>
+        <input type="reset" name="reset" value="Cancelar" />
+      </div>
     </form>
   </div>
 

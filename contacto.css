@@ -49,6 +49,10 @@ nav li a:hover {
     background-color: rgb(209, 112, 68);
 }
 
+div {
+    padding: 5px;
+}
+
 #home {
     float: left;
 }

@@ -8,9 +8,9 @@ h1 {
     text-align: center;
 }
 
-.desc {
+p {
     text-align: justify;
-    padding: 30px;
+    padding: 10px;
     margin: 0 auto;
     width: 1000px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -65,4 +65,5 @@ nav li a:hover {
 img {
     height: 400px;
     width: 400px;
+    padding: 20px;
 }
