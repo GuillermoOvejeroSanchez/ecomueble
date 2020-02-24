@@ -32,43 +32,62 @@
       Esta aplicación web consiste en una página dedicada al intercambio de muebles, con la intención de darle un nuevo
       uso y así promover el reciclaje de artículos en buen estado. Permite a los usuarios deshacerse de los productos,
       evitando desecharlos y ayudando a otros usuarios que buscan ese mismo artículo.
-      <br><br>
+    </p>
+    <p>
       El uso es sencillo, un usuario registrado puede subir los artículos que desea desechar y otro usuario registrado
       contacta con él para obtener el producto.
-      <br><br>
+    </p>
+
+    <p>
       Para el cambio, implementaremos un sistema de puntos. Cada usuario gana al registrarse 1000 puntos para obtener
       artículos. Los puntos de cada artículo los determinará el usuario dependiendo del tipo y calidad del producto.
-      <br><br>
+    </p>
+
+    <p>
       La novedad que presenta esta plataforma es que su uso es íntegramente gratuito, es decir, no pagas por obtener un
       mueble. Para regular el tráfico de los productos, implementamos una moneda virtual de puntos evitando que un
       usuario se aproveche de los recursos.
     </p>
 
-    <br>
+
     <h3>Usuarios</h3>
     <ul>
       <li>No registrado:
-        <br>
-        <p>Cualquier persona que acceda a la web, puede ver en la página de inicio los artículos subidos, pero no puede
-          comprar, filtrar ni ver la información de otros usuarios.
-          Tampoco podrá subir productos, acceder al carrito, al chat, ni su propio perfil sin antes registrarse para
-          crearlo.
+        <p>Usuario que entra en la pagina por primera vez o buscando productos que puedan interesarle para mas tarde registrarse y comprarlos
         </p>
+        <ul class="cdu"> <!-- Casos de uso -->
+          <li>Registrarse</li>
+          <li>Iniciar sesión</li>
+          <li>Ver y buscar productos</li>
+          <li>Acceder a las páginas de información de la web (TyC)</li>
+          <li>Ponerse en contacto con los administradores mediante el formulario web</li>
+        </ul>
       </li>
-      <li>Registrado: 
-        <br>
-        <p>El usuario registrado puede subir y obtener artículos, acceder a todas las páginas de la web y ver todos los
-          perfiles públicos.
-          Solo podrá modificar sus productos y la información visible en su perfil, pero no podrá borrar ni modificar otros
-          perfiles.
-          </p>
+      <li>Registrado:
+        <p>Usuarios que han decidido comprar o vender algun mueble en la plataforma de Ecomueble y estan familiarizados con la pagina
+        </p>
+
+        <ul class="cdu">
+          <li>Funcionalidades del usuario no registrado</li>
+          <li>Publicar/Borrar productos propios</li>
+          <li>Comprar productos</li>
+          <li>Contactor con otros usuarios mediante el chat</li>
+          <li>Ver perfiles de otros usuarios</li>
+          <li>Ver y editar su pagina de perfil</li>
+          <li>Reportar usuario o producto</li>
+        </ul>
       </li>
       <li>Administrador:
-        <br>
-        <p>El administrador se encargará del mantenimiento de la web y de gestionar todo el contenido.
-        </p>
+        <p>El administrador se encarga del mantenimiento de la web y de gestionar todo el contenido, ademas de poder moderar el contenido en caso de que se incumplan las condiciones</p>
+        <ul class="cdu">
+          <li>Funcionalidades anteriores de los otros tipos de usuario</li>
+          <li>Editar y borrar productos de otros usuarios</li>
+          <li>Eliminar cuentas de usuarios</li>
+          <li>Bloquear el acceso temporal o permanentemente de usuarios</li>
+          <li>Revisar chats entre usuarios con objetivo de moderacion</li>
+        </ul>
       </li>
-      </ul>
+    </ul>
   </div>
 </body>
 
