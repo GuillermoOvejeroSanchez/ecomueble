@@ -55,10 +55,6 @@ nav li a:hover {
     float: left;
 }
 
-dt {
-    font-weight: bold;
-    font-size: large;
-}
 
 h1 {
     text-align: center;
@@ -69,6 +65,10 @@ li{
     font-weight: bold;
     list-style-type: none;
     
+}
+
+p {
+    font-weight: normal;
 }
 img {
     float: none;
