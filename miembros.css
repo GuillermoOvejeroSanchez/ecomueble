@@ -41,6 +41,9 @@ nav li a:hover {
     background-color: rgb(209, 112, 68);
 }
 
+#nav-miembros {
+    padding: 3%;
+}
 #nav-miembros ul {
     list-style-type: none;
     margin: 0;
@@ -57,7 +60,7 @@ nav li a:hover {
     color: white;
     float: right;
     display: block;
-    padding: 6px 16px;
+    padding: 6px 20px;
     text-decoration: none;
 
 }
