@@ -1,11 +1,19 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(98, 241, 194);
-
+    text-align: center;
 }
 
 h1 {
     text-align: center;
+}
+
+.desc {
+    text-align: justify;
+    padding: 30px;
+    margin: 0 auto;
+    width: 1000px;
+    font: 100% sans-serif;
 }
 
 nav {
@@ -51,4 +59,9 @@ nav li a:hover {
     margin-bottom: 10px;
     width: 110px;
     height: 55px;
+}
+
+img {
+    height: 400px;
+    width: 400px;
 }
