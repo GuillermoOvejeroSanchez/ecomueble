@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contacto</title>
-    <link rel="stylesheet" href="contacto.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contacto</title>
+  <link rel="stylesheet" href="contacto.css">
+</head>
 
-  <body>
-    <div class="logo"><a href="index.html"><img src="img/logo.jpg"  alt="Logo"></a></div>
-      
-        <nav>
-              <ul> <!--Lista en orden inverso-->
-                <li><a href="planificacion.html">Planificación</a></li>
-                <li><a href="miembros.html">Miembros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="bocetos.html">Bocetos</a></li>
-                <li><a href="detalles.html">Detalles</a></li>
-                
-                <li id="home"><a class="active" href="index.html">Inicio</a></li>   
-              </ul>
-        </nav>
+<body>
+  <div class="logo"><a href="index.html"><img src="img/logo.jpg" alt="Logo"></a></div>
 
-    <br>
-    <h1>Contacta con nosotros</h1>
-    <div class="container">
+  <nav>
+    <ul>
+      <!--Lista en orden inverso-->
+      <li><a href="planificacion.html">Planificación</a></li>
+      <li><a href="miembros.html">Miembros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="bocetos.html">Bocetos</a></li>
+      <li><a href="detalles.html">Detalles</a></li>
 
-      <form method="POST" action="https://formspree.io/vsantama@ucm.es">
+      <li id="home"><a class="active" href="index.html">Inicio</a></li>
+    </ul>
+  </nav>
+  <br>
+  <h1>Contacta con nosotros</h1>
+  <div class="container">
+    <form method="POST" action="https://formspree.io/vsantama@ucm.es">
+      <label>Nombre</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido">
+      <br>
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Dirección de email">
+      <br>
+      <label>Motivo de la consulta:</label><br>
+      <input type="radio" name="motivo" value="evaluacion"> Evaluación
+      <input type="radio" name="motivo" value="sugerencias"> Sugerencias
+      <input type="radio" name="motivo" value="criticas"> Críticas
+      <br>
+      <textarea name="message" placeholder="Motivo del mensaje" style="width: 500px; height: 100px"></textarea>
+      <br>
+      <input type="checkbox" required>He leido y acepto los términos y condiciones
+      <br>
+      <button type="submit">Enviar</button>
+      <input type="reset" name="reset" value="Cancelar" />
+    </form>
+  </div>
 
-        <label>Nombre</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido">
-        <br>
-        <label>Email</label>
-        <input type="email" name="email" placeholder="Dirección de email">
-        <br>
-        <label >Motivo de la consulta:</label><br>
-        <input type="radio" name="motivo" value="evaluacion"> Evaluación
-        <input type="radio" name="motivo" value="sugerencias"> Sugerencias
-        <input type="radio" name="motivo" value="criticas"> Críticas  
-        <br>
-        <textarea name="message" placeholder="Motivo del mensaje" style="width: 500px; height: 100px"></textarea>
-        <br>
-        <input type="checkbox" required>He leido y acepto los términos y condiciones
-        <br>
-        <button type="submit">Enviar</button>
-        <input type="reset" name="reset" value="Cancelar" />
-      </form>
-    </div>
+</body>
 
-  </body>
 </html>
