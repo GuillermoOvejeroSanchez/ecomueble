@@ -62,7 +62,8 @@ img {
     margin-top: 20px;
 }
 
-img span{
+/*
+img.span{
     line-height:normal;
     font-size:11px;
     display:table-caption;
@@ -73,7 +74,7 @@ img span{
     padding:5px;
     text-align:center;
 }
-
+*/
 .desc {
     float: none;
     margin-left: auto;
