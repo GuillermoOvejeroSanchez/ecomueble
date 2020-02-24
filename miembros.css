@@ -62,18 +62,6 @@ img {
     margin-top: 20px;
 }
 
-span{
-    line-height:normal;
-    font-size:11px;
-    display:table-caption;
-    margin:0;
-    background:#646464;
-    color:white;
-    font-style:italic;
-    padding:5px;
-    text-align:center;
-}
-
 .desc {
     float: none;
     margin-left: auto;
