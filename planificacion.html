@@ -1,98 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-  
-  <head>
-    <title>Planificacion</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="default.css">
-    <link rel="stylesheet" href="planificacion.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
 
-  <div class="logo"><a href="index.html"><img src="img/logo.jpg"  alt="Logo"></a></div>
-    
+<head>
+  <title>Planificacion</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="default.css">
+  <link rel="stylesheet" href="planificacion.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+
+  <div class="logo"><a href="index.html"><img src="img/logo.jpg" alt="Logo"></a></div>
+
   <nav>
-      <ul> <!--Lista en orden inverso-->
-        <li><a href="planificacion.html">Planificación</a></li>
-        <li><a href="miembros.html">Miembros</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="bocetos.html">Bocetos</a></li>
-        <li><a href="detalles.html">Detalles</a></li>
-        
-        <li id="home"><a class="active" href="index.html">Inicio</a></li>  
-      </ul>
+    <ul>
+      <!--Lista en orden inverso-->
+      <li><a href="planificacion.html">Planificación</a></li>
+      <li><a href="miembros.html">Miembros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="bocetos.html">Bocetos</a></li>
+      <li><a href="detalles.html">Detalles</a></li>
+
+      <li id="home"><a class="active" href="index.html">Inicio</a></li>
+    </ul>
   </nav>
 
-    <h2>Planificación</h2>
-    <table>
-      <tr>
-        <th scope="col">Fecha</th>
-        <th scope="col">Prácticas</th>
-        <th scope="col">Tarea</th>
-        <th scope="col">Distribución</th>
-      </tr>
+  <h2>Planificación</h2>
+  <table>
+    <tr>
+      <th scope="col">Fecha</th>
+      <th scope="col">Prácticas</th>
+      <th scope="col">Tarea</th>
+      <th scope="col">Distribución</th>
+    </tr>
 
-      <tr class="hito">
-        <td>24/02/2020</td>
-        <td>Práctica 1</td>
-        <td>Creación de la estructura de la página y bocetos iniciales.</td>
-        <td>Cada miembro se ha encargado de una página y ha colaborado activamente con el resto del equipo
-           en sus respectivas páginas.</td>
-      </tr>
-
-      <tr>
-        <td >Fecha</td>
-        <td >Práctica 2</td>
-        <td >HTML Inicio Catalogo y Articulo</td>
-        <td >Noe, Marta, Marlon</td>
-      </tr>
-
-      <tr>
-        <td >Fecha</td>
-        <td >Práctica 2</td>
-        <td >HTML Perfil, About, Producto</td>
-        <td >Victor, Adri, Wilson</td>
-      </tr>
-
-      <tr>
-        <td >Fecha</td>
-        <td >Práctica 2</td>
-        <td >HTML Iniciar/Registrar</td>
-        <td >Marlon, Rebeca</td>
-      </tr>
+    <tr class="hito">
+      <td>24/02/2020</td>
+      <td>Práctica 1</td>
+      <td>Creación de la estructura de la página y bocetos iniciales.</td>
+      <td>Cada miembro se ha encargado de una página y ha colaborado activamente con el resto del equipo
+        en sus respectivas páginas.</td>
+    </tr>
 
 
-      <tr>
-        <td >Fecha</td>
-        <td >Práctica 2</td>
-        <td >Comprar y Vender, BBDD</td>
-        <td >Todos</td>
-      </tr>
+    <tr class="hito">
+      <th rowspan="5">23/03/2020</th>
+      <th rowspan="5">Práctica 2</th>
+      <td>Diseño de la aplicación usando HTML (sin CSS), de la arquitectura del lado del servidor y prototipo
+        funcional de parte de la aplicación. Versión mínima del proyecto.</td>
+      <td>-</td>
+    </tr>
+    <tr>
 
-      <tr class="hito">
-        <td>23/03/2020</td>
-        <td>Practica 2</td>
-        <td>Diseño de la aplicación usando HTML (sin CSS), de la arquitectura del lado del servidor y prototipo 
-          funcional de parte de la aplicación. Versión mínima del proyecto.</td>
-        <td>-</td>
-      </tr>
-      
-      <tr class="hito">
-        <td>15/04/2020</td>
-        <td>Práctica 3</td>
-        <td>Diseño de la apariencia de la aplicación usando hojas de estilos sobre la entrega anterior e incremento
-           de la funcionalidad.</td>
-        <td>-</td>
-      </tr>
-      
-      <tr class="hito">
-        <td>14/05/2020</td>
-        <td>Entrega final</td>
-        <td>Aplicación Web completa y funcional. Testing y subsanación de errores.</td>
-        <td>-</td>
-      </tr>
-    </table>
+      <td>HTML Inicio Catalogo y Articulo</td>
+      <td>Noe, Marta, Marlon</td>
+    </tr>
 
-  </body>
+    <tr>
+      <td>HTML Perfil, About, Producto</td>
+      <td>Victor, Adri, Wilson</td>
+    </tr>
+
+    <tr>
+      <td>HTML Iniciar/Registrar</td>
+      <td>Marlon, Rebeca</td>
+    </tr>
+
+
+    <tr>
+      <td>Comprar y Vender, BBDD</td>
+      <td>Todos</td>
+    </tr>
+
+    <tr class="hito">
+      <td>15/04/2020</td>
+      <td>Práctica 3</td>
+      <td>Diseño de la apariencia de la aplicación usando hojas de estilos sobre la entrega anterior e incremento
+        de la funcionalidad.</td>
+      <td>-</td>
+    </tr>
+
+    <tr class="hito">
+      <td>14/05/2020</td>
+      <td>Entrega final</td>
+      <td>Aplicación Web completa y funcional. Testing y subsanación de errores.</td>
+      <td>-</td>
+    </tr>
+  </table>
+
+</body>
+
 </html>
