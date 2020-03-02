@@ -97,14 +97,21 @@ img {
     margin-top: 20px;
 }
 
-p {
+.member_photo {
+    font-weight: bold;
+    text-align: center;
+}
+.miembro li {
+    font-size: large;
+    font-weight: normal;
+    list-style-type: none;
     float: none;
     margin-left: auto;
     margin-right: auto;
     width: 45%;
 }
 
-.miembro:after {
+.miembro:before {
     float: none;
     margin: 0 auto;
     padding-top: 30px;
