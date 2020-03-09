@@ -18,6 +18,7 @@ h1{
 .status {
     display: block;
     text-align: right;
+    margin: 3px;
 
 }
 nav {
