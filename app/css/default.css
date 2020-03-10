@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(98, 241, 194);
+    background-color: rgb(98, 241, 181);
     text-align: justify;
 }
 
@@ -32,7 +32,7 @@ nav ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(156, 51, 3);
+    background-color: rgb(163, 68, 24);
 
 }
 
