@@ -16,8 +16,8 @@
     }
     else {
         echo '
-        <a href="./login_form.php">Login</a>
-        <a href="./login_form.php">Registrar</a>'; //./ porque luego no estaremos en local:)
+        <a href="./login.php">Login</a>
+        <a href="./registrar.php">Registrar</a>'; 
     }
     ?>
     </form>
