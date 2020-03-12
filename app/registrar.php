@@ -28,7 +28,4 @@
 
         </div>
     </div> <!-- Fin del contenedor -->
-
-
-
 </body>
