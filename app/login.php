@@ -1,41 +1,33 @@
+<?php
+
+?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php require('head.php')?>
-    <title>Login</title>
+    <?php require('./common/head.php')?>
+    <title>Registrar</title>
 </head>
 
 <body>
-<div id="contenedor">
-
-
+    <div id="contenedor">
         <?php
-            require("cabecera.php");
+            require("./common/cabecera.php");
+            if (isset($_SESSION['fail_msg'])) {
+                echo '<h2>'.$_SESSION['fail_msg'].'</h2>';
+            }
+            unset($_SESSION['fail_msg']);
         ?>
-
-
         <div id="contenido">
-                        
-            <?php
-               //Login prueba, acceder a base de datos segun el caso
-                $username = "username";
-                $password = "password";
-                Echo "<form method='POST' action='./index.php'>";
-                Echo "<div><input type='text' name=$username value='user'/></div>";
-                Echo "<div><input type='text' name=$password value='userpass'/></div>";
-                Echo "<div> <button type='submit' name='submit2' value='Enviar form.'> Entrar  </button></div>";
-            ?>
+            <form action="./controllers/login.php" method="post">
+                <div><input type='text' name='username' placeholder='nombre usuario o email' required /></div>
+                <div><input type='password' name='password' placeholder='contraseña' required /></div>
+                <div> <button type='submit' name='submit_login'>Entrar</button></div>
+            </form>
+
         </div>
-
-
-        
-
     </div> <!-- Fin del contenedor -->
-
-
-
 </body>
-
