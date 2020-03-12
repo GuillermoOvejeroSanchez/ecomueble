@@ -3,8 +3,9 @@
     <?php 
     if(isset($_SESSION['login'])){
         $user = $_SESSION['username'];
-        echo '<span>'. $user .'</span>
-        <button type="submit" name="logout">Logout</button>';
+        $saldo = $_SESSION['saldo'];
+        echo '<span>'. $user . ' Saldo actual: '.$saldo.'</span>
+        <button type="submit" name="logout_btn">Logout</button>';
     }else{
         echo '
         <button type="submit" name="login_btn">Login</button>

@@ -10,7 +10,8 @@ elseif (isset($_REQUEST['registrar_btn'])) {
 
 elseif (isset($_REQUEST['logout_btn'])) {
     session_start();
-    unset($_SESSION['user']);
+    unset($_SESSION['username']);
+    unset($_SESSION['login']);
     session_destroy();
     header("Location: ./index.php");
 }
