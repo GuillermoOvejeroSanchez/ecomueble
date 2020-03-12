@@ -1,11 +1,11 @@
 <?php
 
 if(isset($_REQUEST['login_btn'])) {
-    header("Location: ./views/login.php");
+    header("Location: ./login.php");
 }
 
 elseif (isset($_REQUEST['registrar_btn'])) {
-    header("Location: ./views/registrar.php");
+    header("Location: ./registrar.php");
 }
 
 elseif (isset($_REQUEST['logout_btn'])) {
