@@ -17,8 +17,8 @@
             }
             unset($_SESSION['fail_msg']);
         ?>
-        <div id="contenido">
-            <form action="../controllers/registrar.php" method="post">
+        <div class="contenido">
+            <form action="./controllers/registrar.php" method="post">
                 <div><input type='text' name='username' placeholder='Nombre usuario' required /></div>
                 <div><input type='text' name='email' placeholder='Email' required /></div>
                 <div><input type='text' name='tlfn' placeholder='Telefono' required /></div>

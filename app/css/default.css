@@ -10,11 +10,43 @@ h1{
 .logo a img {
     display: block;
     margin: auto;
-    margin-bottom: 10px;
-    width: 30%;
-    height: 30%;
+    margin-bottom: 1%;
+    width: 15%;
+    height: 15%;
 }
 
+.contenido form{
+	width:30%;
+	padding:3%;
+	border-radius:10px;
+    margin:auto;
+    margin-top: 3%;
+	background-color:rgb(179, 247, 219);
+}
+.contenido form div {
+    text-align: center;
+    margin-top: 3%;
+}
+
+.contenido form div input {
+    width:80%;
+	padding:3%;
+	border:1px solid #f6f6f6;
+	border-radius:5px;
+	background-color:#f6f6f6;
+	margin:3%;
+	display:inline-block;
+}
+.contenido form div button {
+    width:100%;
+	padding: 3%;
+	margin-top:7%;
+	border-radius:5px;
+	display:block;
+	color:#fff;
+    background-color:rgb(64, 180, 132);
+    border:1px solid rgb(64, 180, 132);
+}
 .status {
     display: block;
     text-align: right;
@@ -69,4 +101,12 @@ footer{
     bottom: 5px;
     width: 90%;
     height: 40px;
+}
+.b button{
+    width: 8%;
+    padding: 0.2%;
+    border-radius:5px;
+    background-color:rgb(206, 245, 229);
+    font-weight: bold;
+    color:rgb(73, 68, 68);
 }

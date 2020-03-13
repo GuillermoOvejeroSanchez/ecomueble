@@ -21,7 +21,7 @@
             }
             unset($_SESSION['fail_msg']);
         ?>
-        <div id="contenido">
+        <div class="contenido">
             <form action="./controllers/login.php" method="post">
                 <div><input type='text' name='username' placeholder='nombre usuario o email' required /></div>
                 <div><input type='password' name='password' placeholder='contraseña' required /></div>

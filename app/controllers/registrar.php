@@ -21,7 +21,7 @@
         );
 
         require_once("../models/registrar.php");
-
+      
         //si nos registra correctamente va a index
         if (isset($_SESSION['registrado']) and $_SESSION['registrado'] == TRUE) {
             unset($_SESSION['registrado']);
