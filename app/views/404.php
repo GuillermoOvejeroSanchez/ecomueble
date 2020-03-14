@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php require('./common/head.php')?>
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/default.css">
+    <title>404</title>
 </head>
-
 <body>
-    <?php
-        require('./common/cabecera.php');
-    ?>
+    <h1>404 Not Found</h1>
 </body>
-
 </html>

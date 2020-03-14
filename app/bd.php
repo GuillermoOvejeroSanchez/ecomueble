@@ -1,9 +1,5 @@
 <?php
-$servername = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'ecomueble';
-
-$conn = new mysqli($servername, $user, $pass, $db) or die("Connection failed");
+require('config.php');
+$conn = new mysqli(SERVERNAME, USER, PASS, DB) or die("Connection failed");
 echo "Connected";
 ?>

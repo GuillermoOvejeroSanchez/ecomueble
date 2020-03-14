@@ -1,4 +1,4 @@
-<div class="logo"><a href="./index.php"><img src="./img/logo.jpg" alt="Logo"></a></div>
+<div class="logo"><a href="/"><img src="./img/logo.jpg" alt="Logo"></a></div>
 
 <div class="status">
    <form action="./status_redirect.php" method="post">
@@ -24,10 +24,10 @@
 
 <nav>
     <ul>
-        <li><a href="./index.php">Inicio</a></li>
-        <li><a href="./catalogo.php">Catalogo</a></li>
-        <li><a href="./chat.php">Chat</a></li>
-        <li><a href="./perfil.php">Perfil</a></li>
-        <li><a href="./about.php">Sobre nosotros</a></li>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="catalogo">Catalogo</a></li>
+        <li><a href="chat">Chat</a></li>
+        <li><a href="perfil">Perfil</a></li>
+        <li><a href="about">Sobre nosotros</a></li>
     </ul>
 </nav>

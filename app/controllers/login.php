@@ -1,5 +1,4 @@
 <?php
-
     //Comprobar campos
     if (isset($_POST['submit_login'])) {
 
@@ -19,11 +18,11 @@
 
         //si nos registra correctamente va a index
         if (isset($_SESSION['login']) and $_SESSION['login'] == TRUE) {;
-            header("Location: ../index.php");
+            header("Location: /");
         }
         //si no vuelve a login para mostrar un mensaje de error
         else{
-            header("Location: ../login.php");
+            header("Location: /login");
         }
     }
 
