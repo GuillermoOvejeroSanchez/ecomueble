@@ -11,6 +11,7 @@
     <?php
         require('./common/cabecera.php');
     ?>
+    <!-- lista de productos y un buscar productos?-->
 </body>
 
 </html>

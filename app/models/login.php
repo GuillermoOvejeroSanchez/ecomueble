@@ -7,7 +7,7 @@ $username = $form['username'];
 $password = $form['password'];
 
 //Comprobar si existe user,email,tlfn
-$sql1 = "SELECT idUsuario, nombre, tipoUsuario, saldo FROM usuario WHERE password = '$password' AND (nombre = '$username' OR email = '$username')";
+$sql1 = "SELECT idUsuario, nombre, tipoUsuario, saldo, imagen FROM usuario WHERE password = '$password' AND (nombre = '$username' OR email = '$username')";
 $existe = FALSE;
 
 if ($resultado = $conn->query($sql1)) { 
@@ -17,6 +17,7 @@ if ($resultado = $conn->query($sql1)) {
         $_SESSION['login'] = TRUE;
         $_SESSION['username'] = $user_fetched['nombre'];
         $_SESSION['saldo'] = $user_fetched['saldo'];
+        $_SESSION['imagen'] = $user_fetched['imagen'];
         
         if ($user_fetched['tipoUsuario'] == 1) {
             $_SESSION['admin'] = TRUE;

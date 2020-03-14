@@ -7,6 +7,7 @@ $username = $form['username'];
 $email = $form['email'];
 $tlfn = $form['tlfn'];
 $password = $form['password'];
+$imagen = $form['imagen'];
 
 //Comprobar si existe user,email,tlfn
 $sql1 = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$username' OR email = '$email' OR telefono = '$tlfn'";
@@ -26,8 +27,8 @@ if ($resultado = $conn->query($sql1)) {
 //Mensajes de alerta saber que campo falla
 
 //Query SQL
-$sql = "INSERT INTO usuario (nombre, email, password, telefono)
-VALUES ('$username', '$email', '$password', '$tlfn')";
+$sql = "INSERT INTO usuario (nombre, email, password, telefono, imagen)
+VALUES ('$username', '$email', '$password', '$tlfn', '$imagen')";
 
 
 if(!$existe && $conn->query($sql) === TRUE){

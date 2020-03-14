@@ -6,6 +6,9 @@
     if(isset($_SESSION['login'])){
         $user = $_SESSION['username'];
         $saldo = $_SESSION['saldo'];
+        $imagen = $_SESSION['imagen'];
+        
+        echo  "<img src='$imagen' alt='imagen''>";
         echo '<span>'. $user . ' Saldo actual: '.$saldo.'</span>
         <div class="b"><button type="submit" name="logout_btn">Logout</button></div>';
     }else{
