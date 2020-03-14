@@ -7,7 +7,6 @@ $username = $form['username'];
 $email = $form['email'];
 $tlfn = $form['tlfn'];
 $password = $form['password'];
-$imagen = $form['imagen'];
 
 //Validar email & tlfn
 $valid = TRUE;
@@ -16,10 +15,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $valid = FALSE;
     $msg .= "email no valido\n";
 }
-if (strlen($tlfn) != 9) {
-    $valid = FALSE;
-    $msg .= " telefono no valido";
-}
+
 
 //Comprobar si existe user,email,tlfn
 $sql1 = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$username' OR email = '$email' OR telefono = '$tlfn'";
@@ -36,17 +32,25 @@ if ($valid and $resultado = $conn->query($sql1)) {
         if($user_fetched['telefono'] == $tlfn) $msg .= "telefono";
     } 
 }
-//Mensajes de alerta saber que campo falla
 
-//Query SQL
-$sql = "INSERT INTO usuario (nombre, email, password, telefono, imagen)
-VALUES ('$username', '$email', '$password', '$tlfn', '$imagen')";
+if($valid){
+
+    //Guardar img en server y session de la imagen
+    $imgPath = saveImg("../profile_img/" , $username);
+    $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
+    
+    //Query SQL
+    $sql = "INSERT INTO usuario (nombre, email, password, telefono, imagen)
+        VALUES ('$username', '$email', '$password', '$tlfn', '$imgPath')";
 
 
-if($valid && !$existe && $conn->query($sql) === TRUE){
-    $_SESSION['registrado'] = TRUE;
-}
-else{
+    if(!$existe && $conn->query($sql) === TRUE){
+        $_SESSION['registrado'] = TRUE;
+        $_SESSION['profile_pic'] = $imgPath;
+
+    }
+}else{
+    //Mensajes de alerta saber que campo falla
     $_SESSION['fail_msg'] = $msg;
 }
 
