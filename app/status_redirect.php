@@ -1,11 +1,11 @@
 <?php
 
 if(isset($_REQUEST['login_btn'])) {
-    header("Location: ./login.php");
+    header("Location: login");
 }
 
 elseif (isset($_REQUEST['registrar_btn'])) {
-    header("Location: ./registrar.php");
+    header("Location: registrar");
 }
 
 elseif (isset($_REQUEST['logout_btn'])) {
@@ -13,7 +13,7 @@ elseif (isset($_REQUEST['logout_btn'])) {
     unset($_SESSION['username']);
     unset($_SESSION['login']);
     session_destroy();
-    header("Location: ./index.php");
+    header("Location: /");
 }
 die();
 ?>
