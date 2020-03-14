@@ -14,8 +14,8 @@
             require("./common/cabecera.php");
         ?>
         <div class="contenido">
-            <form action="../controllers/registrar.php" method="post">
             <?php
+            echo '<form action="../controllers/registrar.php" method="post" enctype="multipart/form-data">';
                 if (isset($_SESSION['fail_msg'])) {
                     echo '<div>'.$_SESSION['fail_msg'].'</div>';
                 }

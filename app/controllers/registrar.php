@@ -1,7 +1,7 @@
 <?php
-
+require('../img.php');
     //Comprobar campos
-    if (isset($_POST['submit_registrar']) && isset($_FILES['imagen'])) {
+    if (isset($_POST['submit_registrar'])) {
 
         //Secure input
         if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST['email']) and !empty($_POST['tlfn'])) {
@@ -10,7 +10,6 @@
             $tlfn = secure_input($_POST['tlfn']);
             //Hash password   
             $password = sha1($_POST['password']);
-            $imagen = secure_input($_FILES['imagen']['name']);
         }
 
         //Enviar datos al modelo
@@ -19,7 +18,6 @@
             "email" => $email,
             "tlfn" => $tlfn,
             "password" => $password,
-            "imagen" => $imagen,
         );
 
         require_once("../models/registrar.php");

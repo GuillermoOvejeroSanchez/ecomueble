@@ -17,7 +17,7 @@ if ($resultado = $conn->query($sql1)) {
         $_SESSION['login'] = TRUE;
         $_SESSION['username'] = $user_fetched['nombre'];
         $_SESSION['saldo'] = $user_fetched['saldo'];
-        $_SESSION['imagen'] = $user_fetched['imagen'];
+        $_SESSION['profile_pic'] = $user_fetched['imagen'];
         
         if ($user_fetched['tipoUsuario'] == 1) {
             $_SESSION['admin'] = TRUE;
