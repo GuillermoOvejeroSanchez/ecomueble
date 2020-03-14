@@ -12,13 +12,15 @@
     <div id="contenedor">
         <?php
             require("./common/cabecera.php");
-            if (isset($_SESSION['fail_msg'])) {
-                echo '<h2>'.$_SESSION['fail_msg'].'</h2>';
-            }
-            unset($_SESSION['fail_msg']);
         ?>
         <div class="contenido">
             <form action="../controllers/registrar.php" method="post">
+            <?php
+                if (isset($_SESSION['fail_msg'])) {
+                    echo '<div>'.$_SESSION['fail_msg'].'</div>';
+                }
+                unset($_SESSION['fail_msg']);
+            ?>
                 <div><input type='text' name='username' placeholder='Nombre usuario' required /></div>
                 <div><input type='text' name='email' placeholder='Email' required /></div>
                 <div><input type='text' name='tlfn' placeholder='Telefono' required /></div>

@@ -16,10 +16,7 @@
     <div id="contenedor">
         <?php
             require("./common/cabecera.php");
-            if (isset($_SESSION['fail_msg'])) {
-                echo '<h2>'.$_SESSION['fail_msg'].'</h2>';
-            }
-            unset($_SESSION['fail_msg']);
+            
         ?>
         <div class="contenido">
             <form action='../controllers/login.php' method="post">
