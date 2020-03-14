@@ -25,11 +25,11 @@
         //si nos registra correctamente va a index
         if (isset($_SESSION['registrado']) and $_SESSION['registrado'] == TRUE) {
             unset($_SESSION['registrado']);
-            header("Location: ../index.php");
+            header("Location: /");
         }
         //si no vuelve a registrar para mostrar un mensaje de error
         else{
-            header("Location: ../registrar.php");
+            header("Location: /registrar");
         }
     }
 
