@@ -17,11 +17,17 @@
         require_once("../models/login.php");
 
         //si nos registra correctamente va a index
-        if (isset($_SESSION['login']) and $_SESSION['login'] == TRUE) {;
+        if (isset($_SESSION['login']) and $_REQUEST['login']) {
+            if(isset($_SESSION['login_failed'])) {
+                unset($_SESSION['login_failed']);
+                unset($_SESSION['failed_user']);
+            }
             header("Location: /");
         }
         //si no vuelve a login para mostrar un mensaje de error
         else{
+            $_SESSION['login_failed'] = TRUE;
+            $_SESSION['failed_user'] = $username;
             header("Location: /login");
         }
     }
