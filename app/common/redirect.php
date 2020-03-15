@@ -14,8 +14,6 @@ elseif (isset($_REQUEST['logout_btn'])) {
     unset($_SESSION['login']);
     session_destroy();
     header("Location: /");
-}else {
-    header("Location: /404");
 }
 die();
 ?>
