@@ -1,0 +1,6 @@
+DirectoryIndex /ecomueble/app/index.php
+RewriteEngine On
+RewriteBase /ecomueble/app/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]
