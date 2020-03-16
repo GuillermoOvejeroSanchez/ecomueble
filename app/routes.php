@@ -35,10 +35,14 @@ switch ($request) {
         require __DIR__.
         '/views/perfil.php';
         break;
-        case '/status':
-            require __DIR__.
-            '/status_redirect.php';
-            break;
+    case '/status':
+        require __DIR__.
+        '/status_redirect.php';
+        break;
+    case '/subir':
+        require __DIR__.
+        '/views/subir.php';
+    break;
     default:
         http_response_code(404);
         require __DIR__.
