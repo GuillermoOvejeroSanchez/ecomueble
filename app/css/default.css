@@ -11,6 +11,9 @@ body {
 h1{
     text-align: center;
 }
+h3 {
+    margin-left: 2%;
+}
 .logo a img {
     display: block;
     margin: auto;
@@ -32,6 +35,31 @@ span {
     position: absolute;
     top: 12%;
     right:1%;
+}
+.perfil {
+    width:80%;
+    margin: auto;
+    margin-top: 3%;
+    background-color:rgb(179, 247, 202);
+    border-radius:10px;
+}
+.perfil img {
+    width: 60%;
+    border-radius: 50%;
+    position: relative;
+    left: 5%;
+    margin-top: 5%;
+}
+.perfil p {
+    font-size: 15pt;
+    margin: 2%;
+    text-align: left;
+}
+.imagen{
+    width: 10%;
+}
+.datos{
+    width: 30%;
 }
 .contenido form{
 	width:30%;
@@ -127,4 +155,15 @@ footer{
     background-color:rgb(200, 243, 214);
     font-weight: bold;
     color:rgb(73, 68, 68);
+}
+.bperfil button{
+    width: 10%;
+    padding: 0.2%;
+    border-radius:5px;
+    background-color:rgb(127, 194, 148);
+    font-weight: bold;
+    color:rgb(49, 58, 49);
+    margin-bottom: 2%;
+    margin-left: 1%;
+    margin-top: 1%;
 }
