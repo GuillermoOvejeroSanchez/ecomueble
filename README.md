@@ -95,14 +95,25 @@ Ademas tenemos 3 carpetas donde las funcionalidades principales van
 Al correr *Apache* ya funcionara nuestra app
 
 ---
-### 3. Archivo *.htacces*
-Esta ultima opcion es por si no queremos hacer cambios a la configuracion de *Apache* que viene por defecto  
+### 3. Desde terminal
+Para esta opcion hay que tener php en el path 
 
-- Para esta forma, solamente tendremos que colocar el archivo
-[.htacces](https://github.com/GuillermoOvejeroSanchez/ecomueble/blob/master/.htaccess) dentro de htdocs  
-`C:/xampp/htdocs/.htacces`
-
-Con esto ya funcionaria la app al correr *Apache*
-
+Y ejecutar este comando desde donde tengamos el archivo index.php
+```php
+php -S localhost:<port>
+```
+En mi caso, en la carpeta *app/* y el puerto *80* por defecto para *http*
+```bash
+D:/dev/ecomueble/app > php -S localhost:80
+```
 ---
+
+## Branches
+
+Uso de 2 branches principales
+- master: donde va el codigo que funciona y listo para usar
+- development: codigo que estemos desarrollando
+- branch extra: con nuestro nombre por ejemplo, la podemos usar para cuando trabajemos en algo especifico, o estemos probando cosas
+
+Una vez tengamos una feature desarrollada, podremos hacer un *pull request* y un *merge* a la branch de master
 
