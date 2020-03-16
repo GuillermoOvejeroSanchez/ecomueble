@@ -10,12 +10,12 @@
 <body>
     <?php
         require('./common/cabecera.php');
+        require('./controllers/perfil.php');
     ?>
+  
 </body>
 
 </html>
-
-
 
 <?php
 
