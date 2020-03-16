@@ -126,3 +126,9 @@ Uso de 2 branches principales
 
 Una vez tengamos una feature desarrollada, podremos hacer un *pull request* y un *merge* a la branch de master
 
+## Issues
+
+Al crear *Issues* nuevas tenemos dos plantillas:
+- Bug report: si se encuentra alguna parte de la aplicacion que no funcione
+- Feature request: si se quiera una funcionalidad extra en alguna parte de la app
+- Blank template: añadir issues restantes
