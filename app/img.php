@@ -7,7 +7,7 @@ function saveImg($path, $filename){
     $target_file = $target_dir . $newname . '.' .$ext;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    
+
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["imagen"]["tmp_name"]);
     if($check !== false) {
