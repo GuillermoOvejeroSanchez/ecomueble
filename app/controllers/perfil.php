@@ -1,28 +1,27 @@
 <?php
 require('./models/Usuario.php');
 require_once('./bd.php');
+isset($_SESSION['login']) ? logged($conn) : not_logged();
+$conn->close(); //Importante cerrar siempre la conexion
 
-isset($_SESSION['login']) ? logged() : not_logged();
-
-function logged()
+function logged($conn)
 {
-    $user = new Usuario("", "", "" , "");
-    $p = $_SESSION['username'];
-    $slq = $user->getUser($p);
-    $resultado = $GLOBALS['conn']->query($slq); //he puesto la variable conn global en la bd porque sino no me dejaba usarla aqui no se por qué:(
-    $usu = $resultado->fetch_assoc();
+    $user = new Usuario(); //Usuario vacio
+    $p = $_SESSION['username']; //Cogemos nombre user para realizar consulta
+    $sql = $user->getUser($p);
+    $resultado = $conn->query($sql);
+    $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
 
-    $imagen = "../profile_img/" . $usu['imagen'];
+    $imagen = "../profile_img/" . $user->imagen;
 
     ?>
     <div class="perfil"> 
     <form action="status" method="post">
         <?php
-       
         echo" <table> <tr> <th class='imagen'> <img src='$imagen' alt='imagen'></th> 
-                            <th class='datos'><p>Nombre: <strong>$usu[nombre]</strong></p> 
-                                            <p>Email: <strong>$usu[email]</strong></p>
-                                            <p>Teléfono: <strong>$usu[telefono]</strong> </p></th>
+                            <th class='datos'><p>Nombre: <strong>$user->nombre</strong></p> 
+                                            <p>Email: <strong>$user->email</strong></p>
+                                            <p>Teléfono: <strong>$user->telefono</strong> </p></th>
               </tr> </table>
            ";//Imagen de perfil y datos informativos
 
@@ -35,14 +34,8 @@ function logged()
     <?php
 }
 
-function not_logged(Type $var = null)
+function not_logged()
 {
     echo 'No disponible, registrate';
 }
-
-function getUser($username)
-{
-    return 'paco';
-}
-
 ?>

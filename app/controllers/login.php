@@ -17,7 +17,7 @@
         require_once("../models/login.php");
 
         //si nos registra correctamente va a index
-        if (isset($_SESSION['login']) and $_SESSION['login'] == TRUE) {;
+        if (isset($_SESSION['login']) and $_SESSION['login'] == TRUE) {
             header("Location: /");
         }
         //si no vuelve a login para mostrar un mensaje de error
