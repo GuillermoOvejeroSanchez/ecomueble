@@ -14,8 +14,14 @@ elseif (isset($_REQUEST['logout_btn'])) {
     unset($_SESSION['login']);
     session_destroy();
     header("Location: /");
+}
+elseif (isset($_REQUEST['subirProducto'])) {
+    header("Location: subir");
+}
+elseif (isset($_REQUEST['editarPerfil'])) {
+    header("Location: editar");
 }else {
-    header("Location: /404");
+    header("Location: 404");
 }
 die();
 ?>

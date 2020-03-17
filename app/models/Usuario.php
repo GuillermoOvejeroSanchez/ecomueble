@@ -1,6 +1,5 @@
 <?php
 
-
 class Usuario
 {
     public $idUsuario;
@@ -35,6 +34,11 @@ class Usuario
     {
         $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre' OR email = '$this->email' OR telefono = '$this->telefono'";
         return $sql;
+    }
+
+    public function getUser($name) {
+        $user = "SELECT nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE nombre = '$name'";
+        return $user;
     }
 
 }

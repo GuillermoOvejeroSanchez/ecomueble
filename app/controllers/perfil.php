@@ -1,22 +1,28 @@
 <?php
-
+require('./models/Usuario.php');
+require_once('./bd.php');
 
 isset($_SESSION['login']) ? logged() : not_logged();
 
 function logged()
 {
+    $user = new Usuario("", "", "" , "");
+    $p = $_SESSION['username'];
+    $slq = $user->getUser($p);
+    $resultado = $GLOBALS['conn']->query($slq); //he puesto la variable conn global en la bd porque sino no me dejaba usarla aqui no se por qué:(
+    $usu = $resultado->fetch_assoc();
+
+    $imagen = "../profile_img/" . $usu['imagen'];
+
     ?>
     <div class="perfil"> 
+    <form action="status" method="post">
         <?php
-        $imagen = "../profile_img/" . $_SESSION['profile_pic'];
-        $nombre = $_SESSION['username'];//estas variables hay que cambiarlo por las que obtienes del modelo
-                                        // y añadir las que faltan
        
-        
         echo" <table> <tr> <th class='imagen'> <img src='$imagen' alt='imagen'></th> 
-                            <th class='datos'><p>Nombre: $nombre</p>
-                                            <p>Email: </p>
-                                            <p>Teléfono: </p></th>
+                            <th class='datos'><p>Nombre: <strong>$usu[nombre]</strong></p> 
+                                            <p>Email: <strong>$usu[email]</strong></p>
+                                            <p>Teléfono: <strong>$usu[telefono]</strong> </p></th>
               </tr> </table>
            ";//Imagen de perfil y datos informativos
 

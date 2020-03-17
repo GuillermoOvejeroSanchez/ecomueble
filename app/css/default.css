@@ -14,6 +14,10 @@ h1{
 h3 {
     margin-left: 2%;
 }
+strong {
+    color: rgb(68, 90, 77);
+    font-size: smaller;
+}
 .logo a img {
     display: block;
     margin: auto;

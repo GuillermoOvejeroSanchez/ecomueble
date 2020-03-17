@@ -1,5 +1,5 @@
 <?php
-require('config.php');
-$conn = new mysqli(SERVERNAME, USER, PASS, DB) or die("Connection failed");
-echo "Connected";
+require_once('config.php');
+$GLOBALS['conn'] = new mysqli(SERVERNAME, USER, PASS, DB) or die("Connection failed");
+//echo "Connected";
 ?>
