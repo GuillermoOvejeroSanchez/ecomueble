@@ -38,6 +38,9 @@ if($valid){
     //Guardar img en server y session de la imagen
     $imgPath = saveImg("../profile_img/" , $username);
     $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
+    $user->imagen = $imgPath;
+    //Query SQL
+    $sql = $user->createUser();
     
     //Query SQL
     $sql = "INSERT INTO usuario (nombre, email, password, telefono, imagen)
