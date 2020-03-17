@@ -1,16 +1,20 @@
 <?php
 session_start();
 require_once('../bd.php'); //Connect to db
+require('Usuario.php');
 
 //Campos introducidos en el form
-$username = $form['username']; 
-$password = $form['password'];
+$user = new Usuario();
+$user->nombre = $form['username'];
+$user->password = $form['password'];
+
+echo $user->nombre;
 
 //Comprobar si existe user,email,tlfn
-$sql1 = "SELECT idUsuario, nombre, tipoUsuario, saldo, imagen FROM usuario WHERE password = '$password' AND (nombre = '$username' OR email = '$username')";
+$sql = $user->logUser();
 $existe = FALSE;
 
-if ($resultado = $conn->query($sql1)) { 
+if ($resultado = $conn->query($sql)) { 
     if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
         $existe = TRUE;
         $user_fetched = $resultado->fetch_assoc();

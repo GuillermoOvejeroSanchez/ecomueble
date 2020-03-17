@@ -38,7 +38,7 @@ if($valid and !$existe){
     $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
     $user->imagen = $imgPath;
     //Query SQL
-    $sql = $user->createUser();
+    $sql = $user->insertUser();
     
     if(!$existe && $conn->query($sql) === TRUE){
         $_SESSION['registrado'] = TRUE;
