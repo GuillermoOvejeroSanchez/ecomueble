@@ -5,7 +5,7 @@
         //Secure input
         if (!empty($_POST['username']) and !empty($_POST['password'])) {
             $username = secure_input($_POST['username']);
-            $password = sha1($_POST['password']);
+            $password = $_POST['password'];
         }
 
         //Enviar datos al modelo
@@ -33,4 +33,6 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+
+    
 ?>

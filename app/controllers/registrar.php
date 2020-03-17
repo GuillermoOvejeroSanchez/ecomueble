@@ -8,8 +8,8 @@ require('../img.php');
             $username = secure_input($_POST['username']);
             $email = secure_input($_POST['email']);
             $tlfn = secure_input($_POST['tlfn']);
-            //Hash password   
-            $password = sha1($_POST['password']);
+            //Hash password
+            $hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
         }
 
         //Enviar datos al modelo
@@ -17,7 +17,7 @@ require('../img.php');
             "username" => $username,
             "email" => $email,
             "tlfn" => $tlfn,
-            "password" => $password,
+            "password" => $hash,
         );
 
         require_once("../models/registrar.php");
