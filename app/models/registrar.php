@@ -40,14 +40,6 @@ if($valid and !$existe){
     //Query SQL
     $sql = $user->createUser();
     
-    //Query SQL
-    $sql = "INSERT INTO usuario (nombre, email, password, telefono, imagen)
-        VALUES ('$username', '$email', '$password', '$tlfn', '$imgPath')";
-
-
-    //Query SQL
-    $sql = $user->createUser();
-    
     if(!$existe && $conn->query($sql) === TRUE){
         $_SESSION['registrado'] = TRUE;
     }
