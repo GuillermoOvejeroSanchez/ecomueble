@@ -72,6 +72,7 @@ Ademas tenemos 3 carpetas donde las funcionalidades principales van
     - Los archivos dentro de controllers se comunican con los modelos y devuelven los datos a la vista
 - models
     - El modelo se comunica con la base de datos y manipula los datos para devolverselos formateados a el controlador
+    - [ ] Clase de modelos para cada tabla
 - views
     - La vista simplemente genera codigo html segun lo que el controlador le pase
 
@@ -108,6 +109,14 @@ D:/dev/ecomueble/app > php -S localhost:80
 ```
 ---
 
+## Base de Datos
+Para lanzar la base de datos necesitaremos primero crearla en local.  
+En MySQL importamos en la BD *ecomueble* el archivo de sql *ecomueble_imagenes.sql*  
+Los cambios que hagamos en la BD local no se guardaran.  
+- [x] Base de datos de prueba
+- [ ] Popular la BD con otro fichero SQL (Datos Falsos)
+- [ ] Crear BD con un script PHP
+
 ## Branches
 
 Uso de 2 branches principales
@@ -117,3 +126,9 @@ Uso de 2 branches principales
 
 Una vez tengamos una feature desarrollada, podremos hacer un *pull request* y un *merge* a la branch de master
 
+## Issues
+
+Al crear *Issues* nuevas tenemos dos plantillas:
+- Bug report: si se encuentra alguna parte de la aplicacion que no funcione
+- Feature request: si se quiera una funcionalidad extra en alguna parte de la app
+- Blank template: añadir issues restantes
