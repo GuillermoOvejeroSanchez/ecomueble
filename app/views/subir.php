@@ -20,7 +20,7 @@
                 }
                 unset($_SESSION['fail_msg']);
             ?>
-                <div><input type='text' name='productname' placeholder='Nombre del producto' required /></div>
+                <div><input type='text' name='nombre' placeholder='Nombre del producto' required /></div>
                 <div><input type='text' name='description' placeholder='Breve Descripcion'/></div>
                 <div><input type='text' name='price' placeholder='Precio' required /></div>
                 <div><input type='text' name='categoria' placeholder='Categoria' required /></div>

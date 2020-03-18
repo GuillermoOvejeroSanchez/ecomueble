@@ -16,7 +16,7 @@ class Producto
     {
         $this->descripcion = $descripcion; //
         $this->precio = $precio; //
-        $this->idEstado = $idEstado; //0 -> en venta 1->reservado 2 (o -1?)->vendido
+        $this->idEstado = $idEstado; //0 -> en venta 1 -> vendido 2 -> reservado
         $this->idCategoria = $idCategoria; //
         $this->nombre = $nombre; //
         $this->idUsuario = $idUsuario;
