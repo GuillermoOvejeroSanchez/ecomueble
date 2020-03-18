@@ -32,7 +32,7 @@ class Producto
 
     public static function getAllProductsFromUser($idUsuario)
     {
-        $sql = sprintf("SELECT imagen FROM producto WHERE idUsuario = '$idUsuario'");
+        $sql = sprintf("SELECT * FROM producto WHERE idUsuario = '$idUsuario'");
         return $sql;
     }
 
