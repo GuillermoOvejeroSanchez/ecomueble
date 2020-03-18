@@ -1,40 +1,69 @@
-<?
+<?php
+session_start();
+require('../models/Producto.php');
 require('../img.php');
-    //Comprobar campos
-    if (isset($_POST['submit_subir'])) {
+
+//Comprobar campos
+if (isset($_POST['submit_producto'])) {
+    require_once('../bd.php');
 
         //Secure input
-        if (!empty($_POST['productname']) and !empty($_POST['description']) and !empty($_POST['price'])) {
-            $username = secure_input($_POST['productname']);
-            $email = secure_input($_POST['description']);
-            $tlfn = secure_input($_POST['price']);
+        if (!empty($_POST['nombre']) and !empty($_POST['description']) and !empty($_POST['price']) and !empty($_POST['categoria'])) {
+            $nombre = secure_input($_POST['nombre']);
+            $description = secure_input($_POST['description']);
+            $price = secure_input($_POST['price']);
+            $tipoMueble = secure_input($_POST['categoria']);
         }
 
-        //Enviar datos al modelo
-        $form = array(
-            "productname" => $productname,
-            "description" => $description,
-            "price" => $price,
-        );
+        //Modelos de Producto y Categoria
+        $product = new Producto();
+        $product->idUsuario = $_SESSION['idUsuario'];
+        $product->nombre = $nombre;
+        $product->descripcion = $description;
+        $product->precio = $price;
+        
+        $categoria = new Categoria($tipoMueble);
 
-        require_once("../models/subir.php");
+        //idCategoria para insertar en producto
+        $sql = $categoria->getIDCategoria();
+        if($resultado = $conn->query($sql)){
+            $cat_fetched = $resultado->fetch_assoc();
+            $product->idCategoria = $cat_fetched['idCategoria'];
+        }
+        
+        //Guardar imagen del producto
+        $imgPro = saveImg("../product_img/" , $nombre);
+        $imgPro = empty($imgPro) ? "default_profile.jpg" : $imgPro;
+        $product->imagen = $imgPro;
+
+        //Subir producto a BD
+        $sql = $product->insertProduct();
+        echo $sql;
+        if($conn->query($sql)){
+            //Enviar mensaje, subido con exito
+        }else{
+            //Enviar mensaje, no se ha podido subir
+        }
+        $conn->close();
+        header("Location: /perfil");
       
-        //si nos sube correctamente va a perfil
-        if (isset($_SESSION['subido']) and $_SESSION['subido'] == TRUE) {
-            unset($_SESSION['subido']);
-            header("Location: /perfil");
-        }
-        //Pero aquí debería salir un mensaje de error que no se ha subido el producto
-        else{
-            header("Location: /perfil");
-        }
     }
+
     function secure_input($data)
     {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+
+    function subir()
+    {
+        //Guardar imagen del producto
+        $imgPro=saveImg("../product_img/" , $productname);
+        $imgPro = empty($imgPro) ? "default_profile.jpg" : $imgPro; 
+
+        
     }
 ?>
 

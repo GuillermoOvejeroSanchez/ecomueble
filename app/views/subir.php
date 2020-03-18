@@ -13,18 +13,19 @@
             require("./common/cabecera.php");
         ?>
         <div class="contenido">
-            <?php
-                echo '<form action="../controllers/subir.php" method="post" enctype="multipart/form-data">';
+        <?php
+            echo '<form action="../controllers/subir.php" method="post" enctype="multipart/form-data">';
                 if (isset($_SESSION['fail_msg'])) {
                     echo '<div>'.$_SESSION['fail_msg'].'</div>';
                 }
                 unset($_SESSION['fail_msg']);
             ?>
                 <div><input type='text' name='productname' placeholder='Nombre del producto' required /></div>
-                <div><input type='text' name='description' placeholder='Breve descripción' required /></div>
+                <div><input type='text' name='description' placeholder='Breve Descripcion'/></div>
                 <div><input type='text' name='price' placeholder='Precio' required /></div>
-                <div><input type='file' name='imagen' placeholder='Inserte imagen' /></div>
-                <div> <button type='submit' name='submit_subir'>Subir</button></div>
+                <div><input type='text' name='categoria' placeholder='Categoria' required /></div>
+                <div><input type='file' name='imagen' placeholder='Inserte imagen'/></div>
+                <div> <button type='submit' name='submit_producto'>Entrar</button></div>
             </form>
 
         </div>
