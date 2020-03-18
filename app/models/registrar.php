@@ -27,7 +27,6 @@ if ($valid and $resultado = $conn->query($sql)) {
         $user_fetched = $resultado->fetch_assoc();
         if($user_fetched['nombre'] == $user->nombre) $msg .= "nombre ";
         if($user_fetched['email'] == $user->email) $msg .= "email ";
-        if($user_fetched['telefono'] == $user->telefono) $msg .= "telefono";
     } 
 }
 
