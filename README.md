@@ -109,6 +109,15 @@ D:/dev/ecomueble/app > php -S localhost:80
 ```
 ---
 
+### 4. Correr todo desde terminal
+`mysqld &`  
+`php -S localhost:80`    
+Para pararlo:  
+`Ctrl+C`  
+`mysqladmin -u root shutdown`
+
+---
+
 ## Base de Datos
 Para lanzar la base de datos necesitaremos primero crearla en local.  
 En MySQL importamos en la BD *ecomueble* el archivo de sql *ecomueble_imagenes.sql*  
