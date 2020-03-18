@@ -71,8 +71,8 @@ Ademas tenemos 3 carpetas donde las funcionalidades principales van
 - controllers
     - Los archivos dentro de controllers se comunican con los modelos y devuelven los datos a la vista
 - models
-    - El modelo se comunica con la base de datos y manipula los datos para devolverselos formateados a el controlador
-    - [ ] Clase de modelos para cada tabla
+    - El modelo se comunica con la base de datos y manipula los datos para devolverselos formateados a el controlador  
+    - [x] Clase de modelos para cada tabla
 - views
     - La vista simplemente genera codigo html segun lo que el controlador le pase
 
@@ -119,12 +119,20 @@ Para pararlo:
 ---
 
 ## Base de Datos
-Para lanzar la base de datos necesitaremos primero crearla en local.  
-En MySQL importamos en la BD *ecomueble* el archivo de sql *ecomueble_imagenes.sql*  
-Los cambios que hagamos en la BD local no se guardaran.  
+
+Para lanzar la base de datos necesitaremos primero crearla en local.
+
+### Importar BD a mano desde phpMyAdmin
+En MySQL importamos en la BD *ecomueble* el archivo de sql *ecomueble_imagenes.sql* y *populate_ecomueble.sql*  
+### Importar BD con script php
+- Necesitamos tener mysql en el path para ejecutarlo y tener corriendo MySQL
+```bash
+D:/dev/ecomueble/app/bd > php auto_create_bd.php
+```
+Los cambios que hagamos en la BD local no se guardaran.
 - [x] Base de datos de prueba
-- [ ] Popular la BD con otro fichero SQL (Datos Falsos)
-- [ ] Crear BD con un script PHP
+- [x] Popular la BD con otro fichero SQL (Datos Falsos)
+- [x] Crear BD con un script PHP
 
 ## Branches
 
