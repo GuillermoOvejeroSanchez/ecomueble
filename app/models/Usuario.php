@@ -32,7 +32,7 @@ class Usuario
 
     public function checkUser()
     {
-        $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre' OR email = '$this->email' OR telefono = '$this->telefono'";
+        $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre' OR email = '$this->email'";
         return $sql;
     }
 
@@ -41,9 +41,15 @@ class Usuario
         return $user;
     }
 
-    public function logUser()
+    public function logUserObsolete()
     {
         $sql = "SELECT idUsuario, nombre, tipoUsuario, saldo, imagen FROM usuario WHERE password = '$this->password' AND (nombre = '$this->nombre' OR email = '$this->nombre')";
+        return $sql;
+    }
+
+    public function logUser()
+    {
+        $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
         return $sql;
     }
 
