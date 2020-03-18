@@ -18,15 +18,14 @@ $command = 'mysql'
 
 $conn = new mysqli(SERVERNAME, USER, PASS) or die("Connection failed");
 
-//$conn->query("DROP DATABASE ecomueble");
+$conn->query("DROP DATABASE ecomueble");
 $sql = "CREATE DATABASE ecomueble";
 $conn->query($sql);
 
 
 $conn = new mysqli(SERVERNAME, USER, PASS, DB) or die("Connection failed");
-$output = shell_exec($command . '/ecomueble_imagenes.sql');
-
-//$output = shell_exec($command . '/populate_ecomueble.sql');
+$output = shell_exec($command . '/ecomueble_imagenes.sql'); //Crear BD
+$output = shell_exec($command . '/populate_ecomueble.sql'); //Popular BD
 
 $conn->close();
 ?>

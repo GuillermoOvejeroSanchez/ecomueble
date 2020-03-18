@@ -59,7 +59,7 @@ CREATE TABLE `producto` (
   `nombre` varchar(15) CHARACTER SET utf8 NOT NULL,
   `idUsuario` int(10) NOT NULL,
   `imagen` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -104,14 +104,7 @@ CREATE TABLE `usuario` (
   `tipoUsuario` tinyint(1) NOT NULL DEFAULT '0',
   `saldo` int(10) NOT NULL DEFAULT '0',
   `imagen` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `telefono`, `password`, `tipoUsuario`, `saldo`, `imagen`) VALUES
-(13, 'Prueba', 'prueba@hotmail.com', 123456789, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 0, 0, 'facil.jpg');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -123,7 +116,7 @@ CREATE TABLE `valoracion` (
   `idValoracion` int(10) NOT NULL,
   `idUsuario` int(10) NOT NULL,
   `nota` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Índices para tablas volcadas
@@ -211,7 +204,7 @@ ALTER TABLE `transacciones`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion`
