@@ -131,7 +131,7 @@ D:/dev/ecomueble/app/bd > php auto_create_bd.php
 ```
 Los cambios que hagamos en la BD local no se guardaran.
 - [x] Base de datos de prueba
-- [x] Popular la BD con otro fichero SQL (Datos Falsos)
+- [x] Populate BD con otro fichero SQL (Datos Falsos | Dummy Data)
 - [x] Crear BD con un script PHP
 
 ## Branches
