@@ -24,7 +24,7 @@ $conn->query($sql);
 
 
 $conn = new mysqli(SERVERNAME, USER, PASS, DB) or die("Connection failed");
-$output = shell_exec($command . '/ecomueble_imagenes_index.sql'); //Crear BD
+$output = shell_exec($command . '/ecomueble.sql'); //Crear BD
 $output = shell_exec($command . '/populate_ecomueble.sql'); //Popular BD
 
 $conn->close();

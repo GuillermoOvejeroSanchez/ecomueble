@@ -120,10 +120,10 @@ Para pararlo:
 
 ## Base de Datos
 
-Para lanzar la base de datos necesitaremos primero crearla en local.
-
+Para lanzar la base de datos necesitaremos primero crearla en local.  
+Para tener consistencia en la bd que creamos, llamaremos siempre a la que funciona correctamente o este mas actualizada *ecomueble.sql*
 ### Importar BD a mano desde phpMyAdmin
-En MySQL importamos en la BD *ecomueble* el archivo de sql *ecomueble_imagenes.sql* y *populate_ecomueble.sql*  
+En MySQL importamos en la BD *ecomueble* el archivo de sql *ecomueble.sql* y *populate_ecomueble.sql*  
 ### Importar BD con script php
 - Necesitamos tener mysql en el path para ejecutarlo y tener corriendo MySQL
 ```bash
@@ -131,7 +131,7 @@ D:/dev/ecomueble/app/bd > php auto_create_bd.php
 ```
 Los cambios que hagamos en la BD local no se guardaran.
 - [x] Base de datos de prueba
-- [x] Popular la BD con otro fichero SQL (Datos Falsos)
+- [x] Populate BD con otro fichero SQL (Datos Falsos | Dummy Data)
 - [x] Crear BD con un script PHP
 
 ## Branches

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 09-03-2020 a las 12:30:04
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Mar 18, 2020 at 08:47 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -18,119 +18,232 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+-- Ecomueble con imagenes y index actualizado
+-- Database: `ecomueble`
 --
--- Base de datos: `ecomueble`
---
-
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idUsuario` int(10) PRIMARY KEY,
-  `nombre` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `telefono` int(9) NOT NULL,
-  `password` varchar(256) NOT NULL,
-  `tipoUsuario` tinyint(1) NOT NULL,
-  `saldo` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
+-- Table structure for table `categoria`
 --
 
 CREATE TABLE `categoria` (
-  `idCategoria` int(2) PRIMARY KEY,
+  `idCategoria` int(2) NOT NULL,
   `tipo` varchar(15) NOT NULL
-  
-
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estado`
+-- Table structure for table `estado`
 --
 
 CREATE TABLE `estado` (
-  `idEstado` int(1) PRIMARY KEY,
+  `idEstado` int(1) NOT NULL,
   `estado` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Table structure for table `producto`
 --
 
 CREATE TABLE `producto` (
-  `idProducto` int(10) PRIMARY KEY,
+  `idProducto` int(10) NOT NULL,
   `descripcion` varchar(350) NOT NULL,
   `precio` decimal(10,0) NOT NULL,
   `idEstado` int(1) NOT NULL,
   `idCategoria` int(2) NOT NULL,
   `nombre` varchar(15) NOT NULL,
   `idUsuario` int(10) NOT NULL,
-  FOREIGN KEY (`idUsuario`) REFERENCES `usuario`(`idUsuario`),
-  FOREIGN KEY (`idCategoria`) REFERENCES `categoria`(`idCategoria`),
-  FOREIGN KEY (`idEstado`) REFERENCES `estado`(`idEstado`)
+  `imagen` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `transacciones`
---
-
-CREATE TABLE `transacciones` (
-  `idTransaccion` int(10) PRIMARY KEY ,
-  `idProducto` int(10) NOT NULL,
-  `idComprador` int(10) NOT NULL,
-  `fecha` date NOT NULL,
-  FOREIGN KEY (`idProducto`) REFERENCES `producto`(`idProducto`),
-  FOREIGN KEY (`idComprador`) REFERENCES `usuario`(`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `reporte`
+-- Table structure for table `reporte`
 --
 
 CREATE TABLE `reporte` (
-  `idReporte` int(10) PRIMARY KEY,
+  `idReporte` int(10) NOT NULL,
   `motivo` varchar(200) NOT NULL,
   `idProducto` int(10) NOT NULL,
   `reportador` int(10) NOT NULL,
-  `fechaReporte` date,
-  `resolucion` tinyint(1) NOT NULL,
-  FOREIGN KEY (`reportador`) REFERENCES `usuario`(`idUsuario`),
-  FOREIGN KEY (`idProducto`) REFERENCES `producto`(`idProducto`)
+  `fechaReporte` date NOT NULL,
+  `resolucion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `valoracion`
+-- Table structure for table `transacciones`
+--
+
+CREATE TABLE `transacciones` (
+  `idTransaccion` int(10) NOT NULL,
+  `idProducto` int(10) NOT NULL,
+  `idComprador` int(10) NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idUsuario` int(10) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `telefono` int(9) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `tipoUsuario` tinyint(1) NOT NULL DEFAULT 0,
+  `saldo` int(10) NOT NULL DEFAULT 0,
+  `imagen` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `valoracion`
 --
 
 CREATE TABLE `valoracion` (
-  `idValoracion` int(10) PRIMARY KEY,
+  `idValoracion` int(10) NOT NULL,
   `idUsuario` int(10) NOT NULL,
-  `nota` int(1) NOT NULL,
-  FOREIGN KEY (`idUsuario`) REFERENCES `usuario`(`idUsuario`)
-  
+  `nota` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`idCategoria`);
+
+--
+-- Indexes for table `estado`
+--
+ALTER TABLE `estado`
+  ADD PRIMARY KEY (`idEstado`);
+
+--
+-- Indexes for table `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`idProducto`),
+  ADD KEY `idUsuario` (`idUsuario`) USING BTREE,
+  ADD KEY `idCategoria` (`idCategoria`) USING BTREE,
+  ADD KEY `idEstado` (`idEstado`) USING BTREE;
+
+--
+-- Indexes for table `reporte`
+--
+ALTER TABLE `reporte`
+  ADD PRIMARY KEY (`idReporte`),
+  ADD UNIQUE KEY `reportador` (`reportador`),
+  ADD KEY `idProducto` (`idProducto`) USING BTREE;
+
+--
+-- Indexes for table `transacciones`
+--
+ALTER TABLE `transacciones`
+  ADD PRIMARY KEY (`idTransaccion`),
+  ADD UNIQUE KEY `idProducto` (`idProducto`) USING BTREE,
+  ADD KEY `idComprador` (`idComprador`) USING BTREE;
+
+--
+-- Indexes for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idUsuario`);
+
+--
+-- Indexes for table `valoracion`
+--
+ALTER TABLE `valoracion`
+  ADD PRIMARY KEY (`idValoracion`),
+  ADD KEY `idUsuario` (`idUsuario`) USING BTREE;
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `idProducto` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `reporte`
+--
+ALTER TABLE `reporte`
+  MODIFY `idReporte` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transacciones`
+--
+ALTER TABLE `transacciones`
+  MODIFY `idTransaccion` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `valoracion`
+--
+ALTER TABLE `valoracion`
+  MODIFY `idValoracion` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`),
+  ADD CONSTRAINT `producto_ibfk_3` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`);
+
+--
+-- Constraints for table `reporte`
+--
+ALTER TABLE `reporte`
+  ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
+  ADD CONSTRAINT `reporte_ibfk_2` FOREIGN KEY (`reportador`) REFERENCES `usuario` (`idUsuario`);
+
+--
+-- Constraints for table `transacciones`
+--
+ALTER TABLE `transacciones`
+  ADD CONSTRAINT `transacciones_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
+  ADD CONSTRAINT `transacciones_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`);
+
+--
+-- Constraints for table `valoracion`
+--
+ALTER TABLE `valoracion`
+  ADD CONSTRAINT `valoracion_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
