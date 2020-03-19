@@ -31,8 +31,9 @@ function logged($conn)
         <button type='submit' name='editarPerfil'>Editar Perfil</button></div>";//botones
        
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
-        mostrarProductos($_SESSION['idUsuario'], $conn);
-
+        echo "<div class='productos'>";
+            mostrarProductos($_SESSION['idUsuario'], $conn);
+        echo "</div>";
         ?>
     </div>
     <?php
@@ -47,7 +48,7 @@ function mostrarProductos($idUsuario, $conn)
          while ($fila = $resultado->fetch_assoc()) {
              $product_img = "../product_img/" . $fila['imagen'];
                  ?>
-                 <img src=<?php echo "'$product_img'"?> alt='imagen' height="500">
+                  <img src=<?php echo "'$product_img'"?> alt='imagen'>
                  <?php
          }
         }

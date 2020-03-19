@@ -54,6 +54,16 @@ span {
     left: 5%;
     margin-top: 5%;
 }
+.perfil .productos img{
+    width: 150px;
+    height: 150px;
+    border-radius: 3%;
+    left: 0%;
+    margin-top: 2%;
+    margin-right: 1%;
+    margin-left: 1%;
+    
+ }
 .perfil p {
     font-size: 15pt;
     margin: 2%;
