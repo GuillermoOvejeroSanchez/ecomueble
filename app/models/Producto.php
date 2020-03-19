@@ -64,5 +64,11 @@ class Categoria
         return $sql;
     }
 
+    public static function getAllTags()
+    {
+        $sql = "SELECT * FROM categoria";
+        return $sql;
+    }
+
 }
 ?>

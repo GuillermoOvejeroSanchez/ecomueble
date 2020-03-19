@@ -1,12 +1,12 @@
 <?php
-session_start();
-require('../models/Producto.php');
-require('../img.php');
 
 //Comprobar campos
 if (isset($_POST['submit_producto'])) {
+    session_start();
+    require('../models/Producto.php');
+    require('../img.php');
     require_once('../bd.php');
-
+    
         //Secure input
         if (!empty($_POST['nombre']) and !empty($_POST['description']) and !empty($_POST['price']) and !empty($_POST['categoria'])) {
             $nombre = secure_input($_POST['nombre']);
@@ -38,32 +38,43 @@ if (isset($_POST['submit_producto'])) {
 
         //Subir producto a BD
         $sql = $product->insertProduct();
-        echo $sql;
+        //echo $sql;
         if($conn->query($sql)){
             //Enviar mensaje, subido con exito
         }else{
             //Enviar mensaje, no se ha podido subir
         }
-        $conn->close();
         header("Location: /perfil");
-      
+        
+        $conn->close();
     }
 
-    function secure_input($data)
-    {
+    function secure_input($data){
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
 
-    function subir()
-    {
+    function subir(){
         //Guardar imagen del producto
         $imgPro=saveImg("../product_img/" , $productname);
-        $imgPro = empty($imgPro) ? "default_profile.jpg" : $imgPro; 
+        $imgPro = empty($imgPro) ? "default_profile.jpg" : $imgPro;  
+    }
 
-        
+    function getTags(){
+        require('./bd.php');
+        require('./models/Producto.php');
+        $sql = Categoria::getAllTags();
+        $arrayTags;
+        if($resultado = $conn->query($sql)){
+            while ($fila = $resultado->fetch_assoc()) {
+                $tipo = $fila['tipo'];
+                $arrayTags[$tipo] = ucfirst($tipo);
+            }
+            return $arrayTags;
+        }
+        $conn->close();
     }
 ?>
 
