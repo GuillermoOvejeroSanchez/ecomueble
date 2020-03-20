@@ -10,8 +10,11 @@
 <body>
     <?php
         require('./common/cabecera.php');
+        require('./controllers/catalogo.php');
     ?>
+   
     <!-- lista de productos y un buscar productos?-->
+    
 </body>
 
 </html>

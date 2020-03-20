@@ -35,7 +35,16 @@ class Producto
         $sql = sprintf("SELECT * FROM producto WHERE idUsuario = '$idUsuario'");
         return $sql;
     }
-
+    public static function getAllProducts()
+    {
+        $sql = sprintf("SELECT * FROM producto ");
+        return $sql;
+    }
+    public static function getAllProductsFromCategoria($idCategoria)
+    {
+        $sql = sprintf("SELECT * FROM producto WHERE idCategoria = '$idCategoria' ");
+        return $sql;
+    }
 }
 
 

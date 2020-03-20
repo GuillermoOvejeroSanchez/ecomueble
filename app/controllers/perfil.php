@@ -58,6 +58,6 @@ function mostrarProductos($idUsuario, $conn)
 
 function not_logged()
 {
-    echo 'No disponible, registrate';
+    echo 'No disponible, registrate o inicia sesión.';
 }
 ?>
