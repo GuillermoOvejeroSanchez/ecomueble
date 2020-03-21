@@ -58,6 +58,10 @@ function mostrarProductos($idUsuario, $conn)
 
 function not_logged()
 {
-    echo 'No disponible, registrate o inicia sesión.';
+    ?>
+    <div class="noReg">
+    <img src="img/warning.png" alt="Atención"><p>¡Regístrate o inicia sesión para acceder!</p>
+    </div>
+    <?php
 }
 ?>

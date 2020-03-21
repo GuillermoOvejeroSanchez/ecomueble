@@ -207,3 +207,19 @@ label {
     color: rgb(41, 48, 43);
     margin-left: 7%;
 }
+
+.noReg {
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    background-color:rgb(179, 247, 202);
+    border-radius:10px;
+}
+.noReg p {
+    padding-bottom: 2%;
+}
+.noReg img {
+    width: 20%;
+    margin: auto;
+    display: block;
+}
