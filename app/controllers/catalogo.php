@@ -5,14 +5,16 @@
    
     echo " <div class='perfil'> ";
     ?>
-        
+        <!--Yo no pondría que se puedan añadir categorias nuevas, para que esto sea mas sencillo
+        dejaria unas cuantas y una que sea "otros", cambiaria los nombres porque estas no tienen 
+        sentido pero dejaria unas y ya.-->
         <div class="categorias">
             <ul>
-            <li><a href="catalogo?categoria=silla">Sillas</a></li>
-            <li><a href="catalogo?categoria=mesa">Mesas</a></li>
-            <li><a href="catalogo?categoria=armario">Armarios</a></li>
-            <li><a href="catalogo?categoria=estanteria">Estanterias</a></li>
-            <li><a href="catalogo">todos </a></li>
+                <li><a href="catalogo">Todos los Productos </a></li>
+                <li><a href="catalogo?categoria=silla">Sillas</a></li>
+                <li><a href="catalogo?categoria=mesa">Mesas</a></li>
+                <li><a href="catalogo?categoria=armario">Armarios</a></li>
+                <li><a href="catalogo?categoria=estanteria">Estanterias</a></li>
             </ul>
         </div>
         

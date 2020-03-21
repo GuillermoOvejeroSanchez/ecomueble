@@ -39,7 +39,7 @@
             <!-- -->
             
 
-            <div> <button type='submit' name='submit_producto'>Entrar</button></div>
+            <div> <button type='submit' name='submit_producto'>Subir Producto</button></div>
             </form>
 
         </div>
