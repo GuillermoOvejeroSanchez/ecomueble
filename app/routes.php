@@ -19,6 +19,22 @@ switch ($request) {
         require __DIR__.
         '/views/catalogo.php';
         break;
+    case '/catalogo?categoria=silla':
+        require __DIR__.
+        '/views/catalogo.php';
+        break;
+    case '/catalogo?categoria=mesa':
+        require __DIR__.
+        '/views/catalogo.php';
+        break;
+    case '/catalogo?categoria=armario':
+        require __DIR__.
+        '/views/catalogo.php';
+        break;
+    case '/catalogo?categoria=estanteria':
+        require __DIR__.
+        '/views/catalogo.php';
+        break;
     case '/chat':
         require __DIR__.
         '/views/chat.php';

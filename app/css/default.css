@@ -181,3 +181,23 @@ footer{
     margin-left: 1%;
     margin-top: 1%;
 }
+.categorias ul{
+    list-style-type: none;
+    background-color: rgb(34, 104, 81);
+    overflow: hidden;
+
+}
+.categorias a{
+    color: white;
+    float: left;
+    display: block;
+    padding: 1%;
+    text-decoration: none;  
+    background: linear-gradient(to right, rgb(93, 153, 133), rgb(93, 153, 133));
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+    transition: background-size 1s 0s;
+}
+.categorias li a:hover {
+    background-size: 100% 100%;
+}
