@@ -2,6 +2,15 @@
     require('./models/Producto.php');
     require_once('./bd.php');
 
+    $sql = Categoria::getAllTags();
+    $arrayTags;
+    if($resultado = $conn->query($sql)){
+        while ($fila = $resultado->fetch_assoc()) {
+            $tipo = $fila['tipo'];
+            $arrayTags[$tipo] = ucfirst($tipo) . 's'; //añadimos 's' pa que sea en plural
+        }
+    }
+
    
     echo " <div class='perfil'> ";
     ?>
@@ -11,10 +20,11 @@
         <div class="categorias">
             <ul>
                 <li><a href="catalogo">Todos los Productos </a></li>
-                <li><a href="catalogo?categoria=silla">Sillas</a></li>
-                <li><a href="catalogo?categoria=mesa">Mesas</a></li>
-                <li><a href="catalogo?categoria=armario">Armarios</a></li>
-                <li><a href="catalogo?categoria=estanteria">Estanterias</a></li>
+                <?php
+                    foreach ($arrayTags as $key => $value) {
+                        echo '<li><a href="catalogo?categoria='. $key .'">'. $value .'</a></li>';
+                    }
+                ?>
             </ul>
         </div>
         
