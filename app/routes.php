@@ -57,9 +57,6 @@ switch ($request) {
         require __DIR__.
         '/status_redirect.php';
         break;
-    case '/producto':
-        require __DIR__.
-        '/view/producto.php';
     break;
     default:
         http_response_code(404);
