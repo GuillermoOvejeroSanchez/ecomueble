@@ -223,3 +223,25 @@ label {
     margin: auto;
     display: block;
 }
+
+
+/* Copy paste del css de contenido para el about */
+.miembros {
+    margin-top: 2%;
+}
+
+.miembro{
+    text-align: center;
+    margin-top: 3%;
+	width:30%;
+	padding:3%;
+    border-radius:10px;
+    margin:auto;
+    margin-top: 3%;
+	background-color:rgb(179, 247, 202);
+}
+
+.miembro ul li{
+
+    list-style: none;
+}
