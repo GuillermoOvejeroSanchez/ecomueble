@@ -10,6 +10,7 @@
 <body>
     <?php
         require('./common/cabecera.php');
+        require('./controllers/home.php');
         ?>
         <!--lista de n productos y lista de n usuarios-->
 </body>

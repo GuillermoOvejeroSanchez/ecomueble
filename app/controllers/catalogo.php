@@ -14,9 +14,6 @@
    
     echo " <div class='perfil'> ";
     ?>
-        <!--Yo no pondría que se puedan añadir categorias nuevas, para que esto sea mas sencillo
-        dejaria unas cuantas y una que sea "otros", cambiaria los nombres porque estas no tienen 
-        sentido pero dejaria unas y ya.-->
         <div class="categorias">
             <ul>
                 <li><a href="catalogo">Todos los Productos </a></li>

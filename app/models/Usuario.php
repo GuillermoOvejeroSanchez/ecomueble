@@ -41,6 +41,12 @@ class Usuario
         return $user;
     }
 
+    public static function getAllUsers()
+    {
+        $sql = sprintf("SELECT * FROM usuario ");
+        return $sql;
+    }
+
     public function logUserObsolete()
     {
         $sql = "SELECT idUsuario, nombre, tipoUsuario, saldo, imagen FROM usuario WHERE password = '$this->password' AND (nombre = '$this->nombre' OR email = '$this->nombre')";

@@ -75,6 +75,35 @@ span {
 .datos{
     width: 30%;
 }
+
+table {
+    margin:3%;
+}
+
+.productosInicio {
+    width: 49%;
+    background-color:rgb(179, 247, 202);
+}
+.usuariosInicio  {
+    width: 49%;
+    background-color:rgb(179, 247, 202);
+}
+.productosInicio img {
+    width: 150px;
+    height: 150px;
+}
+.usuariosInicio img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.ini {
+    background-color: rgb(34, 104, 81);
+    color: white;
+    font-weight: normal;
+    text-align: center;
+}
 .contenido form{
 	width:30%;
 	padding:3%;
@@ -185,14 +214,13 @@ footer{
     list-style-type: none;
     background-color: rgb(34, 104, 81);
     overflow: hidden;
-
 }
 .categorias a{
     color: white;
     float: left;
     display: block;
     padding: 1%;
-    text-decoration: none;  
+    text-decoration: none; 
     background: linear-gradient(to right, rgb(93, 153, 133), rgb(93, 153, 133));
     background-repeat: no-repeat;
     background-size: 0 100%;
@@ -226,8 +254,15 @@ label {
 
 
 /* Copy paste del css de contenido para el about */
-.miembros {
+.miembros ul{
     margin-top: 2%;
+    background-color: rgb(34, 104, 81);
+    font-size: 14pt;
+    font-weight: normal;
+}
+.miembros li a:hover {
+    transform: scale(1.2);
+    background-color:  rgb(93, 153, 133);
 }
 
 .miembro{
