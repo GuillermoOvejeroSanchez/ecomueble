@@ -36,6 +36,7 @@
 
     function mostrarProductos($conn)
     {
+        $existe = TRUE;
         if(!isset($_GET['categoria']))
           $sql =  Producto::getAllProducts();
         
@@ -46,21 +47,26 @@
             $idCategoria = $categoria->getIDCategoria();
 
             if($resultado = $conn->query($idCategoria)) {
-            $cat_fetched = $resultado->fetch_assoc();
-            $sql = Producto::getAllProductsFromCategoria($cat_fetched['idCategoria']);}
-            }
-        
-        if($resultado = $conn->query($sql)){
-            if($resultado->num_rows > 0){
-            while ($fila = $resultado->fetch_assoc()) {
-                $product_img = "../product_img/" . $fila['imagen'];
-                    ?>
-                    <img src=<?php echo "'$product_img'"?> alt='imagen'>
-                    <?php
-            }
-            }
-        
+                if ($resultado->num_rows > 0) {
+                    $cat_fetched = $resultado->fetch_assoc();
+                    $sql = Producto::getAllProductsFromCategoria($cat_fetched['idCategoria']);
+                }else{
+                    $existe = FALSE;
+                }
+            }  
         }
+        
+        if($existe and $resultado = $conn->query($sql)){
+            if($resultado->num_rows > 0){
+                while ($fila = $resultado->fetch_assoc()) {
+                    $product_img = "../product_img/" . $fila['imagen'];
+                    ?>
+                <img src=<?php echo "'$product_img'"?> alt='imagen'>
+                <?php
+                }
+            }
+    
+        } 
     }
 
 ?>

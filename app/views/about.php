@@ -13,7 +13,7 @@
     require('./common/cabecera.php');
     ?>
 
-    <div id="nav-miembros">
+    <nav class='miembros'>
         <!-- nav-bar de miembros-->
         <ul>
             <li><a href="#marlon">Marlon Campoverde</a></li>
@@ -25,7 +25,7 @@
             <li><a href="#noe">Noelia Calderón</a></li>
 
         </ul>
-    </div>
+</nav>
 
     <h1>Miembros de Ecomueble:</h1>
     <div class="miembro">
