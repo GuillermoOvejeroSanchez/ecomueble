@@ -19,10 +19,15 @@ switch ($request) {
         require __DIR__.
         '/views/catalogo.php';
         break;
-    //Regex match (Expresion Regular) /catalogo?categoria=categoriaPorGET
-    case preg_match('(/catalogo(.*)=\w*)', $request, $matches)? true : false:
+    //Regex match (Expresion Regular) /catalogo?categoria=categoriaPorGET /catalogo?categoria=
+    case preg_match('(/catalogo\?categoria=\w+)', $request, $matches)? true : false:
             require __DIR__.
             '/views/catalogo.php';
+    break;
+    //Regex match (Expresion Regular) match -> /articulo?id=123 !match-> /articulo?id=
+    case preg_match('((/articulo\?id)=\d+)', $request, $matches)? true : false:
+        require __DIR__.
+        '/views/articulo.php';
     break;
     case '/chat':
         require __DIR__.
@@ -52,10 +57,6 @@ switch ($request) {
         require __DIR__.
         '/status_redirect.php';
         break;
-    case '/subir':
-        require __DIR__.
-        '/views/subir.php';
-    break;
     default:
         http_response_code(404);
         require __DIR__.
