@@ -3,6 +3,7 @@
 
 <div class="status">
    <form action="status" method="post">
+   
     <?php //Ruta a status -> status_redirect.php
     if(isset($_SESSION['login'])){
         $user = $_SESSION['username'];

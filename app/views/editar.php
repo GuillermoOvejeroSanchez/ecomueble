@@ -11,6 +11,7 @@
 <div id="contenedor">
         <?php
             require("./common/cabecera.php");
+         
         ?>
         <div class="contenido">
             

@@ -35,6 +35,12 @@ class Producto
         $sql = sprintf("SELECT * FROM producto WHERE idUsuario = '$idUsuario'");
         return $sql;
     }
+    public static function deleteProduct($idProducto){
+        $sql = sprintf("DELETE FROM producto WHERE idProducto = '$idProducto'");
+        return $sql; 
+
+    }
+    
     public static function getAllProducts()
     {
         $sql = sprintf("SELECT * FROM producto ");

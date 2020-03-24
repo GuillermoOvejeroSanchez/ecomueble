@@ -8,6 +8,10 @@ elseif (isset($_REQUEST['registrar_btn'])) {
     header("Location: registrar");
 }
 
+elseif (isset($_REQUEST['edit_btn'])) {
+    header("Location: editaBorrarProducto");
+}
+
 elseif (isset($_REQUEST['logout_btn'])) {
     session_start();
     unset($_SESSION['username']);

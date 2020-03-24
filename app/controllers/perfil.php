@@ -6,6 +6,8 @@ require_once('./bd.php');
 isset($_SESSION['login']) ? logged($conn) : not_logged();
 $conn->close(); //Importante cerrar siempre la conexion
 
+
+
 function logged($conn)
 {
     $user = new Usuario(); //Usuario vacio
@@ -31,6 +33,7 @@ function logged($conn)
         <button type='submit' name='editarPerfil'>Editar Perfil</button></div>";//botones
        
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
+        echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
         echo "<div class='productos'>";
             mostrarProductos($_SESSION['idUsuario'], $conn);
         echo "</div>";

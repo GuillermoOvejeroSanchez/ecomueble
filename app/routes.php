@@ -53,6 +53,10 @@ switch ($request) {
         require __DIR__.
         '/views/editar.php';
         break;
+    case '/editaBorrarProducto':
+        require __DIR__.
+        '/views/editaBorrarProducto.php';
+        break;
     case '/status':
         require __DIR__.
         '/status_redirect.php';
