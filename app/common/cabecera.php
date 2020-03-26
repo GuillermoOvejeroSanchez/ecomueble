@@ -29,7 +29,7 @@
     <ul>
         <li><a href="/">Inicio</a></li>
         <li><a href="catalogo">Catalogo</a></li>
-        <li><a href="chat">Chat</a></li>
+        <!-- <li><a href="chat">Chat</a></li> No hecho todavia-->
         <li><a href="perfil">Perfil</a></li>
         <li><a href="about">Sobre nosotros</a></li>
     </ul>
