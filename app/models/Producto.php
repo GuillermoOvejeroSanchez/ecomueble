@@ -51,17 +51,17 @@ class Producto
         $sql = sprintf("SELECT * FROM producto WHERE idCategoria = '$idCategoria' ");
         return $sql;
     }
-    public function getProduct($nombre) {
-        $product = "SELECT descripcion, precio, estado, categoria, nombre, usuario, imagen FROM producto WHERE nombre = '$nombre'";
-        return $product;
+    public function getProduct($id) {
+        $sql = sprintf("SELECT * FROM producto WHERE idProducto = '$id'");
+        return $sql;
     }
     public function createProduct($row)
     {   $this->descripcion = $row['descripcion']; //
         $this->precio = $row['precio']; //
-        $this->idEstado = $row['estado']; //0 -> en venta 1 -> vendido 2 -> reservado
-        $this->idCategoria = $row['categoria']; //
+        $this->idEstado = $row['idEstado']; //0 -> en venta 1 -> vendido 2 -> reservado
+        $this->idCategoria = $row['idCategoria']; //
         $this->nombre = $row['nombre']; //
-        $this->idUsuario = $row['usuario'];
+        $this->idUsuario = $row['idUsuario'];
         $this->imagen = $row['imagen'];
     }
 }

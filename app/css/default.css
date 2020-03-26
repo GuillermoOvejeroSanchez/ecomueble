@@ -54,7 +54,7 @@ span {
     left: 5%;
     margin-top: 5%;
 }
-.perfil .productos img{
+ .productos img{
     width: 150px;
     height: 150px;
     border-radius: 3%;
@@ -74,6 +74,14 @@ span {
 }
 .datos{
     width: 30%;
+}
+.producto img{
+    width: 90%;
+    border-radius: 20%; 
+    margin-left: -10%;
+}
+.producto {
+    width: 10%;
 }
 
 table {
