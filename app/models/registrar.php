@@ -6,7 +6,7 @@ require('Usuario.php');
 //Campos introducidos en el form
 $user = new Usuario($form['username'], $form['email'], $form['tlfn'] , $form['password']);
 
-//Validar email & tlfn
+//Validar email
 $valid = TRUE;
 $msg = "";
 if (!filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
