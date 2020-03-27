@@ -29,25 +29,26 @@ function logged($conn)
         <?php
         echo"  
         <table> 
-        <tr> 
-        <th class='producto'> 
-        <img src='$imagen' alt='imagen'>
-        </th> 
-        <th class='datos'>
-        <p>Nombre: <strong>$product->nombre</strong></p> 
-        <p>Precio: <strong>$product->precio</strong></p>
-        <p>Descrición: <strong>$product->descripcion</strong> </p>
-        </th>
-        </tr> 
+            <tr> 
+                <th class='producto'> 
+                    <img src='$imagen' alt='imagen'>
+                </th> 
+
+                <th class='datos'>
+                    <p>Nombre: <strong>$product->nombre</strong></p> 
+                    <p>Precio: <strong>$product->precio</strong></p>
+                    <p>Descrición: <strong>$product->descripcion</strong> </p>
+                </th>
+            </tr> 
         </table>";
-        
+        $ownProduct = ($_SESSION['idUsuario'] == $product->idUsuario);
         if($ownProduct){
             echo "<div class='bperfil'><button type='submit' name='borrarProducto'>Borrar</button>
             <button type='submit' name='editarProducto'>Editar Articulo</button></div>";
         }else{ //Si no lo es mostrar comprar/contactar
             //TODO Implementar Comprar y Ver
             echo "<div class='bperfil'><button type='submit' name='comprarProducto'>Comprar</button>
-            <button type='submit' name='verProducto'>Ver Articulo</button></div>";
+            <button type='submit' name='verProducto'>Contactar</button></div>";
         }
 ?>
 </div>

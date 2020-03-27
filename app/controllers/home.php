@@ -30,8 +30,9 @@
             if($resultado->num_rows > 0){
                 while ($num >0 && $fila = $resultado->fetch_assoc()  ) {
                     $product_img = "../profile_img/" . $fila['imagen'];
+                    
                     ?>
-                <img src=<?php echo "'$product_img'"?> alt='imagen'>
+                        <img src=<?php echo "'$product_img'"?> alt='imagen'>
                 <?php
                 $num--;
                 }
@@ -48,8 +49,9 @@
             if($resultado->num_rows > 0){
                 while ($num >0 && $fila = $resultado->fetch_assoc()  ) {
                     $product_img = "../product_img/" . $fila['imagen'];
+                    $nose = "./articulo?id=" .  $fila['idProducto']; 
                     ?>
-                <img src=<?php echo "'$product_img'"?> alt='imagen'>
+                    <a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
                 <?php
                 $num--;
                 }

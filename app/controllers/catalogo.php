@@ -57,8 +57,9 @@
             if($resultado->num_rows > 0){
                 while ($fila = $resultado->fetch_assoc()) {
                     $product_img = "../product_img/" . $fila['imagen'];
+                    $nose = "./articulo?id=" .  $fila['idProducto']; 
                     ?>
-                <img src=<?php echo "'$product_img'"?> alt='imagen'>
+                        <a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
                 <?php
                 }
             }
