@@ -13,14 +13,9 @@ function logged($conn)
     $resultado = $conn->query($sql);
     if($resultado->num_rows > 0){
         
-        //TODO Comprobar que el producto es nuestro
-        $ownProduct = TRUE;
-        if(FALSE){
-            $ownProduct = FALSE;
-        }
 
         $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
-        
+        $estado = $product->idEstado ? "No Disponible" : "En Venta";
         $imagen = "../product_img/" . $product->imagen;
         
         ?>
@@ -37,18 +32,22 @@ function logged($conn)
                 <th class='datos'>
                     <p>Nombre: <strong>$product->nombre</strong></p> 
                     <p>Precio: <strong>$product->precio</strong></p>
-                    <p>Descrición: <strong>$product->descripcion</strong> </p>
+                    <p>Descripción: <strong>$product->descripcion</strong> </p>
+                    <p>Estado: <strong>$estado</strong> </p>
                 </th>
             </tr> 
         </table>";
+
         $ownProduct = ($_SESSION['idUsuario'] == $product->idUsuario);
-        if($ownProduct){
-            echo "<div class='bperfil'><button type='submit' name='borrarProducto'>Borrar</button>
-            <button type='submit' name='editarProducto'>Editar Articulo</button></div>";
-        }else{ //Si no lo es mostrar comprar/contactar
-            //TODO Implementar Comprar y Ver
-            echo "<div class='bperfil'><button type='submit' name='comprarProducto'>Comprar</button>
-            <button type='submit' name='verProducto'>Contactar</button></div>";
+        if(!$product->idEstado){ //No esta vendido o reservado
+            if($ownProduct){
+                echo "<div class='bperfil'><button type='submit' name='borrarProducto'>Borrar</button>";
+                //echo" <button type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
+            }else{ //Si no lo es mostrar comprar/contactar
+                //TODO Implementar Comprar y Contactar
+                echo "<div class='bperfil'><button type='submit' name='comprarProducto'>Comprar</button>";
+                echo "<button type='submit' name='verProducto'>Contactar</button></div>";
+            }
         }
 ?>
 </div>
@@ -57,7 +56,20 @@ function logged($conn)
             $sql1 = Producto::deleteProduct($id);
             $conn->query($sql1); 
             header("Location: /perfil");
-        }   
+        } elseif (isset($_POST['comprarProducto'])) {
+            //Comprar producto
+
+            //Comprobar si tenemos monedas (monedas >= precio)
+
+            //Restar monedas comprador
+
+            //Sumar monedas vendedor
+
+            //Eliminar producto (cambiar status a vendido)
+        }elseif (isset($_POST['verProducto'])) {
+            # code...
+        }
+
     }else{ //Buscamos un articulo que no existe (poner un parametro a mano)
         ?>
         <div class="noReg">
