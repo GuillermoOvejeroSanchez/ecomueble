@@ -1,5 +1,6 @@
 <?php
 require('./models/Producto.php');
+
 require_once('./bd.php');
 
 isset($_SESSION['login']) ? logged($conn) : not_logged();
@@ -97,7 +98,19 @@ function logged($conn)
                 header("Location: /articulo?id=$id");
             }
         }elseif (isset($_POST['verProducto'])) {
-            //TODO Contactar
+            //Contactar
+            require('./models/Usuario.php');
+            $vendedor = new Usuario();
+            $sql = Usuario::getUserbyId($product->idUsuario);
+            $resultado = $conn->query($sql);
+            $vendedor->createUser($resultado->fetch_assoc());
+
+            echo" <table>  <th class= perfil><h1>Datos de contacto: </h1> 
+                            <p>Nombre: <strong>$vendedor->nombre</strong></p> 
+                                            <p>Email: <strong>$vendedor->email</strong></p>
+                                            <p>Teléfono: <strong>$vendedor->telefono</strong> </p></th>
+             </table>
+           ";//Datos de contacto
         }
 
     }else{ //Buscamos un articulo que no existe (poner un parametro a mano)
