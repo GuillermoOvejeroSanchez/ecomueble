@@ -55,6 +55,12 @@ class Producto
         $sql = sprintf("SELECT * FROM producto WHERE idProducto = '$id'");
         return $sql;
     }
+
+    public static function changeStatus($idProducto, $status)
+    {
+        $sql = "UPDATE producto SET idEstado = $status WHERE idProducto = $idProducto";
+        return $sql;
+    }
     public function createProduct($row)
     {   $this->descripcion = $row['descripcion']; //
         $this->precio = $row['precio']; //

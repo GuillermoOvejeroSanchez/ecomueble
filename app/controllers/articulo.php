@@ -57,17 +57,47 @@ function logged($conn)
             $conn->query($sql1); 
             header("Location: /perfil");
         } elseif (isset($_POST['comprarProducto'])) {
-            //Comprar producto
+            require('./models/Transaccion.php');
+            require('./models/Usuario.php');
+
+            //Transaccion
+            $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date(DATE_W3C)); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
 
             //Comprobar si tenemos monedas (monedas >= precio)
+            if($_SESSION['saldo'] >= $product->precio && $product->idEstado == 0){
+                //TODO cambiar a una Transaccion de SQL (poder hacer ROLLBACK y COMMIT por si algo sale mal)
+        
+                //? START TRANSACTION
+                
+                //Restar monedas comprador
+                $sql = Usuario::updateSaldo($_SESSION['saldo'], -$product->precio, $_SESSION['idUsuario']);
+                //? ROLLBACK IF FAILED
+                $conn->query($sql);
+                $_SESSION['saldo'] -= $product->precio;
+                
+                //Obtener id, saldo del vendedor
+                $vendedor = new Usuario();
+                $sql = Usuario::getUserbyId($product->idUsuario);
+                //? ROLLBACK IF FAILED
+                $resultado = $conn->query($sql);
+                $vendedor->createUser($resultado->fetch_assoc());
+                //Sumar monedas 
+                //? ROLLBACK IF FAILED
+                $conn->query(Usuario::updateSaldo($vendedor->saldo, $product->precio, $vendedor->idUsuario));
+            
+                //Eliminar producto (cambiar status a vendido)
+                //? ROLLBACK IF FAILED
+                $conn->query(Producto::changeStatus($id, 1));
 
-            //Restar monedas comprador
+                //Realizar transaccion
+                //? ROLLBACK IF FAILED
+                $conn->query($transaccion->newTransaction());
 
-            //Sumar monedas vendedor
-
-            //Eliminar producto (cambiar status a vendido)
+                //? COMMIT
+                header("Location: /articulo?id=$id");
+            }
         }elseif (isset($_POST['verProducto'])) {
-            # code...
+            //TODO Contactar
         }
 
     }else{ //Buscamos un articulo que no existe (poner un parametro a mano)
@@ -78,6 +108,11 @@ function logged($conn)
         </div>
         <?php
     }
+}
+
+function comprarProducto()
+{
+    //TODO daba errores de que faltaban parametros al ponerlo aqui
 }
 
 function not_logged()

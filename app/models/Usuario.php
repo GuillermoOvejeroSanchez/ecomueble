@@ -36,9 +36,19 @@ class Usuario
         return $sql;
     }
 
+    public static function updateSaldo($saldo, $incSaldo, $idUsuario)
+    {
+        $sql = "UPDATE usuario SET saldo = $saldo + $incSaldo WHERE idUsuario = $idUsuario";
+        return $sql;
+    }
+
     public function getUser($name) {
-        $user = "SELECT nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE nombre = '$name'";
+        $user = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE nombre = '$name'";
         return $user;
+    }
+    public static function getUserbyId($id) {
+        $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE idUsuario = '$id'";
+        return $sql;
     }
 
     public static function getAllUsers()
@@ -61,6 +71,7 @@ class Usuario
 
     public function createUser($row)
     {
+        $this->idUsuario = $row['idUsuario'];
         $this->nombre = $row['nombre'];
         $this->email = $row['email'];
         $this->telefono = $row['telefono'];
