@@ -29,6 +29,10 @@ switch ($request) {
         require __DIR__.
         '/views/articulo.php';
     break;
+    case preg_match('((/usuario\?id)=\d+)', $request, $matches)? true : false:
+        require __DIR__.
+        '/views/usuario.php';
+    break;
     case '/chat':
         require __DIR__.
         '/views/chat.php';

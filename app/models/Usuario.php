@@ -47,8 +47,9 @@ class Usuario
         $user = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE nombre = '$name'";
         return $user;
     }
-    public static function getUserbyId($id) {
-        $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE idUsuario = '$id'";
+
+    public function getUserbyId($id) {
+        $sql = sprintf("SELECT * FROM usuario WHERE idUsuario = '$id'");
         return $sql;
     }
 

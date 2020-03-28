@@ -1,6 +1,7 @@
 <?php
 require('./models/Producto.php');
-
+require('./models/Transaccion.php');
+require('./models/Usuario.php');
 require_once('./bd.php');
 
 isset($_SESSION['login']) ? logged($conn) : not_logged();
@@ -47,19 +48,25 @@ function logged($conn)
             }else{ //Si no lo es mostrar comprar/contactar
                 //TODO Implementar Comprar y Contactar
                 echo "<div class='bperfil'><button type='submit' name='comprarProducto'>Comprar</button>";
-                echo "<button type='submit' name='verProducto'>Contactar</button></div>";
+                echo "<button type='submit' name='contactar'>Contactar</button></div>";
             }
         }
 ?>
 </div>
 <?php
+        //Obtener id, saldo del vendedor
+        $vendedor = new Usuario();
+        $sql = Usuario::getUserbyId($product->idUsuario);
+        //? ROLLBACK IF FAILED
+        $resultado = $conn->query($sql);
+        $vendedor->createUser($resultado->fetch_assoc());
+
         if (isset($_POST['borrarProducto'])) {
             $sql1 = Producto::deleteProduct($id);
             $conn->query($sql1); 
             header("Location: /perfil");
         } elseif (isset($_POST['comprarProducto'])) {
-            require('./models/Transaccion.php');
-            require('./models/Usuario.php');
+            
 
             //Transaccion
             $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date(DATE_W3C)); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
@@ -76,12 +83,6 @@ function logged($conn)
                 $conn->query($sql);
                 $_SESSION['saldo'] -= $product->precio;
                 
-                //Obtener id, saldo del vendedor
-                $vendedor = new Usuario();
-                $sql = Usuario::getUserbyId($product->idUsuario);
-                //? ROLLBACK IF FAILED
-                $resultado = $conn->query($sql);
-                $vendedor->createUser($resultado->fetch_assoc());
                 //Sumar monedas 
                 //? ROLLBACK IF FAILED
                 $conn->query(Usuario::updateSaldo($vendedor->saldo, $product->precio, $vendedor->idUsuario));
@@ -97,20 +98,9 @@ function logged($conn)
                 //? COMMIT
                 header("Location: /articulo?id=$id");
             }
-        }elseif (isset($_POST['verProducto'])) {
+        }elseif (isset($_POST['contactar'])) {
             //Contactar
-            require('./models/Usuario.php');
-            $vendedor = new Usuario();
-            $sql = Usuario::getUserbyId($product->idUsuario);
-            $resultado = $conn->query($sql);
-            $vendedor->createUser($resultado->fetch_assoc());
-
-            echo" <table>  <th class= perfil><h1>Datos de contacto: </h1> 
-                            <p>Nombre: <strong>$vendedor->nombre</strong></p> 
-                                            <p>Email: <strong>$vendedor->email</strong></p>
-                                            <p>Teléfono: <strong>$vendedor->telefono</strong> </p></th>
-             </table>
-           ";//Datos de contacto
+            header("Location: /usuario?id=$vendedor->idUsuario");
         }
 
     }else{ //Buscamos un articulo que no existe (poner un parametro a mano)
