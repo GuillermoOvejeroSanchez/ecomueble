@@ -56,11 +56,13 @@
         if($existe and $resultado = $conn->query($sql)){
             if($resultado->num_rows > 0){
                 while ($fila = $resultado->fetch_assoc()) {
-                    $product_img = "../product_img/" . $fila['imagen'];
-                    $nose = "./articulo?id=" .  $fila['idProducto']; 
+                    if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
+                        $product_img = "../product_img/" . $fila['imagen'];
+                        $nose = "./articulo?id=" .  $fila['idProducto']; 
                     ?>
                         <a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                <?php
+                    <?php
+                    }
                 }
             }
     
