@@ -38,7 +38,8 @@ class Usuario
 
     public static function updateSaldo($saldo, $incSaldo, $idUsuario)
     {
-        $sql = "UPDATE usuario SET saldo = $saldo + $incSaldo WHERE idUsuario = $idUsuario";
+        $saldototal = $saldo + $incSaldo;
+        $sql = "UPDATE usuario SET saldo = $saldototal WHERE idUsuario = $idUsuario";
         return $sql;
     }
 
