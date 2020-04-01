@@ -16,14 +16,13 @@
     <nav class='miembros'>
         <!-- nav-bar de miembros-->
         <ul>
-            <li><a href="#marlon">Marlon Campoverde</a></li>
-            <li><a href="#guille">Guillermo Ovejero</a></li>
-            <li><a href="#victor">Víctor Santamaría</a></li>
-            <li><a href="#adri">Adrián García</a></li>
-            <li><a href="#rebeca">Rebeca Herranz</a></li>
-            <li><a href="#marta">Marta Ranz</a></li>
             <li><a href="#noe">Noelia Calderón</a></li>
-
+            <li><a href="#marta">Marta Ranz</a></li>
+            <li><a href="#rebeca">Rebeca Herranz</a></li>
+            <li><a href="#adri">Adrián García</a></li>
+            <li><a href="#victor">Víctor Santamaría</a></li>
+            <li><a href="#guille">Guillermo Ovejero</a></li>
+            <li><a href="#marlon">Marlon Campoverde</a></li>
         </ul>
 </nav>
 
@@ -35,10 +34,13 @@
         </div>
         <ul>
             <li>
-                Frase más utilizada: Únete a mi en una partida amistosa usando mi código de MESA PRIVADA 191598.
+                Jefa de proyecto, además lleva a cabo tareas de desarrollo y diseño. 
             </li>
             <li>
-                Me gusta: El chocolate, cuidar mis rizos y jugar al parchís.
+                Siempre le gustó todo lo relacionado con la tecnología, hecho que le llevó a centrarse en la informática.
+            </li>
+            <li>
+                Su principal afición es la cocina, especialmente la repostería, siempre disfruta descubriendo y creando recetas con chocolate.
             </li>
             <li>
                 Contacto: ncalde01@ucm.es
@@ -53,10 +55,13 @@
         </div>
         <ul>
             <li>
-                Frase más utilizada: Me estoy quedando sin excusas para no ser quien soy, ¿así que quién soy?
+                Encargada de diseño y ayudante de equipo.
             </li>
             <li>
-                Me gusta: Jugar al parchís con Noe, las catas de cerveza y el sol.
+                Experta en redes sociales, es la enargada de todo lo relativo a la publicidad y el contacto con el público.
+            </li>
+            <li>
+                Su principal afición son los animales, resalta su gran conciencia contra el maltrato animal y el cuidado del medioambiente.
             </li>
             <li>
                 Contacto: mranz02@ucm.es
@@ -71,11 +76,13 @@
         </div>
         <ul>
             <li>
-                Frase más utilizada: ¡Perra, mi generación ya está traumatizada para cuando llega la hora del
-                desayuno!
+                Encargada de maquetación y comunicación con el cliente. 
             </li>
             <li>
-                Me gusta: Tener el pelo más colorido de la facultad y bailar con gatetes.
+                Decidió cursar el grado de Ingeniería Informática inspirada por el desarrollo y la innovación tecnológica.
+            </li>
+            <li>
+                Entre sus aficiones destaca todo lo relacionado con el mundo del arte a nivel audiovisual, disfruta pintando sus propios cuadros que vende para recaudar fondos con fines solidarios.
             </li>
             <li>
                 Contacto: rebehe01@ucm.es
@@ -89,10 +96,13 @@
         </div>
         <ul>
             <li>
-                Frase más utilizada: ¡Mírame! Soy el Sr. Meeseeks
+                Administrador de recursos y gestor de la base de datos.
             </li>
             <li>
-                Me gusta: Salir a Rococó, cocinar brownies y jugar al fútbol.
+                Inspirado por el desarrollo profesional de su familia decidió centrar sus estudios en la Ingeniería Informática.
+            </li>
+            <li>
+                Entre sus aficiones destaca la fotografía, por lo que siempre observa todo desde una perspectiva analítica y detallista.
             </li>
             <li>
                 Contacto: adriga10@ucm.es
@@ -106,10 +116,13 @@
         </div>
         <ul>
             <li>
-                Frase más utilizada: Vamos a squanchear un poco...
+                Encargado de cartera de proyectos y contacto con el cliente.
             </li>
             <li>
-                Me gusta: El vino y la guía Peñín.
+                Apasionado de la ciberseguridad y la actualidad tecnológica, desarrolla su carrera en este campo.
+            </li>
+            <li>
+                Su principal afición es la música, de la que no sólo disfruta escuchándola, también compone sus propias canciones.
             </li>
             <li>
                 Contacto: vsantama@ucm.es
@@ -123,10 +136,13 @@
         </div>
         <ul>
             <li>
-                Frase más utilizada: Jooo tioooo
+                Administrador, revisor de propuestas y desarrollador.
             </li>
             <li>
-                Me gusta: El queso y las ferias inventadas de la UCM. Y decirle a Marta que no se entera de nada.
+                Decidió enfocar su carrera a la programación para dispositivos móviles, así como la creación de páginas web.
+            </li>
+            <li>
+                Entre sus aficiones destaca el deporte, especialmente el baloncesto, lo practica tanto en el papel de jugador, como en el de entrenador.
             </li>
             <li>
                 Contacto: guilleov@ucm.es
@@ -141,10 +157,13 @@
         </div>
         <ul>
             <li>
-                Frase más utilizada: Haces muchas preguntas, Morty. No resulta muy carismático.
+                Responsable de equipo y desarrollador.
             </li>
             <li>
-                Me gusta: Que no se sepa cuando va a ser la próxima vez que aparezca por la facultad.
+                Su pasión siempre fue el desarrollo hardware, hecho por el cual se enfoca en la Ingeniería de Computadores.
+            </li>
+            <li>
+                Entre sus aficiones destacan el deporte y viajar, siempre dispuesto a descubrir nuevos lugares y enfrentarse a nuevos desafíos.
             </li>
             <li>
                 Contacto: marlonjc@ucm.es
