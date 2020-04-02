@@ -26,7 +26,7 @@
         </ul>
 </nav>
 
-    <h1>Miembros de Ecomueble:</h1>
+    <h1>Miembros de Ecomueble</h1>
     <div class="miembro">
         <div id="noe" class="member_photo">
             <p>Noelia Calderón</p>
@@ -42,7 +42,7 @@
             <li>
                 Su principal afición es la cocina, especialmente la repostería, siempre disfruta descubriendo y creando recetas con chocolate.
             </li>
-            <li>
+            <li class="contacto">
                 Contacto: ncalde01@ucm.es
             </li>
         </ul>
@@ -63,7 +63,7 @@
             <li>
                 Su principal afición son los animales, resalta su gran conciencia contra el maltrato animal y el cuidado del medioambiente.
             </li>
-            <li>
+            <li class="contacto">
                 Contacto: mranz02@ucm.es
             </li>
         </ul>
@@ -84,7 +84,7 @@
             <li>
                 Entre sus aficiones destaca todo lo relacionado con el mundo del arte a nivel audiovisual, disfruta pintando sus propios cuadros que vende para recaudar fondos con fines solidarios.
             </li>
-            <li>
+            <li class="contacto">
                 Contacto: rebehe01@ucm.es
             </li>
         </ul>
@@ -104,9 +104,9 @@
             <li>
                 Entre sus aficiones destaca la fotografía, por lo que siempre observa todo desde una perspectiva analítica y detallista.
             </li>
-            <li>
+            <li class="contacto">
                 Contacto: adriga10@ucm.es
-            </li>
+            </li >
         </ul>
     </div>
 
@@ -124,7 +124,7 @@
             <li>
                 Su principal afición es la música, de la que no sólo disfruta escuchándola, también compone sus propias canciones.
             </li>
-            <li>
+            <li class="contacto">
                 Contacto: vsantama@ucm.es
             </li>
         </ul>
@@ -144,7 +144,7 @@
             <li>
                 Entre sus aficiones destaca el deporte, especialmente el baloncesto, lo practica tanto en el papel de jugador, como en el de entrenador.
             </li>
-            <li>
+            <li class="contacto"> 
                 Contacto: guilleov@ucm.es
             </li>
         </ul>
@@ -165,7 +165,7 @@
             <li>
                 Entre sus aficiones destacan el deporte y viajar, siempre dispuesto a descubrir nuevos lugares y enfrentarse a nuevos desafíos.
             </li>
-            <li>
+            <li class="contacto">
                 Contacto: marlonjc@ucm.es
             </li>
         </ul>

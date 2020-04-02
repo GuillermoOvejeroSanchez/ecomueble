@@ -3,7 +3,8 @@
     require('./models/Usuario.php');
     require_once('./bd.php');
 
-    echo"<table>
+    echo"
+        <table>
             <tr>
                 <th class='ini'> Productos </th>
                 <th class='ini'> Usuarios </th> 
@@ -18,6 +19,7 @@
                 echo " </th>
             </tr> 
         </table>
+       
     ";
 
 
@@ -36,6 +38,9 @@
                 <?php
                 $num--;
                 }
+            }
+            else {
+                echo "No hay usuarios registrados.";
             }
     
         } 
@@ -58,8 +63,11 @@
                     }
                 }
             }
-    
+            else{
+                echo "No hay ningún producto subido.";
+            }
         } 
+       
     }
 
 ?>
