@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_REQUEST['login_btn'])) {
     header("Location: login");
 }

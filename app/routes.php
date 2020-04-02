@@ -41,9 +41,17 @@ switch ($request) {
         require __DIR__.
         '/views/login.php';
         break;
+    case '/loginForm':
+        require __DIR__.
+        '/controllers/login.php';
+        break;
     case '/registrar':
         require __DIR__.
         '/views/registrar.php';
+        break;
+    case '/registerForm':
+        require __DIR__.
+        '/controllers/registrar.php';
         break;
     case '/perfil':
         require __DIR__.

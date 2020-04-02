@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../bd.php'); //Connect to db
+require_once('./bd.php'); //Connect to db
 require('Usuario.php');
 
 //Campos introducidos en el form
