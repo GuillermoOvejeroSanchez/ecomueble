@@ -1,6 +1,7 @@
 <?php
     require('./models/Producto.php');
-    require_once('./bd.php');
+
+    $conn = connBD();
 
     $sql = Categoria::getAllTags();
     $arrayTags;

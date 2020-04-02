@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once('../bd.php'); //Connect to db
 require('Usuario.php');
 
+$conn = connBD();
 //Campos introducidos en el form
 $user = new Usuario();
 $user->nombre = $form['username'];

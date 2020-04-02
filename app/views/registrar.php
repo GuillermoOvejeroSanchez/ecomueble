@@ -15,7 +15,7 @@
         ?>
         <div class="contenido">
             <?php
-            echo '<form action="../controllers/registrar.php" method="post" enctype="multipart/form-data">';
+            echo '<form action="registerForm" method="post" enctype="multipart/form-data">';
                 if (isset($_SESSION['fail_msg'])) {
                     echo '<div>'.$_SESSION['fail_msg'].'</div>';
                 }

@@ -1,5 +1,5 @@
 <?php
-require('../img.php');
+require('./img.php');
     //Comprobar campos
     if (isset($_POST['submit_registrar'])) {
 
@@ -20,7 +20,7 @@ require('../img.php');
             "password" => $hash,
         );
 
-        require_once("../models/registrar.php");
+        require_once("./models/registrar.php");
       
         //si nos registra correctamente va a index
         if (isset($_SESSION['registrado']) and $_SESSION['registrado'] == TRUE) {
@@ -33,11 +33,4 @@ require('../img.php');
         }
     }
 
-    function secure_input($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
 ?>

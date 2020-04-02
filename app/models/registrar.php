@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once('../bd.php'); //Connect to db
 require('Usuario.php');
 
+$conn = connBD();
 //Campos introducidos en el form
 $user = new Usuario($form['username'], $form['email'], $form['tlfn'] , $form['password']);
 
@@ -33,7 +33,7 @@ if ($valid and $resultado = $conn->query($sql)) {
 //Es valido y no existe
 if($valid and !$existe){
     //Guardar img en server y session de la imagen
-    $imgPath = saveImg("../profile_img/" , $user->nombre);
+    $imgPath = saveImg("./profile_img/" , $user->nombre);
     $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
     $user->imagen = $imgPath;
     //Query SQL
