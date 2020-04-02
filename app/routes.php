@@ -61,6 +61,10 @@ switch ($request) {
         require __DIR__.
         '/views/subir.php';
         break;
+    case '/subirForm':
+        require __DIR__.
+        '/controllers/subir.php';
+        break;
     case '/status':
         require __DIR__.
         '/status_redirect.php';

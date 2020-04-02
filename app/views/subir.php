@@ -15,7 +15,7 @@
         ?>
         <div class="contenido">
             <?php
-            echo '<form action="../controllers/subir.php" method="post" enctype="multipart/form-data" id="product_form">';
+            echo '<form action="subirForm" method="post" enctype="multipart/form-data" id="product_form">';
                 if (isset($_SESSION['fail_msg'])) {
                     echo '<div>'.$_SESSION['fail_msg'].'</div>';
                 }

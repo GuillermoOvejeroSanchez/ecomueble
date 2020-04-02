@@ -2,7 +2,8 @@
 require('./models/Producto.php');
 require('./models/Transaccion.php');
 require('./models/Usuario.php');
-require_once('./bd.php');
+$conn = connBD();
+
 
 isset($_SESSION['login']) ? logged($conn) : not_logged();
 $conn->close(); //Importante cerrar siempre la conexion
@@ -118,13 +119,5 @@ function comprarProducto()
     //TODO daba errores de que faltaban parametros al ponerlo aqui
 }
 
-function not_logged()
-{
-    ?>
-<div class="noReg">
-    <img src="img/warning.png" alt="Atención">
-    <p>¡Regístrate o inicia sesión para acceder!</p>
-</div>
-<?php
-}
+
 ?>

@@ -1,7 +1,7 @@
 <?php
 require('./models/Usuario.php');
 require('./models/Producto.php');
-require_once('./bd.php');
+$conn = connBD();
 
 isset($_SESSION['login']) ? logged($conn) : not_logged();
 $conn->close(); //Importante cerrar siempre la conexion
@@ -37,7 +37,7 @@ function logged($conn)
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
         //echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
         echo "<div class='productos'>";
-            mostrarProductos($_GET['id'], $conn);
+            mostrarProductosUser($_GET['id'], $conn);
         echo "</div>";
         ?>
     </div>
@@ -45,7 +45,7 @@ function logged($conn)
 }
 
 
-function mostrarProductos($idUsuario, $conn)
+function mostrarProductosUser($idUsuario, $conn)
 {
     $sql =  Producto::getAllProductsFromUser($idUsuario);
     if($resultado = $conn->query($sql)){
@@ -61,14 +61,5 @@ function mostrarProductos($idUsuario, $conn)
         }
      
     }
-}
-
-function not_logged()
-{
-    ?>
-    <div class="noReg">
-    <img src="img/warning.png" alt="Atención"><p>¡Regístrate o inicia sesión para acceder!</p>
-    </div>
-    <?php
 }
 ?>

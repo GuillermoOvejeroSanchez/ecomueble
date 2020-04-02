@@ -1,7 +1,7 @@
 <?php
     require('./models/Producto.php');
     require('./models/Usuario.php');
-    require_once('./bd.php');
+    $conn = connBD();
 
     echo"<table>
             <tr>
