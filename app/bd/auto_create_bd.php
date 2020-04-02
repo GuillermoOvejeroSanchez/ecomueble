@@ -19,8 +19,7 @@ $command = 'mysql'
 $conn = new mysqli(SERVERNAME, USER, PASS) or die("Connection failed");
 
 $conn->query("DROP DATABASE ecomueble");
-$sql = "CREATE DATABASE ecomueble";
-$conn->query($sql);
+$conn->query("CREATE DATABASE ecomueble");
 
 
 $conn = new mysqli(SERVERNAME, USER, PASS, DB) or die("Connection failed");

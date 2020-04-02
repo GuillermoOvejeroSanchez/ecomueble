@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2020 at 08:36 PM
+-- Generation Time: Mar 18, 2020 at 08:47 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
+-- Ecomueble con imagenes y index actualizado
 -- Database: `ecomueble`
 --
 
@@ -33,16 +33,6 @@ CREATE TABLE `categoria` (
   `tipo` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `categoria`
---
-
-INSERT INTO `categoria` (`idCategoria`, `tipo`) VALUES
-(1, 'silla'),
-(2, 'armario'),
-(3, 'mesa'),
-(4, 'estanteria');
-
 -- --------------------------------------------------------
 
 --
@@ -53,15 +43,6 @@ CREATE TABLE `estado` (
   `idEstado` int(1) NOT NULL,
   `estado` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `estado`
---
-
-INSERT INTO `estado` (`idEstado`, `estado`) VALUES
-(0, 'en venta'),
-(1, 'vendido'),
-(2, 'reservado');
 
 -- --------------------------------------------------------
 
@@ -199,13 +180,13 @@ ALTER TABLE `valoracion`
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idProducto` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reporte`
@@ -217,13 +198,13 @@ ALTER TABLE `reporte`
 -- AUTO_INCREMENT for table `transacciones`
 --
 ALTER TABLE `transacciones`
-  MODIFY `idTransaccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idTransaccion` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `valoracion`

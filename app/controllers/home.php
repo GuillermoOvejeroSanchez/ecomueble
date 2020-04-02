@@ -31,10 +31,10 @@
                 while ($num >0 && $fila = $resultado->fetch_assoc()  ) {
                     $product_img = "../profile_img/" . $fila['imagen'];
                     $nose = "./usuario?id=" .  $fila['idUsuario']; 
+
                     ?>
-                       <a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'>
-                <?php
-                $num--;
+                    <a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                    <?php
                 }
             }
     
@@ -52,8 +52,8 @@
                         $product_img = "../product_img/" . $fila['imagen'];
                         $nose = "./articulo?id=" .  $fila['idProducto']; 
                 ?>
-                    <a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                <?php
+<a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+<?php
                         $num--;
                     }
                 }
