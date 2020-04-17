@@ -1,20 +1,14 @@
-html {
-    scroll-behavior: smooth;
-}
+html {scroll-behavior: smooth;}
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(98, 241, 181);
 }
 
-h1{
-    text-align: center;
-    color:rgb(8, 46, 21);
-}
-h3 {
-    margin-left: 2%;
-    color:rgb(8, 46, 21);
-}
+h1, h3{color:rgb(8, 46, 21);}
+h1 {text-align: center;}
+h3 {margin-left: 2%;}
+
 label {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: rgb(41, 48, 43);
@@ -55,10 +49,11 @@ span {
     position: absolute;
     top: 12%;
     right:1%;
+  
 }
 
 /*******************/
-.perfil {
+.perfil, table {
     width:80%;
     margin: auto;
     margin-top: 3%;
@@ -108,22 +103,13 @@ span {
 /**************************/
 
 /********PARA HOME********/
-table {
-    width:80%;
-    margin: auto;
-    margin-top: 3%;
+
+
+.productosInicio, .usuariosInicio {
+    width: 49%;
     background-color:rgb(179, 247, 202);
-    border-radius:10px;
 }
 
-.productosInicio {
-    width: 49%;
-    background-color:rgb(179, 247, 202);
-}
-.usuariosInicio  {
-    width: 49%;
-    background-color:rgb(179, 247, 202);
-}
 .productosInicio img {
     width: 150px;
     height: 150px;
@@ -199,7 +185,6 @@ nav ul {
     padding: 0;
     overflow: hidden;
     background-color: rgb(163, 68, 24);
-
 }
 
 nav li a {
