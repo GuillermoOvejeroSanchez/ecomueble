@@ -4,7 +4,7 @@
 function submitProduct()
 {
         session_start();
-        require('./models/Producto.php');
+        require('./includes/Producto.php');
         require('./img.php');
         $conn = connBD();
         

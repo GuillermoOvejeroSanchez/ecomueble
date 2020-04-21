@@ -1,7 +1,8 @@
 <?php
-require('./models/Producto.php');
-require('./models/Transaccion.php');
-require('./models/Usuario.php');
+require('./includes/Producto.php');
+require('./includes/Categoria.php');
+require('./includes/Transaccion.php');
+require('./includes/Usuario.php');
 $conn = connBD();
 
 

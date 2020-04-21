@@ -1,6 +1,7 @@
 <?php
-require('./models/Usuario.php');
-require('./models/Producto.php');
+require('./includes/Usuario.php');
+require('./includes/Producto.php');
+require('./includes/Categoria.php');
 $conn = connBD();
 
 isset($_SESSION['login']) ? logged($conn) : not_logged();

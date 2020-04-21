@@ -1,5 +1,6 @@
 <?php
-    require('./models/Producto.php');
+    require('./includes/Producto.php');
+    require('./includes/Categoria.php');
 
     $conn = connBD();
 

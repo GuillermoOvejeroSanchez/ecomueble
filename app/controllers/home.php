@@ -1,6 +1,7 @@
 <?php
-    require('./models/Producto.php');
-    require('./models/Usuario.php');
+    require('./includes/Producto.php');
+    require('./includes/Categoria.php');
+    require('./includes/Usuario.php');
     $conn = connBD();
 
     echo"
