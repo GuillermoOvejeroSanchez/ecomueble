@@ -2,7 +2,7 @@
 session_start();
 require('Usuario.php');
 
-$conn = connBD();
+/*$conn = connBD();
 //Campos introducidos en el form
 $user = new Usuario($form['username'], $form['email'], $form['tlfn'] , $form['password']);
 
@@ -48,6 +48,6 @@ else{
     $_SESSION['fail_msg'] = $msg;
 }
 
-$conn->close();
+$conn->close();*/
 
 ?>

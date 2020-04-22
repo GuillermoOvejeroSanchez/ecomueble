@@ -2,7 +2,7 @@
 session_start();
 require('Usuario.php');
 
-$conn = connBD();
+/*$conn = connBD();
 //Campos introducidos en el form
 $user = new Usuario();
 $user->nombre = $form['username'];
@@ -29,6 +29,6 @@ if ($resultado = $conn->query($sql)) {
     } 
 }
 
-$conn->close();
+$conn->close();*/
 
 ?>

@@ -20,9 +20,9 @@
         ?>
         <div class="contenido">
             <form action='loginForm' method="post">
-                <div><input type='text' name='username' placeholder='nombre usuario o email' required /></div>
+                <!--<div><input type='text' name='username' placeholder='nombre usuario o email' required /></div>
                 <div><input type='password' name='password' placeholder='contraseña' required /></div>
-                <div> <button type='submit' name='submit_login'>Entrar</button></div>
+                <div> <button type='submit' name='submit_login'>Entrar</button></div>-->
             </form>
 
         </div>

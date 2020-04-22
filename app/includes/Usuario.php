@@ -25,7 +25,7 @@
         }
 
         public function insertUser()
-        {
+        {   $app= Aplicacion::getSingleton();
             $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen) 
             VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen')");
             return $sql;
