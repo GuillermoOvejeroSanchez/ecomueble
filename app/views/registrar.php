@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/FormularioRegistro';
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -20,6 +25,8 @@
                     echo '<div>'.$_SESSION['fail_msg'].'</div>';
                 }
                 unset($_SESSION['fail_msg']);
+                $form= new FormularioRegistro();
+                $form-> gestiona();
             ?>
                 <!--<div><input type='text' name='username' placeholder='Nombre usuario' required /></div>
                 <div><input type='text' name='email' placeholder='Email' required /></div>
