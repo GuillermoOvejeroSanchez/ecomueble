@@ -15,10 +15,10 @@
             }
             $html='
             <fieldset>
-                <legend> Usuario y contraseña </legend>
-                <p><label>Nombre de usuario:</label><input type="text" name="username" value="$nombre"/></p>
-                <p><label>Password:</label><input type="password" name="password" value="$password"/></p>
-                <button type="submit" name="submit_login">Entrar</button>
+                <legend> Iniciar Sesión </legend>
+                <div><label>Nombre de usuario</label><input type="text" name="username"/></div>
+                <div><label>Password</label><input type="password" name="password" /></div>
+                <div class="b"><button  type="submit" name="submit_login">Entrar</button></div>
             </fielset>';
             return $html;
         }

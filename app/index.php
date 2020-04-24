@@ -1,11 +1,12 @@
 
 <?php
-/**require_once('inludes/config.php');
-require_once('bd.php');
-require_once('functions.php');
-require('routes.php');*/
-
+/**require_once('inludes/config.php');*/
 require_once __DIR__.'/includes/config.php';
+//require_once('bd.php');
+require_once('functions.php');
+require('routes.php');
+
+
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +20,6 @@ require_once __DIR__.'/includes/config.php';
 
 <div id="contenedor">
     <?php
-        require("includes/common/cabecera.php");
-        require("includes/common/head.php");
     ?>
 
 </div>

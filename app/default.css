@@ -9,11 +9,7 @@ h1, h3{color:rgb(8, 46, 21);}
 h1 {text-align: center;}
 h3 {margin-left: 2%;}
 
-label {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: rgb(41, 48, 43);
-    margin-left: 7%;
-}
+
 p{
     text-align: center;
     margin-left: 10%;
@@ -130,6 +126,14 @@ span {
 /*******************************/
 
 /*********FORMULARIOS***********/
+label {
+    font-weight: bold;
+    color: rgb(34, 104, 81);
+    font-size: 13pt;
+}
+fieldset{
+  border-color: rgb(34, 104, 81);
+}
 .contenido form{
 	width:30%;
 	padding:3%;

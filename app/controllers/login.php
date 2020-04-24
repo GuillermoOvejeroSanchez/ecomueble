@@ -14,7 +14,7 @@
             "password" => $password,
         );
 
-        require_once("./models/login.php");
+       require_once("./login.php");
 
         //si nos registra correctamente va a index
         if (isset($_SESSION['login']) and $_SESSION['login'] == TRUE) {

@@ -1,8 +1,11 @@
 <?php
+require_once('./includes/Aplicacion.php'); 
     require('./includes/Producto.php');
     require('./includes/Categoria.php');
 
-    $conn = connBD();
+    //$conn = connBD();
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBd();
 
     $sql = Categoria::getAllTags();
     $arrayTags;

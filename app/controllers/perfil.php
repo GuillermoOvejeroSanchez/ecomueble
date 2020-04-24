@@ -1,11 +1,15 @@
 <?php
+require_once('./includes/Aplicacion.php');
 require('./includes/Usuario.php');
 require('./includes/Producto.php');
 require('./includes/Categoria.php');
-$conn = connBD();
+//$conn = connBD();
+$app = Aplicacion::getSingleton();
+$conn = $app->conexionBd();
+
 
 isset($_SESSION['login']) ? logged($conn) : not_logged();
-$conn->close(); //Importante cerrar siempre la conexion
+//$conn->close(); //Importante cerrar siempre la conexion
 
 
 

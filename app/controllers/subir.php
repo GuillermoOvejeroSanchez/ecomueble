@@ -4,10 +4,13 @@
 function submitProduct()
 {
         session_start();
+        require_once('./includes/Aplicacion.php');
         require('./includes/Producto.php');
         require('./img.php');
-        $conn = connBD();
-        
+        //$conn = connBD();
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+    
         //Secure input
         if (!empty($_POST['nombre']) and !empty($_POST['description']) and !empty($_POST['price']) and !empty($_POST['categoria'])) {
             $nombre = secure_input($_POST['nombre']);

@@ -20,7 +20,7 @@ require('./img.php');
             "password" => $hash,
         );
 
-        require_once("./models/registrar.php");
+        require_once("./registrar.php");
       
         //si nos registra correctamente va a index
         if (isset($_SESSION['registrado']) and $_SESSION['registrado'] == TRUE) {

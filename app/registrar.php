@@ -1,8 +1,11 @@
 <?php
-session_start();
-require('Usuario.php');
+//session_start();
+require_once('./includes/Aplicacion.php');
+require('./includes/Usuario.php');
 
-/*$conn = connBD();
+//$conn = connBD();
+$app = Aplicacion::getSingleton();
+$conn = $app->conexionBd();
 //Campos introducidos en el form
 $user = new Usuario($form['username'], $form['email'], $form['tlfn'] , $form['password']);
 
@@ -48,6 +51,6 @@ else{
     $_SESSION['fail_msg'] = $msg;
 }
 
-$conn->close();*/
+//$conn->close();
 
 ?>

@@ -1,8 +1,11 @@
 <?php
-session_start();
-require('Usuario.php');
+//session_start();
+require_once('./includes/Aplicacion.php');
+require('./includes/Usuario.php');
 
-/*$conn = connBD();
+//$conn = connBD();
+$app = Aplicacion::getSingleton();
+$conn = $app->conexionBd();
 //Campos introducidos en el form
 $user = new Usuario();
 $user->nombre = $form['username'];
@@ -29,6 +32,6 @@ if ($resultado = $conn->query($sql)) {
     } 
 }
 
-$conn->close();*/
+//$conn->close();*/
 
 ?>

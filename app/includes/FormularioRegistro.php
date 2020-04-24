@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__.'Form.php';
+    require_once __DIR__.'/Form.php';
     require_once __DIR__.'/Usuario.php';
 
     class FormularioRegistro extends Form{
@@ -14,26 +14,15 @@
                 $nombre=isset($form['nombre']) ? $form['nombre'] : $nombre;
             }
             $html=
-            '<fielset>
-                <div class="grupo-control">
-                    <label>Nombre de usuario:</label><input type="text" name="username" value="$nombre"/>
-                </div>
-                <div class="grupo-control">
-                    <label>Email:</label><input type="text" name="email" value="$email"/>
-                </div>
-                <div class="grupo-control">
-                    <label>Email:</label><input type="text" name="tlfn" value="$tlfn"/>
-                </div>
-                <div class="grupo-control">
-                    <label>Email:</label><input type="password" name="password" value="$password"/>
-                </div>
-                <div class="grupo-control">
-                    <label>Email:</label><input type="file" name="imagen" value="$imagen"/>
-                </div>
-                <div class="grupo-control">
-                    <button type="submit" name="submit_registrar">Entrar</button>
-                </div>
-            </fielset>';
+            '<fieldset>
+            <legend> Registro </legend>
+                <div><label>Nombre de usuario</label><input type="text" name="username" value="$nombre"/></div>
+                <div><label>Email</label><input type="text" name="email" value="$email"/></div>
+                <div><label>Telefono</label><input type="text" name="tlfn" value="$tlfn"/></div>
+                <div><label>Contraseña</label><input type="password" name="password" value="$password"/></div>
+                <div><label>Imagen de Perfil</label><input type="file" name="imagen" value="$imagen"/></div>
+                <div class="b"><button type="submit" name="submit_registrar">Entrar</button></div>
+            </fieldset>';
             return $html;
         }
 
