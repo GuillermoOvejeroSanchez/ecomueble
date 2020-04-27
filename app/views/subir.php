@@ -37,9 +37,13 @@
                     }
                 ?>
             </select>
+<<<<<<< HEAD
             <!-- -->
             
             <div class="b"> <button type='submit' name='submit_producto'>Subir Producto</button></div>
+=======
+            <div> <button type='submit' name='submit_producto'>Subir Producto</button></div>
+>>>>>>> ed8406d0165b43528d21a274b4dddbedfd36e506
             </form>
 
         </div>
