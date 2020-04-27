@@ -1,13 +1,12 @@
 <?php
 
-//Comprobar campos
-function submitProduct()
-{
+    //Comprobar campos
+    if (isset($_POST['submit_producto'])) {
        // session_start();
-        require_once('./includes/Aplicacion.php');
-        require('./includes/Producto.php');
-        require('./includes/Categoria.php');
-        require('./img.php');
+       // require_once('./includes/Aplicacion.php');
+       // require('./includes/Producto.php');
+       // require('./includes/Categoria.php');
+       // require('./img.php');
         //$conn = connBD();
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
@@ -19,7 +18,29 @@ function submitProduct()
             $price = secure_input($_POST['price']);
             $tipoMueble = secure_input($_POST['categoria']);
         }
+
+        //Enviar datos al modelo
+        $form = array(
+            "nombre" => $nombre,
+            "description" => $description,
+            "price" => $price,
+            "categoria" => $tipoMueble,
+        );
+
+        //require_once("./subir.php");
         
+        //si sube el articulo correctamente va al perfil
+        if (isset($_POST['submit_producto']) and $__POST['submit_producto'] == TRUE) {
+            //unset($__POST['submit_producto']);
+            header("Location: /perfil");
+        }
+        //si no vuelve a subir para mostrar un mensaje de error
+        else{
+            header("Location: /subir");
+        }
+    }
+    /*
+        //////////////////////////////////////////////////////////
         //Modelos de Producto y Categoria
         $product = new Producto();
         $product->idUsuario = $_SESSION['idUsuario'];
@@ -51,12 +72,11 @@ function submitProduct()
         header("Location: /perfil");
         
        // $conn->close();
-}
+        }
 
-if (isset($_POST['submit_producto'])) {
-    submitProduct();
-}
-
+        if (isset($_POST['submit_producto'])) {
+            submitProduct();
+        }
+        ////////////////////////////////////////////////////
+    */
 ?>
-
-

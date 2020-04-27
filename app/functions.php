@@ -17,7 +17,7 @@ function getTags(){
     //$conn = connBD();
     $app = Aplicacion::getSingleton();
     $conn = $app->conexionBd();
-    require('./includes/Categoria.php');
+    //require('./includes/Categoria.php');
     $sql = Categoria::getAllTags();
     $arrayTags;
     if($resultado = $conn->query($sql)){
