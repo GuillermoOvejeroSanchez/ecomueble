@@ -29,7 +29,7 @@
             <label for="categoria">Elige una categoría:</label>
             <select id="categoria" name="categoria" form="product_form">
                 <?php
-                    require('./controllers/suhjhbir.php');
+                    require('./controllers/subir.php');
 
                     $arrayTags = getTags();
                     foreach ($arrayTags as $key => $value) {
