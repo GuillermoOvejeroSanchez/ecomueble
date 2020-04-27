@@ -3,9 +3,10 @@
 //Comprobar campos
 function submitProduct()
 {
-        session_start();
+       // session_start();
         require_once('./includes/Aplicacion.php');
         require('./includes/Producto.php');
+        require('./includes/Categoria.php');
         require('./img.php');
         //$conn = connBD();
         $app = Aplicacion::getSingleton();
@@ -49,11 +50,13 @@ function submitProduct()
         }
         header("Location: /perfil");
         
-        $conn->close();
+       // $conn->close();
 }
+
 if (isset($_POST['submit_producto'])) {
     submitProduct();
 }
+
 ?>
 
 

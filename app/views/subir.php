@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php require('./common/head.php')?>
+    <?php require('./includes/common/head.php')?>
     <title>Subir producto</title>
 </head>
 
 <body>
     <div id="contenedor">
         <?php
-            require("./common/cabecera.php");
+            require("./includes/common/cabecera.php");
         ?>
         <div class="contenido">
             <?php
@@ -36,9 +36,6 @@
                 }
                 ?>
             </select>
-            <!-- -->
-            
-
             <div> <button type='submit' name='submit_producto'>Subir Producto</button></div>
             </form>
 
