@@ -15,7 +15,7 @@ function subir(){
 
 function getTags(){
     $conn = connBD();
-    require('./models/Producto.php');
+    require('./includes/Producto.php');
     $sql = Categoria::getAllTags();
     $arrayTags;
     if($resultado = $conn->query($sql)){

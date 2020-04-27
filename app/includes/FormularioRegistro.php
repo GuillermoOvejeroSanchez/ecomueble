@@ -18,7 +18,7 @@
             <legend> Registro </legend>
                 <div><label>Nombre de usuario</label><input type="text" name="username" /></div>
                 <div><label>Email</label><input type="text" name="email" /></div>
-                <div><label>Telefono</label><input type="text" name="tlfn"/></div>
+                <div><label>Teléfono</label><input type="text" name="tlfn"/></div>
                 <div><label>Contraseña</label><input type="password" name="password" /></div>
                 <div><label>Imagen de Perfil</label><input type="file" name="imagen"/></div>
                 <div class="b"><button type="submit" name="submit_registrar">Entrar</button></div>
@@ -36,7 +36,7 @@
             $msg = "";
             if (!filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
                 $valid = FALSE;
-                $msg .= "email no valido\n";
+                $msg .= "email no válido\n";
             }
 
 

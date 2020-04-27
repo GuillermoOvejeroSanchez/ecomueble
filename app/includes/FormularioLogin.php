@@ -19,7 +19,7 @@
                 <div><label>Nombre de usuario</label><input type="text" name="username"/></div>
                 <div><label>Password</label><input type="password" name="password" /></div>
                 <div class="b"><button  type="submit" name="submit_login">Entrar</button></div>
-            </fielset>';
+            </fieldset>';
             return $html;
         }
 

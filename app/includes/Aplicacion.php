@@ -47,7 +47,7 @@ class Aplicacion
 	public function shutdown()
 	{
         if (!$this->estaIniciada) {
-	        echo "Aplicacion no inicializa";
+	        echo "Aplicación no inicializada";
 	        exit();
         }
         
@@ -59,7 +59,7 @@ class Aplicacion
 	public function conexionBd()
 	{
         if (!$this->estaIniciada) {
-	        echo "Aplicacion no inicializa";
+	        echo "Aplicación no inicializada";
 	        exit();
         }
 
