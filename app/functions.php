@@ -14,10 +14,8 @@ function subir(){
 }
 
 function getTags(){
-    //$conn = connBD();
     $app = Aplicacion::getSingleton();
     $conn = $app->conexionBd();
-    //require('./includes/Categoria.php');
     $sql = Categoria::getAllTags();
     $arrayTags;
     if($resultado = $conn->query($sql)){
@@ -27,7 +25,6 @@ function getTags(){
         }
         return $arrayTags;
     }
-    //$conn->close();
 }
 
 function not_logged() {
