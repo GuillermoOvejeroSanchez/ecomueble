@@ -17,7 +17,7 @@
              * envío del formulario.
              */
             private $action;
-
+            private $enctype;
             /**
              * Crea un nuevo formulario.
              *
@@ -49,11 +49,11 @@
             {
                 $this->formId = $formId;
 
-                $opcionesPorDefecto = array( 'action' => null, );
+                $opcionesPorDefecto = array( 'action' => null, 'enctype' => null);
                 $opciones = array_merge($opcionesPorDefecto, $opciones);
 
                 $this->action   = $opciones['action'];
-                
+                $this->enctype = $opciones['enctype'];
                 if ( !$this->action ) {
                     $this->action = htmlentities($_SERVER['PHP_SELF']);
                 }
@@ -129,7 +129,10 @@
 
                 $html= $this->generaListaErrores($errores);
 
-                $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" >';
+                if($this->enctype !== null)
+                    $html .= '<form method="POST" action="'.$this->action.'" enctype="'.$this->enctype.'" id="'.$this->formId.'" >';
+                else
+                    $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" >';
                 $html .= '<input type="hidden" name="action" value="'.$this->formId.'" />';
 
                 $html .= $this->generaCamposFormulario($datos);
