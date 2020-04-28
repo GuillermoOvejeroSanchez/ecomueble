@@ -1,4 +1,4 @@
-<?php
+<?php/*
 
     //Comprobar campos
     if (isset($_POST['submit_producto'])) {

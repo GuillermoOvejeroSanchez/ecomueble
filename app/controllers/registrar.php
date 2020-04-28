@@ -1,4 +1,5 @@
 <?php
+/*
 require('./img.php');
     //Comprobar campos
     if (isset($_POST['submit_registrar'])) {

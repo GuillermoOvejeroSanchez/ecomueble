@@ -1,11 +1,12 @@
 <?php
     require_once __DIR__.'/Form.php';
     require_once __DIR__.'/Usuario.php';
+    require_once __DIR__.'/Aplicacion.php';
 
     class FormularioRegistro extends Form{
 
         public function __construct(){
-            parent::__construct('formRegistro');
+            parent::__construct('formRegistro', ['action' =>'registrar']);
         }
 
         protected function generaCamposFormulario($form){
@@ -27,9 +28,13 @@
         }
 
         protected function procesaFormulario($form){
-            $conn = connBD();
+            $result = array();
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            
             //Campos introducidos en el form
-            $user = new Usuario($form['username'], $form['email'], $form['tlfn'] , $form['password']);
+            $user = new Usuario($form['username'], $form['email'], $form['tlfn']);
+            $hash = password_hash($form['password'], PASSWORD_BCRYPT);
+            $user->password = $hash;
 
             //Validar email
             $valid = TRUE;
@@ -38,7 +43,6 @@
                 $valid = FALSE;
                 $msg .= "email no válido\n";
             }
-
 
             //Comprobar si existe user,email,tlfn
             $sql = $user->checkUser(); 
@@ -57,6 +61,8 @@
 
             //Es valido y no existe
             if($valid and !$existe){
+                //El require va aqui????/////////////////////////////////////////////////////////////
+                require('./img.php');
                 //Guardar img en server y session de la imagen
                 $imgPath = saveImg("./profile_img/" , $user->nombre);
                 $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
@@ -64,8 +70,16 @@
                 //Query SQL
                 $sql = $user->insertUser();
                 
-                if(!$existe && $conn->query($sql) === TRUE){
+                if($conn->query($sql) === TRUE){
                     $_SESSION['registrado'] = TRUE;
+                    $_SESSION['login'] = TRUE;
+                    // No se si esto se pasa asi, REVISAR!!!!! ///////////////////////////////////////////
+                    $_SESSION['username'] = $user->nombre;
+                    $_SESSION['saldo'] = $user->saldo;
+                    $_SESSION['profile_pic'] = $user->imagen;
+                    $_SESSION['idUsuario'] = $user->idUsuario;
+
+                    $result = '/';
                 }
             }
             else{
@@ -73,8 +87,7 @@
                 $_SESSION['fail_msg'] = $msg;
             }
 
-            $conn->close();
-
+            return $result;
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 require_once('./includes/FormularioSubir.php');
-require_once('./includes/FormularioProducto.php');
+//require_once('./includes/FormularioProducto.php');
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ require_once('./includes/FormularioProducto.php');
                     echo '<div>'.$_SESSION['fail_msg'].'</div>';
                 }
                 unset($_SESSION['fail_msg']);
-                $form= new FormularioProducto();
+                $form= new FormularioSubir();
                 $form->gestiona();
             ?>
         </div>

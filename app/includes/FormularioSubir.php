@@ -6,7 +6,7 @@
     class FormularioSubir extends Form{
 
         public function __construct(){
-            parent::__construct('formSubir');
+            parent::__construct('formSubir', ['action' =>'subir']);
         }
 
         protected function generaCamposFormulario($form){
@@ -37,7 +37,8 @@
         }
 
         protected function procesaFormulario($form){
-            $conn = connBD();
+            $result = array();
+            $conn = Aplicacion::getSingleton()->conexionBd();
 
             //Campos introducidos en el form
             $product = new Producto();
@@ -47,8 +48,7 @@
 
             $product->idUsuario = $_SESSION['idUsuario'];
 
-            $categoria = new Categoria($tipoMueble);
-        
+            $categoria = new Categoria($form['categoria']);
             //idCategoria para insertar en producto
             $sql = $categoria->getIDCategoria();
             if($resultado = $conn->query($sql)){
@@ -57,25 +57,27 @@
             }
             
             //Guardar imagen del producto
+        
+            //El require va aqui????/////////////////////////////////////////////////////////////
+            require('./img.php');
             $imgPro = saveImg("./product_img/" , $product->nombre);
             $imgPro = empty($imgPro) ? "default_profile.jpg" : $imgPro;
             $product->imagen = $imgPro;
-            
+
             //Subir producto a BD
             $sql = $product->insertProduct();
             if($conn->query($sql)){
                 //Enviar mensaje, subido con exito
                 $_POST['submit_producto'] = TRUE;
+                $result = '/perfil';
             }else{
                 //Enviar mensaje, no se ha podido subir
                 $_POST['submit_producto'] = FALSE;
+                $result[] = "Error subiendo producto.\n";
             }
-            //header("Location: /perfil");
             
-            $conn->close();
-
-        }
-                
+            return $result;
+        }   
     }
 
 ?>
