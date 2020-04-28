@@ -5,7 +5,13 @@
     unset($_SESSION["login"]);
     unset($_SESSION["esAdmin"]);
     unset($_SESSION["nombre"]);
-
+    unset($_SESSION['username']);
+    unset($_SESSION['login']);
+    unset($_SESSION['saldo']);
+    unset($_SESSION['profile_pic']);
+    unset($_SESSION['idUsuario']);
+    session_destroy();
+    header("Location: /");
 
     session_destroy();
 ?>

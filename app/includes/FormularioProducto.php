@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__.'/Form.php';
-    require_once __DIR__.'/Producto';
-    require_once __DIR__.'/Categoria';
+    require_once __DIR__.'/Producto.php';
+    require_once __DIR__.'/Categoria.php';
 
     class FormularioProducto extends Form{
         public function __construct(){
@@ -12,24 +12,23 @@
             if($form){
                 $producto=isset($form['nombre']) ? $form['nombre'] : $producto;
             }
-            $html=
+            $html =
             '<fieldset>
-            <legend> Registro </legend>
+            <legend> Subir Producto </legend>
                 <div><label>Nombre del producto</label><input type="text" name="nombre" /></div>
                 <div><label>Descripcion</label><input type="text" name="description" /></div>
                 <div><label>Precio</label><input type="text" name="price"/></div>
                 <div><label>Imagen del producto</label><input type="file" name="imagen"/></div>
                 <label for="categoria">Elige una categoría:</label>
                 <select id="categoria" name="categoria" form="product_form">
-                    <?php
+                    ';
                         require("./controllers/subir.php");
-
                         $arrayTags = getTags();
                         foreach ($arrayTags as $key => $value) {
-                            echo "<option value=".$key.">".$value."</option>";
+                            $value = "<option value=".$key.">".$value."</option>";
+                            $html .= $value;
                         }
-                    ?>
-                 </select>
+                 $html .= '</select>
                 <div class="b"><button type="submit" name="submit_producto">Subir</button></div>
             </fieldset>';
             return $html;
