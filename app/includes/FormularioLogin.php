@@ -1,11 +1,11 @@
 <?php
     require_once __DIR__.'/Form.php';
     require_once __DIR__.'/Usuario.php';
-
+    require_once __DIR__.'/Aplicacion.php';
     class FormularioLogin extends Form{
 
         public function __construct(){
-            parent:: __construct('formLogin');
+            parent:: __construct('loginForm', ['action' =>'login']);
         }
 
         protected function generaCamposFormulario($form){
@@ -24,8 +24,9 @@
         }
 
         protected function procesaFormulario($form){
-            $conn = connBD();
             //Campos introducidos en el form
+            $conn = Aplicacion::getSingleton()->conexionBd();
+
             $user = new Usuario();
             $user->nombre = $form['username'];
             $user->password = $form['password'];
@@ -47,14 +48,14 @@
                         if ($user_fetched['tipoUsuario'] == 1) {
                             $_SESSION['admin'] = TRUE;
                         }
+                        return '/';
                     }
                 } 
             }
-
-            $conn->close();
+            return ['Error al logear', 'Usuario o contraseña incorrectas', ];
         }
-
-
+        
+        
     }
 
 ?>

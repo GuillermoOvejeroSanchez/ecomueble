@@ -50,7 +50,6 @@ class Aplicacion
 	        echo "Aplicación no inicializada";
 	        exit();
         }
-        
 	    if ($this->conn !== null) {
 	        $this->conn->close();
 	    }

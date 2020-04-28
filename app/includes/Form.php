@@ -68,7 +68,7 @@
                     echo $this->generaFormulario();
                 } else {
                     $result = $this->procesaFormulario($_POST);
-                    if ( is_array($result) ) {
+                    if (is_array($result) ) {
                         echo $this->generaFormulario($result, $_POST);
                     } else {
                         header('Location: '.$result);

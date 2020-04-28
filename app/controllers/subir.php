@@ -32,11 +32,11 @@
         //si sube el articulo correctamente va al perfil
         if (isset($_POST['submit_producto']) and $__POST['submit_producto'] == TRUE) {
             //unset($__POST['submit_producto']);
-            header("Location: /perfil");
+            //header("Location: /perfil");
         }
         //si no vuelve a subir para mostrar un mensaje de error
         else{
-            header("Location: /subir");
+            //header("Location: /subir");
         }
     }
     /*

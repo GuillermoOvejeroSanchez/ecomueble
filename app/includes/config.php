@@ -22,8 +22,8 @@ CONST EN_VENTA = 0;
 CONST VENDIDO = 1;
 CONST RESERVADO = 2;
 
-$aplicacion = Aplicacion::getSingleton();
-$aplicacion->init(array('host'=>SERVERNAME, 'bd'=>DB, 'user'=>USER, 'pass'=>PASS));
+$app = Aplicacion::getSingleton();
+$app->init(array('host'=>SERVERNAME, 'bd'=>DB, 'user'=>USER, 'pass'=>PASS));
 
-register_shutdown_function(array($aplicacion, 'shutdown'));
+register_shutdown_function(array($app, 'shutdown'));
 ?>
