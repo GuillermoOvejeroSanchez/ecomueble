@@ -115,7 +115,7 @@
         public function logUser()
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $result = ['Error al logear', 'Usuario o contraseña incorrectas', ];
+            return ['<a>¡Error al iniciar sesión!</a>', 'Usuario o contraseña incorrectos', ];
             
             $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
             
