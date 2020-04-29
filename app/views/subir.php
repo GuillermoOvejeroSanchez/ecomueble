@@ -28,7 +28,7 @@ require_once('./includes/FormularioSubir.php');
                 $form->gestiona();
             ?>
         </div>
-    </div> <!-- Fin del contenedor -->
+    </div>
 </body>
 
 </html>

@@ -48,7 +48,7 @@ function mostrarProductosUser($idUsuario)
             echo "<a href='".$key."'><img src='".$value."' alt='imagen'></a>";
         }
     }else{
-        echo "Este usuario no tiene articulos";
+        echo "<label>Este usuario no tiene articulos</label>";
     }
 }    
 ?>

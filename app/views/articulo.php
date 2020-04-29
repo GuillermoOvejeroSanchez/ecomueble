@@ -12,8 +12,6 @@
         require('./includes/common/cabecera.php');
         require('./controllers/articulo.php');
     ?>
-
-
 </body>
 
 </html>

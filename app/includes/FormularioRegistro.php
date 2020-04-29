@@ -69,28 +69,26 @@
                     $result[] = $user->checkUser($valid) ; 
                 }
                 
-
-            //Es valido y no existe
-            if($valid and count($result) === 1){
-                require('./img.php');
-                //Guardar img en server y session de la imagen
-                $imgPath = saveImg("./profile_img/" , $user->nombre);
-                $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
-                $user->imagen = $imgPath;
-                
-                //Query SQL
-                if($user->insertUser()){
-                    $userLog = new Usuario();
-                    $userLog->nombre = $form['username'];
-                    $userLog->password = $form['password'];
-        
-                    //Comprobar si existe user,email,tlfn
-                    return $userLog->logUser();
-                }
-            }
+                //Es valido y no existe
+                if($valid and count($result) === 1){
+                    require('./img.php');
+                    //Guardar img en server y session de la imagen
+                    $imgPath = saveImg("./profile_img/" , $user->nombre);
+                    $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
+                    $user->imagen = $imgPath;
+                    
+                    //Query SQL
+                    if($user->insertUser()){
+                        $userLog = new Usuario();
+                        $userLog->nombre = $form['username'];
+                        $userLog->password = $form['password'];
             
+                        //Comprobar si existe user,email,tlfn
+                        return $userLog->logUser();
+                    }
+                }   
+            }
+            return $result;
         }
-        return $result;
     }
-}
 ?>

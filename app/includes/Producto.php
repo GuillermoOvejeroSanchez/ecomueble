@@ -140,6 +140,4 @@
             $this->imagen = $row['imagen'];
         }
     }
-
-
 ?>

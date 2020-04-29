@@ -36,7 +36,6 @@
             return FALSE;
         }
 
-        //TODO 
         public function checkUser($valid)
         {
             $existe = FALSE;
@@ -53,7 +52,6 @@
                     if($user_fetched['email'] == $this->email) $msg .= "email ";
                 } 
             }
-
             return $msg;
         }
 
@@ -115,7 +113,6 @@
         public function logUser()
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
-           
             
             $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
             
@@ -138,7 +135,6 @@
                     }
                 } 
             }
-            
             return "Usuario o Contraseña no coinciden";
         }
 
@@ -153,7 +149,4 @@
             $this->imagen = $row['imagen'];
         }
     }
-
-
-
 ?>

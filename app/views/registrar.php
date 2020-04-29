@@ -26,7 +26,6 @@ require_once('./includes/FormularioRegistro.php');
                 $form= new FormularioRegistro();
                 $form-> gestiona();
             ?>
-
         </div>
-    </div> <!-- Fin del contenedor -->
+    </div>
 </body>

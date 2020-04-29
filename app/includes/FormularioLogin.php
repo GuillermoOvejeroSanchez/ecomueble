@@ -26,7 +26,6 @@
 
         protected function procesaFormulario($form){
             //Campos introducidos en el form
- 
             $user = new Usuario();
             $user->nombre = $form['username'];
             $user->password = $form['password'];
@@ -37,8 +36,7 @@
                 return "/";
             }
             $resultado[] = $user->logUser();
-            return $resultado;
-            
+            return $resultado;     
         }
     }
 ?>

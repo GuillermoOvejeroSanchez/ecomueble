@@ -16,14 +16,12 @@ require('./includes/FormularioLogin.php');
     <div id="contenedor">
         <?php
             require("./includes/common/cabecera.php");
-            
         ?>
         <div class="contenido">
                 <?php
                     $form= new FormularioLogin();
                     $form->gestiona();
                 ?>
-
         </div>
-    </div> <!-- Fin del contenedor -->
+    </div> 
 </body>

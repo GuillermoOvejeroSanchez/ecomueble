@@ -36,7 +36,6 @@ function logged()
     <?php
 }
 
-
 function mostrarProductos($idUsuario)
 {
     $links_id = Producto::getAllProductsFromUser($idUsuario);
@@ -44,5 +43,4 @@ function mostrarProductos($idUsuario)
         echo "<a href='".$key."'><img src='".$value."' alt='imagen'></a>";
     }
 }
-
 ?>
