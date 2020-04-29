@@ -1,22 +1,9 @@
 <?php
-require_once('./includes/Aplicacion.php'); 
     require('./includes/Producto.php');
     require('./includes/Categoria.php');
 
-    //$conn = connBD();
-    $app = Aplicacion::getSingleton();
-    $conn = $app->conexionBd();
+    $arrayTags = Categoria::getAllTags();
 
-    $sql = Categoria::getAllTags();
-    $arrayTags;
-    if($resultado = $conn->query($sql)){
-        while ($fila = $resultado->fetch_assoc()) {
-            $tipo = $fila['tipo'];
-            $arrayTags[$tipo] = ucfirst($tipo) . 's'; //añadimos 's' pa que sea en plural
-        }
-    }
-
-   
     echo " <div class='perfil'> ";
     ?>
         <div class="categorias">
@@ -32,46 +19,33 @@ require_once('./includes/Aplicacion.php');
         
     <?php
         echo "<div class='productos'>";
-            mostrarProductos( $conn);
+            mostrarProductos();
         echo '</div> 
     </div>';
 
-    function mostrarProductos($conn)
+    function mostrarProductos()
     {
+
         $existe = TRUE;
         if(!isset($_GET['categoria']))
-          $sql =  Producto::getAllProducts();
-        
-        else{
+          $map =  Producto::getAllProducts();
+        else {
             $categoria = new Categoria($_GET['categoria']);
         
             //idCategoria para insertar en producto
             $idCategoria = $categoria->getIDCategoria();
-
-            if($resultado = $conn->query($idCategoria)) {
-                if ($resultado->num_rows > 0) {
-                    $cat_fetched = $resultado->fetch_assoc();
-                    $sql = Producto::getAllProductsFromCategoria($cat_fetched['idCategoria']);
-                }else{
-                    $existe = FALSE;
-                }
+            if($idCategoria != "")
+                $map = Producto::getAllProductsFromCategoria($idCategoria);
+            else
+                $existe = FALSE;
             }  
+            if($existe){
+                foreach ($map as $link => $product_img) {
+                    ?>
+                <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                <?php
+            }       
         }
         
-        if($existe and $resultado = $conn->query($sql)){
-            if($resultado->num_rows > 0){
-                while ($fila = $resultado->fetch_assoc()) {
-                    if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
-                        $product_img = "../product_img/" . $fila['imagen'];
-                        $nose = "./articulo?id=" .  $fila['idProducto']; 
-                    ?>
-                        <a href=<?php echo "'$nose'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                    <?php
-                    }
-                }
-            }
-    
-        } 
     }
-
 ?>

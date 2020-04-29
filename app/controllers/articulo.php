@@ -1,27 +1,20 @@
 <?php
-require_once('./includes/Aplicacion.php');
 require('./includes/Producto.php');
 require('./includes/Categoria.php');
 require('./includes/Transaccion.php');
 require('./includes/Usuario.php');
-//$conn = connBD();
+
 $app = Aplicacion::getSingleton();
 $conn = $app->conexionBd();
-
-
-isset($_SESSION['login']) ? logged($conn) : not_logged();
+isset($_SESSION['login']) ? logged() : not_logged();
 //$conn->close(); //Importante cerrar siempre la conexion
 
-function logged($conn)
+function logged()
 {
-    $product = new Producto(); //Producto vacio
     $id = $_GET['id']; //Cogemos id articulo para realizar consulta
-    $sql = $product->getProduct($id);
-    $resultado = $conn->query($sql);
-    if($resultado->num_rows > 0){
-        
+    $product = Producto::getProduct($id);
 
-        $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
+    if($product->nombre != ""){
         $estado = $product->idEstado ? "No Disponible" : "En Venta";
         $imagen = "../product_img/" . $product->imagen;
         
@@ -51,58 +44,24 @@ function logged($conn)
                 echo "<div class='bperfil'><button type='submit' name='borrarProducto'>Borrar</button>";
                 //echo" <button type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
             }else{ //Si no lo es mostrar comprar/contactar
-                //TODO Implementar Comprar y Contactar
                 echo "<div class='bperfil'><button type='submit' name='comprarProducto'>Comprar</button>";
                 echo "<button type='submit' name='contactar'>Contactar</button></div>";
             }
         }
-?>
+        ?>
 </div>
+
+
 <?php
         //Obtener id, saldo del vendedor
-        $vendedor = new Usuario();
-        $sql = Usuario::getUserbyId($product->idUsuario);
+        $vendedor = Usuario::getUserbyId($product->idUsuario);
         //? ROLLBACK IF FAILED
-        $resultado = $conn->query($sql);
-        $vendedor->createUser($resultado->fetch_assoc());
 
         if (isset($_POST['borrarProducto'])) {
-            $sql1 = Producto::deleteProduct($id);
-            $conn->query($sql1); 
+            $ok = Producto::deleteProduct($id);
             header("Location: /perfil");
         } elseif (isset($_POST['comprarProducto'])) {
             
-
-            //Transaccion
-            $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date(DATE_W3C)); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
-
-            //Comprobar si tenemos monedas (monedas >= precio)
-            if($_SESSION['saldo'] >= $product->precio && $product->idEstado == 0){
-                //TODO cambiar a una Transaccion de SQL (poder hacer ROLLBACK y COMMIT por si algo sale mal)
-        
-                //? START TRANSACTION
-                
-                //Restar monedas comprador
-                $sql = Usuario::updateSaldo($_SESSION['saldo'], -$product->precio, $_SESSION['idUsuario']);
-                //? ROLLBACK IF FAILED
-                $conn->query($sql);
-                $_SESSION['saldo'] -= $product->precio;
-                
-                //Sumar monedas 
-                //? ROLLBACK IF FAILED
-                $conn->query(Usuario::updateSaldo($vendedor->saldo, $product->precio, $vendedor->idUsuario));
-            
-                //Eliminar producto (cambiar status a vendido)
-                //? ROLLBACK IF FAILED
-                $conn->query(Producto::changeStatus($id, 1));
-
-                //Realizar transaccion
-                //? ROLLBACK IF FAILED
-                $conn->query($transaccion->newTransaction());
-
-                //? COMMIT
-                header("Location: /articulo?id=$id");
-            }
         }elseif (isset($_POST['contactar'])) {
             //Contactar
             header("Location: /usuario?id=$vendedor->idUsuario");
@@ -110,17 +69,54 @@ function logged($conn)
 
     }else{ //Buscamos un articulo que no existe (poner un parametro a mano)
         ?>
-        <div class="noReg">
-        <img src="img/warning.png" alt="Atención">
-        <p>El articulo que buscas no existe</p>
-        </div>
-        <?php
+<div class="noReg">
+    <img src="img/warning.png" alt="Atención">
+    <p>El articulo que buscas no existe</p>
+</div>
+<?php
     }
 }
 
 function comprarProducto()
 {
     //TODO daba errores de que faltaban parametros al ponerlo aqui
+    //Transaccion
+    $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date(DATE_W3C)); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
+
+    //Comprobar si tenemos monedas (monedas >= precio)
+    if($_SESSION['saldo'] >= $product->precio && $product->idEstado == 0){
+        //TODO cambiar a una Transaccion de SQL (poder hacer ROLLBACK y COMMIT por si algo sale mal)
+
+        //? START TRANSACTION
+        //Restar monedas comprador
+        $ok = Usuario::updateSaldo($_SESSION['saldo'], -$product->precio, $_SESSION['idUsuario']);
+        if(!$ok){
+            return;
+        }
+        $_SESSION['saldo'] -= $product->precio;
+        
+        //Sumar monedas 
+        //? ROLLBACK IF FAILED
+        $ok = Usuario::updateSaldo($vendedor->saldo, $product->precio, $vendedor->idUsuario);
+        if(!$ok){
+            return;
+        }
+        //Eliminar producto (cambiar status a vendido)
+        //? ROLLBACK IF FAILED
+        $ok = Producto::changeStatus($id, VENDIDO);
+        if(!$ok){
+            return;
+        }
+        //Realizar transaccion
+        //? ROLLBACK IF FAILED
+        $ok = $transaccion->newTransaction();
+        if(!$ok){
+            return;
+        }
+        //? COMMIT
+
+        header("Location: /articulo?id=$id");
+    }
 }
 
 

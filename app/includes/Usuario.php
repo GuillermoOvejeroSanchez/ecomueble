@@ -25,51 +25,120 @@
         }
 
         public function insertUser()
-        {   $app= Aplicacion::getSingleton();
+        {   
+            $conn = Aplicacion::getSingleton()->conexionBd();
             $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen) 
             VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen')");
-            return $sql;
+            
+            if($conn->query($sql) === TRUE){
+                return TRUE;
+            }
+            return FALSE;
         }
 
-        public function checkUser()
+        //TODO 
+        public function checkUser($valid)
         {
+            $existe = FALSE;
+            $conn = Aplicacion::getSingleton()->conexionBd();
             $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre' OR email = '$this->email'";
-            return $sql;
+            
+            if ($valid and $resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0) {
+                    $existe = TRUE;
+                    $msg = "Ya existe un usuario con ese ";
+                    //Comprobar cuales son los repetidos
+                    $user_fetched = $resultado->fetch_assoc();
+                    if($user_fetched['nombre'] == $this->nombre) $msg .= "nombre ";
+                    if($user_fetched['email'] == $this->email) $msg .= "email ";
+                } 
+            }
+
+            return $existe;
         }
 
         public static function updateSaldo($saldo, $incSaldo, $idUsuario)
         {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+
             $saldototal = $saldo + $incSaldo;
             $sql = "UPDATE usuario SET saldo = $saldototal WHERE idUsuario = $idUsuario";
-            return $sql;
+            $ok = $conn->query($sql);
+            return $ok;
         }
 
-        public function getUser($name) {
-            $user = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE nombre = '$name'";
+        public static function getUser($name) {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $user = new Usuario(); //Usuario vacio
+
+            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE nombre = '$name'";
+            $resultado = $conn->query($sql);
+            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
+
             return $user;
         }
 
-        public function getUserbyId($id) {
+        public static function getUserbyId($id) {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $user = new Usuario(); //Usuario vacio
+
             $sql = sprintf("SELECT * FROM usuario WHERE idUsuario = '$id'");
-            return $sql;
+            $resultado = $conn->query($sql);
+            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
+            
+            return $user;
         }
 
         public static function getAllUsers()
         {
-            $sql = sprintf("SELECT * FROM usuario ");
-            return $sql;
-        }
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $map = [];
 
-        public function logUserObsolete()
-        {
-            $sql = "SELECT idUsuario, nombre, tipoUsuario, saldo, imagen FROM usuario WHERE password = '$this->password' AND (nombre = '$this->nombre' OR email = '$this->nombre')";
-            return $sql;
+            $sql = sprintf("SELECT * FROM usuario ");
+
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()  ) {
+                        $link = "./usuario?id=" .  $fila['idUsuario']; 
+                        $product_img = "../profile_img/" . $fila['imagen'];
+                        $map[$link] = $product_img;
+                    }
+                }
+            }
+            return $map;
         }
 
         public function logUser()
         {
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            $result = ['Error al logear', 'Usuario o contraseña incorrectas', ];
+            
             $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
-            return $sql;
+            
+            if ($resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
+                    $user_fetched = $resultado->fetch_assoc();
+
+                    $ok = password_verify($this->password, $user_fetched['password']); 
+                    if ($ok) {
+                        $_SESSION['login'] = TRUE;
+                        $_SESSION['username'] = $user_fetched['nombre'];
+                        $_SESSION['saldo'] = $user_fetched['saldo'];
+                        $_SESSION['profile_pic'] = $user_fetched['imagen'];
+                        $_SESSION['idUsuario'] = $user_fetched['idUsuario'];
+                        
+                        if ($user_fetched['tipoUsuario'] == 1) {
+                            $_SESSION['admin'] = TRUE;
+                        }
+                        $result = '/';
+                    }
+                } 
+            }
+            return $result;
         }
 
         public function createUser($row)

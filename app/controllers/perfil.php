@@ -1,25 +1,14 @@
 <?php
-require_once('./includes/Aplicacion.php');
 require('./includes/Usuario.php');
 require('./includes/Producto.php');
 require('./includes/Categoria.php');
-//$conn = connBD();
-$app = Aplicacion::getSingleton();
-$conn = $app->conexionBd();
 
+isset($_SESSION['login']) ? logged() : not_logged();
 
-isset($_SESSION['login']) ? logged($conn) : not_logged();
-//$conn->close(); //Importante cerrar siempre la conexion
-
-
-
-function logged($conn)
+function logged()
 {
-    $user = new Usuario(); //Usuario vacio
     $p = $_SESSION['username']; //Cogemos nombre user para realizar consulta
-    $sql = $user->getUser($p);
-    $resultado = $conn->query($sql);
-    $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
+    $user = Usuario::getUser($p);
 
     $imagen = "../profile_img/" . $user->imagen;
 
@@ -40,7 +29,7 @@ function logged($conn)
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
         //echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
         echo "<div class='productos'>";
-            mostrarProductos($_SESSION['idUsuario'], $conn);
+            mostrarProductos($_SESSION['idUsuario']);
         echo "</div>";
         ?>
     </div>
@@ -48,21 +37,11 @@ function logged($conn)
 }
 
 
-function mostrarProductos($idUsuario, $conn)
+function mostrarProductos($idUsuario)
 {
-    $sql =  Producto::getAllProductsFromUser($idUsuario);
-    if($resultado = $conn->query($sql)){
-        if($resultado->num_rows > 0){
-         while ($fila = $resultado->fetch_assoc()) {
-             $product_img = "../product_img/" . $fila['imagen'];
-             $nose = "./articulo?id=" .  $fila['idProducto']; 
-             
-                 ?>
-                  <a href=<?php echo "'$nose'"?>><img src=<?php echo "'$product_img'"?> alt='imagen' ></a>
-                 <?php
-         }
-        }
-     
+    $links_id = Producto::getAllProductsFromUser($idUsuario);
+    foreach ($links_id as $key => $value) {
+        echo "<a href='".$key."'><img src='".$value."' alt='imagen'></a>";
     }
 }
 

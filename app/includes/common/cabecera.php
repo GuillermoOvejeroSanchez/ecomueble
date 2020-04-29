@@ -9,8 +9,7 @@
         $user = $_SESSION['username'];
         $saldo = $_SESSION['saldo'];
         $imagen = "../profile_img/" . $_SESSION['profile_pic'];
-
-        //TODO Poner todas las fotos del mismo tamaño ej (124x124 px)
+        
         echo  "<div class='imgprofile'><a href='perfil'><img src='$imagen' alt='imagen''></a></div>";
         echo '<span>'. $user . ' - Saldo actual: '.$saldo.'</span>
         <div class="b"><button type="submit" name="logout_btn">Logout</button></div>';

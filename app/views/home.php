@@ -11,6 +11,24 @@
     <?php
         require('./includes/common/cabecera.php');
         require('./controllers/home.php');
+
+        echo"
+        <table>
+            <tr>
+                <th class='ini'> Productos </th>
+                <th class='ini'> Usuarios </th> 
+            </tr> 
+            <tr> 
+                <th class='productosInicio'>";
+                mostrarXProductos(10);
+                echo " </th> 
+
+                <th  class='usuariosInicio'>";
+                mostrarXUsuarios(10);
+                echo " </th>
+            </tr> 
+        </table>
+    ";
         ?>
         <!--lista de n productos y lista de n usuarios-->
 </body>
