@@ -16,15 +16,8 @@ function subir(){
 function getTags(){
     $app = Aplicacion::getSingleton();
     $conn = $app->conexionBd();
-    $sql = Categoria::getAllTags();
-    $arrayTags;
-    if($resultado = $conn->query($sql)){
-        while ($fila = $resultado->fetch_assoc()) {
-            $tipo = $fila['tipo'];
-            $arrayTags[$tipo] = ucfirst($tipo);
-        }
-        return $arrayTags;
-    }
+    $arrayTags = Categoria::getAllTags();
+    return $arrayTags;
 }
 
 function not_logged() {

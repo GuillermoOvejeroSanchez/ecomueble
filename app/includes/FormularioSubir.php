@@ -38,7 +38,7 @@
 
         protected function procesaFormulario($form){
             $result = array();
-            $conn = Aplicacion::getSingleton()->conexionBd();
+
             //Campos introducidos en el form
             $product = new Producto();
             $product->descripcion = $form['description'];
@@ -49,15 +49,12 @@
 
             $categoria = new Categoria($form['categoria']);
             //idCategoria para insertar en producto
-            $sql = $categoria->getIDCategoria();
-            if($resultado = $conn->query($sql)){
-                $cat_fetched = $resultado->fetch_assoc();
-                $product->idCategoria = $cat_fetched['idCategoria'];
+            $id = $categoria->getIDCategoria();
+            if($id != ""){
+                $product->idCategoria = $id;
             }
             
             //Guardar imagen del producto
-        
-            //El require va aqui????/////////////////////////////////////////////////////////////
             require('./img.php');
             $_FILES['imagen']['tmp_name'];
             $imgPro = saveImg("./product_img/" , $product->nombre);
@@ -65,18 +62,7 @@
             $product->imagen = $imgPro;
 
             //Subir producto a BD
-            $sql = $product->insertProduct();
-            if($conn->query($sql)){
-                //Enviar mensaje, subido con exito
-                $_POST['submit_producto'] = TRUE;
-                $result = '/perfil';
-            }else{
-                //Enviar mensaje, no se ha podido subir
-                $_POST['submit_producto'] = FALSE;
-                $result[] = "Error subiendo producto.\n";
-            }
-            
-            return $result;
+            return $product->insertProduct();
         }   
     }
 

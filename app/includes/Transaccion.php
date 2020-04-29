@@ -16,9 +16,14 @@
 
         public function newTransaction()
         {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+
             $sql = sprintf("INSERT INTO transacciones(idProducto, idComprador, fecha) 
             VALUES ( '$this->idProducto', '$this->idComprador', '$this->fecha')");
-            return $sql;
+            
+            $ok = $conn->query($sql);
+            return $ok;
         }
     }
 

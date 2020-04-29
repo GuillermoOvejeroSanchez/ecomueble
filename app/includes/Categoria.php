@@ -12,6 +12,7 @@
             $this->tipo = $tipo;
         }
 
+        //TODO No usamos esto, pero para el admin puede estar bien
         //Si el usuario no tiene una categoria que inserte una
         public function insertCategoria()
         {
@@ -21,15 +22,38 @@
 
         public function getIDCategoria()
         {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $id = "";
+
             $sql = "SELECT idCategoria FROM categoria WHERE tipo = '$this->tipo'";
-            return $sql;
-        }
+            
+            if($resultado = $conn->query($sql)) {
+                if ($resultado->num_rows > 0) {
+                    $cat_fetched = $resultado->fetch_assoc();
+                    $id = $cat_fetched['idCategoria'];
+                }
+            }
+            return $id;
+    }
 
         public static function getAllTags()
         {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $arrayTags;
+            
             $sql = "SELECT * FROM categoria";
-            return $sql;
+            
+            if($resultado = $conn->query($sql)){
+                while ($fila = $resultado->fetch_assoc()) {
+                    $tipo = $fila['tipo'];
+                    $arrayTags[$tipo] = ucfirst($tipo) . 's'; //añadimos 's' pa que sea en plural
+                }
+            }
+            return $arrayTags;
         }
+
     }
 
 
