@@ -32,7 +32,12 @@
             $user->password = $form['password'];
 
             //Comprobar si existe user,email,tlfn
-            return $user->logUser();
+            $resultado[] = "<a>¡Error al iniciar sesión!</a>";
+            if($user->logUser() == "/") {
+                return "/";
+            }
+            $resultado[] = $user->logUser();
+            return $resultado;
             
         }
     }

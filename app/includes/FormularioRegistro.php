@@ -65,10 +65,13 @@
                 }
 
                 //Comprobar si existe user,email,tlfn
-                $existe = $user->checkUser($valid); 
+                if($user->checkUser($valid) != ""){
+                    $result[] = $user->checkUser($valid) ; 
+                }
+                
 
             //Es valido y no existe
-            if($valid and !$existe){
+            if($valid and count($result) === 1){
                 require('./img.php');
                 //Guardar img en server y session de la imagen
                 $imgPath = saveImg("./profile_img/" , $user->nombre);

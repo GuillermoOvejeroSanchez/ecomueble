@@ -42,7 +42,7 @@
             $existe = FALSE;
             $conn = Aplicacion::getSingleton()->conexionBd();
             $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre' OR email = '$this->email'";
-            
+            $msg ="";
             if ($valid and $resultado = $conn->query($sql)) { 
                 if ($resultado->num_rows > 0) {
                     $existe = TRUE;
@@ -54,7 +54,7 @@
                 } 
             }
 
-            return $existe;
+            return $msg;
         }
 
         public static function updateSaldo($saldo, $incSaldo, $idUsuario)
@@ -115,7 +115,7 @@
         public function logUser()
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $result = ['<a>¡Error al iniciar sesión!</a>', 'Usuario o contraseña incorrectos', ];
+           
             
             $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
             
@@ -134,11 +134,12 @@
                         if ($user_fetched['tipoUsuario'] == 1) {
                             $_SESSION['admin'] = TRUE;
                         }
-                        $result = '/';
+                        return  '/';
                     }
                 } 
             }
-            return $result;
+            
+            return "Usuario o Contraseña no coinciden";
         }
 
         public function createUser($row)
