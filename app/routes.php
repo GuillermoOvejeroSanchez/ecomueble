@@ -41,18 +41,24 @@ switch ($request) {
         require __DIR__.
         '/views/login.php';
         break;
+    //Al usar los formularios esto ya no hace falta
+    /*
     case '/loginForm':
         require __DIR__.
         '/controllers/login.php';
         break;
+    */
     case '/registrar':
         require __DIR__.
         '/views/registrar.php';
         break;
+     //Al usar los formularios esto ya no hace falta
+    /*
     case '/registerForm':
         require __DIR__.
         '/controllers/registrar.php';
         break;
+    */
     case '/perfil':
         require __DIR__.
         '/views/perfil.php';
@@ -61,10 +67,14 @@ switch ($request) {
         require __DIR__.
         '/views/subir.php';
         break;
+
+    //Al usar los formularios esto ya no hace falta
+    /*
     case '/subirForm':
         require __DIR__.
         '/controllers/subir.php';
         break;
+    */
     case '/status':
         require __DIR__.
         '/status_redirect.php';
