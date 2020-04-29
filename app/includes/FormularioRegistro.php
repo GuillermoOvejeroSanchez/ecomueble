@@ -85,9 +85,9 @@
                     return $userLog->logUser();
                 }
             }
-            return $result;
-           
+            
         }
+        return $result;
     }
 }
 ?>
