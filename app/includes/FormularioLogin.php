@@ -52,7 +52,7 @@
                     }
                 } 
             }
-            return ['Error al logear', 'Usuario o contraseña incorrectas', ];
+            return ['<a>¡Error al iniciar sesión!</a>', 'Usuario o contraseña incorrectos', ];
         }
         
         
