@@ -20,11 +20,11 @@
             </tr> 
             <tr> 
                 <th class='productosInicio'>";
-                mostrarXProductos(10);
+                mostrarXProductos(12);
                 echo " </th> 
 
                 <th  class='usuariosInicio'>";
-                mostrarXUsuarios(10);
+                mostrarXUsuarios(20);
                 echo " </th>
             </tr> 
         </table>
