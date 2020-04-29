@@ -17,10 +17,10 @@
             $html=
             '<fieldset>
                 <legend> Subir producto </legend>
-                <div><label>Nombre del producto: </label> <input type="text" name="nombre" placeholder="Nombre del producto" required /></div>
-                <div><label>Descripción: </label> <input type="text" name="description" placeholder="Breve descripción" /></div>
-                <div><label>Precio: </label> <input type="text" name="price" placeholder="Precio" required /></div>
-                <div><label>Imagen del producto: </label> <input type="file" name="imagen" placeholder="Inserte imagen" /></div>
+                <div><label>Nombre del producto: </label> <input type="text" name="nombre"  required /></div>
+                <div><label>Descripción: </label> <input type="text" name="description"  /></div>
+                <div><label>Precio: </label> <input type="text" name="price"  required /></div>
+                <div><label>Imagen del producto: </label> <input type="file" name="imagen"  /></div>
                 <label>Elige una categoría:</label>
                 <select id="categoria" name="categoria" form="formSubir">';
                 

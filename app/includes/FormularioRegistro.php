@@ -28,22 +28,44 @@
         }
 
         protected function procesaFormulario($form){
-            $result = array();
+            $result[] = "<a>¡Error al Registrarse!</a>";
            
-            //Campos introducidos en el form
-            $user = new Usuario($form['username'], $form['email'], $form['tlfn']);
-            $hash = password_hash($form['password'], PASSWORD_BCRYPT);
-            $user->password = $hash;
-
-            //Validar email
-            $valid = TRUE;
-            if (!filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
-                //$valid = FALSE;
-                //$result[] = "email no válido";
+            $username = isset($form['username']) ? $form['username'] : null;
+            if ( empty($username) ) {
+                $result[] = "El nombre de usuario no puede estar vacío";
+            }
+            
+            $email = isset($form['email']) ? $form['email'] : null;
+            if ( empty($email) ) {
+                $result[] = "El email no puede estar vacío";
             }
 
-            //Comprobar si existe user,email,tlfn
-            $existe = $user->checkUser($valid); 
+            $telefono = isset($form['tlfn']) ? $form['tlfn'] : null;
+            if ( empty($telefono) ) {
+                $result[] = "El teléfono de usuario no puede estar vacío";
+            }
+
+            $password = isset($form['password']) ? $form['password'] : null;
+            if ( empty($password) ) {
+                $result[] = "El password no puede estar vacío.";
+            }
+    
+            if (count($result) === 1) {
+
+                //Campos introducidos en el form
+                $user = new Usuario($username, $email, $telefono);
+                $hash = password_hash($password, PASSWORD_BCRYPT);
+                $user->password = $hash;
+
+                //Validar email
+                $valid = TRUE;
+                if (!filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
+                    $valid = FALSE;
+                    $result[] = "Email no válido";
+                }
+
+                //Comprobar si existe user,email,tlfn
+                $existe = $user->checkUser($valid); 
 
             //Es valido y no existe
             if($valid and !$existe){
@@ -64,6 +86,7 @@
                 }
             }
             return $result;
+           
         }
     }
 ?>

@@ -14,7 +14,7 @@ p{
     text-align: center;
     margin-left: 10%;
     margin-right: 10%;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 17pt;
 }
 strong {
@@ -126,6 +126,24 @@ span {
 /*******************************/
 
 /*********FORMULARIOS***********/
+.cajita {
+    width:35%;
+    margin: auto;
+    margin-top: 3%;
+    background-color:rgb(179, 247, 202);
+    border-radius:10px;
+}
+.cajita ul {
+    list-style-type: none;
+}
+.cajita li {
+    text-align: center;
+    color: rgb(34, 104, 81);
+    font-size: x-large;
+}
+.cajita a {
+    font-weight: bold;
+}
 label {
     font-weight: bold;
     color: rgb(34, 104, 81);

@@ -33,7 +33,7 @@
 
             //Comprobar si existe user,email,tlfn
             return $user->logUser();
-        
+            return ['<a>¡Error al iniciar sesión!</a>', 'Usuario o contraseña incorrectos', ];
         }
     }
 ?>

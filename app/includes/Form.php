@@ -64,7 +64,7 @@
              */
             public function gestiona()
             {   
-                if ( ! $this->formularioEnviado($_POST) ) {
+                if (!$this->formularioEnviado($_POST) ) {
                     echo $this->generaFormulario();
                 } else {
                     $result = $this->procesaFormulario($_POST);
@@ -150,6 +150,7 @@
             private function generaListaErrores($errores){
                 $html='';
                 $numErrores = count($errores);
+                $html .= "<div class='cajita'>";
                 if (  $numErrores == 1 ) {
                     $html .= "<ul><li>".$errores[0]."</li></ul>";
                 } else if ( $numErrores > 1 ) {
@@ -157,6 +158,7 @@
                     $html .= implode("</li><li>", $errores);
                     $html .= "</li></ul>";
                 }
+                $html .="</div>";
                 return $html;
             }
     }
