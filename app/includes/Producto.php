@@ -107,6 +107,65 @@
             }
             return $map;
         }
+        public static function getAllProductsFromNombre($nombre)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $map = [];
+            $sql = sprintf("SELECT * FROM producto WHERE nombre = '$nombre' ");
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()) {
+                        if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
+                            $link = "./articulo?id=" .  $fila['idProducto'];
+                            $product_img = "../product_img/" . $fila['imagen'];
+                            $map[$link] = $product_img;
+                        }
+                    }
+                }
+            }
+            return $map;
+        }
+        public function mostrarProductosBuscados()
+        {
+            $existe = TRUE;
+            if(!isset($_GET['nombre']))
+                $map =  Producto::getAllProducts();
+            else {
+                $producto = new Producto($_GET['nombre']);
+                //idCategoria para insertar en producto
+                $nombre = $producto->getNameProduct();
+                if($nombre != "")
+                    $map = Producto::getAllProductsFromNombre($nombre);
+                else
+                    $existe = FALSE;
+                }  
+                if($existe){
+                    foreach ($map as $link => $product_img) {
+                        ?>
+                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                    <?php
+                }       
+            }    
+        }
+
+        public function getNameProduct()
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $id = "";
+
+            $sql = "SELECT nombre FROM producto WHERE nombre = '$this->nombre'";
+            
+            if($resultado = $conn->query($sql)) {
+                if ($resultado->num_rows > 0) {
+                    $cat_fetched = $resultado->fetch_assoc();
+                    $id = $cat_fetched['nombre'];
+                }
+            }
+            return $id;
+    }
+          
         public static function getProduct($id) {
             $product = new Producto();
             $app = Aplicacion::getSingleton();
