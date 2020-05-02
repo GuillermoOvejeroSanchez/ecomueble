@@ -127,12 +127,13 @@
             private function generaFormulario($errores = array(), &$datos = array())
             {
 
-                $html= $this->generaListaErrores($errores);
+                $html = $this->generaListaErrores($errores);
 
                 if($this->enctype !== null)
                     $html .= '<form method="POST" action="'.$this->action.'" enctype="'.$this->enctype.'" id="'.$this->formId.'" >';
                 else
                     $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" >';
+
                 $html .= '<input type="hidden" name="action" value="'.$this->formId.'" />';
 
                 $html .= $this->generaCamposFormulario($datos);
