@@ -22,7 +22,7 @@ function logged()
             <form action="" method="post">
                 <?php
                     echo"  
-                    <table> 
+                    <table class='per'> 
                         <tr> 
                             <th class='producto'> 
                                 <img src='$imagen' alt='imagen'>

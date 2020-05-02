@@ -21,8 +21,8 @@
                 <div><label>Descripción: </label> <input type="text" name="description"  /></div>
                 <div><label>Precio: </label> <input type="text" name="price"  required /></div>
                 <div><label>Imagen del producto: </label> <input type="file" name="imagen"  /></div>
-                <label>Elige una categoría:</label>
-                <select id="categoria" name="categoria" form="formSubir">';
+                <div><label>Elige una categoría:</label>
+                <select id="categoria" name="categoria" form="formSubir"></div>';
                 
                 $arrayTags = getTags();
                 foreach ($arrayTags as $key => $value) {

@@ -16,22 +16,28 @@
                 <?php
                 //Esto no se como ponerlo bonico
                 $html = " 
-                    <div class='perfil'> 
+                    <fieldset>
+                    <legend> Editar Perfil </legend>
                     <table> 
                         <tr>
-                            <th class='imagen'> <img src='$imagen' alt='imagen'> <input type='file' name='imagen' value='Subir nueva foto'/> </th> 
-                            <th class='datos'><p>Nombre: <input type='text' name='username' value='".$user->nombre."'/></p> 
-                            <p>Email: <input type='text' name='email' value='".$user->email."'/></p>
-                            <p>Teléfono: <input type='text' name='telefono' value='".$user->telefono."'/></p>
-                            <p>Contraseña actual: <input type='password' name='oldPass'/></p>
-                            <p>Nueva contraseña: <input type='password' name='newPass'/></p>
-                            <p>Confirma su contraseña: <input type='password' name='confirmPass'/></p>
+                            <th class='editarImg'> 
+                               <div><img src='$imagen' alt='imagen'> <input type='file' name='imagen'/></div> 
+                            </th> 
+                        </tr>
+                        <tr>
+                            <th>
+                            <div><label>Nombre: </label><input type='text' name='username' value='".$user->nombre."'/></div>
+                            <div><label>Email: </label><input type='text' name='email' value='".$user->email."'/></div>
+                            <div><label>Teléfono: </label><input type='text' name='telefono' value='".$user->telefono."'/></div>
+                            <div><label>Contraseña actual: </label><input type='password' name='oldPass'/></div>
+                            <div><label>Nueva contraseña: </label><input type='password' name='newPass'/></div>
+                            <div><label>Confirma su contraseña: </label><input type='password' name='confirmPass'/></div>
 
-                            <p><input type='submit' name='submit_editar' value='Guardar cambios'></p>
-                            </th>
+                            <div><button type='submit' name='submit_editar'>Guardar cambios</button></div>
+                          </th> 
                         </tr> 
                     </table>
-                   </div>";
+                    </fieldset>";
 
                    return $html;
         }

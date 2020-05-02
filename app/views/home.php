@@ -13,7 +13,7 @@
         require('./controllers/home.php');
 
         echo"
-        <table>
+        <table class='per'>
             <tr>
                 <th class='ini'> Productos </th>
                 <th class='ini'> Usuarios </th> 

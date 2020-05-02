@@ -49,7 +49,7 @@ span {
 }
 
 /*******************/
-.perfil, table {
+.perfil, .per {
     width:80%;
     margin: auto;
     margin-top: 3%;
@@ -81,7 +81,12 @@ span {
     margin: 2%;
     text-align: left;
 }
-
+.editarImg img{
+    width: 150px;
+    height: 150px;
+    
+    border-radius: 50%;
+}
 .imagen{
     width: 1%;
 }
@@ -227,7 +232,7 @@ nav li a:hover {
 
 /********BOTONES*****/
 .b button{
-    width: 8%;
+    width: 10%;
     padding: 0.2%;
     border-radius:5px;
     background-color:rgb(200, 243, 214);

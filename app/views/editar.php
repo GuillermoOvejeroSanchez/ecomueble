@@ -17,12 +17,15 @@ require_once('./includes/Usuario.php');
         require('./includes/common/cabecera.php');
         $logged;
         $logged = isset($_SESSION['login']) ? TRUE : FALSE;
-
+        ?>
+        <div class="contenido"> <?php
         if($logged){
+
             $form = new FormularioEditar();
             $form->gestiona();
         }
         ?>
+        </div>
 </body>
 
 </html>
