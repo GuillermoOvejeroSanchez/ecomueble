@@ -61,6 +61,10 @@ switch ($request) {
         require __DIR__.
         '/views/editar.php';
         break;
+    case preg_match('((/editarProducto\?id)=\d+)', $request, $matches)? true : false:
+        require __DIR__.
+        '/views/editarProducto.php';
+        break;
     default:
         http_response_code(404);
         require __DIR__.

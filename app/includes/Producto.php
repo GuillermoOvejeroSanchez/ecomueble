@@ -42,6 +42,17 @@
             return $result;
         }
 
+        public function updateProduct(){
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+
+            $sql = "UPDATE producto SET nombre = '$this->nombre', precio = '$this->precio', descripcion = '$this->descripcion', imagen = '$this->imagen' WHERE idProducto = $this->idProducto";
+            $resultado = $conn->query($sql);
+
+            return $resultado;
+
+        }
+
         public static function getAllProductsFromUser($idUsuario)
         {
             $app = Aplicacion::getSingleton();
@@ -167,16 +178,15 @@
     }
           
         public static function getProduct($id) {
-            $product = new Producto();
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
+            $product = new Producto();
 
-            $sql = sprintf("SELECT * FROM producto WHERE idProducto = '$id'");
+            $sql = "SELECT idProducto, descripcion, precio, idEstado, idCategoria, nombre, idUsuario, imagen FROM producto WHERE idProducto = '$id'";
 
             $resultado = $conn->query($sql);
-            if($resultado->num_rows > 0){
-                $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
-            }
+            $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
+            
             return $product;
         }
 
@@ -190,7 +200,9 @@
         }
         
         public function createProduct($row)
-        {   $this->descripcion = $row['descripcion']; //
+        {   
+            $this->idProducto = $row['idProducto'];
+            $this->descripcion = $row['descripcion']; //
             $this->precio = $row['precio']; //
             $this->idEstado = $row['idEstado']; //0 -> en venta 1 -> vendido 2 -> reservado
             $this->idCategoria = $row['idCategoria']; //

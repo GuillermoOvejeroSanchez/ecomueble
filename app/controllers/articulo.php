@@ -41,7 +41,7 @@ function logged()
                     if(!$product->idEstado){ //No esta vendido o reservado
                         if($ownProduct){
                             echo "<div class='bperfil'><button type='submit' name='borrarProducto'>Borrar</button>";
-                            //echo" <button type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
+                            echo" <button type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
                         }else{ //Si no lo es mostrar comprar/contactar
                             echo "<div class='bperfil'><button type='submit' name='comprarProducto'>Comprar</button>";
                             echo "<button type='submit' name='contactar'>Contactar</button></div>";
@@ -59,7 +59,11 @@ function logged()
             if (isset($_POST['borrarProducto'])) {
                 $ok = Producto::deleteProduct($id);
                 header("Location: /perfil");
-            } elseif (isset($_POST['comprarProducto'])) {
+            } 
+            elseif (isset($_POST['editarProducto'])) {
+                header("Location: editarProducto?id=$id");
+            }
+            elseif (isset($_POST['comprarProducto'])) {
                 
             }elseif (isset($_POST['contactar'])) {
                 //Contactar
