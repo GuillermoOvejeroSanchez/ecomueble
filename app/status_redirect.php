@@ -8,7 +8,6 @@ elseif (isset($_REQUEST['registrar_btn'])) {
 }
 
 
-
 elseif (isset($_REQUEST['logout_btn'])) {
     session_start();
     unset($_SESSION['username']);

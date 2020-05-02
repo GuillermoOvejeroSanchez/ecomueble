@@ -55,6 +55,44 @@
             return $msg;
         }
 
+        public function checkUsername($valid)
+        {
+            $existe = FALSE;
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre'";
+            $msg ="";
+            if ($valid and $resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0) {
+                    $existe = TRUE;
+                    $msg = "Ya existe un usuario con ese ";
+                    //Comprobar cuales son los repetidos
+                    $user_fetched = $resultado->fetch_assoc();
+                    if($user_fetched['nombre'] == $this->nombre) $msg .= "nombre ";
+                } 
+            }
+            return $msg;
+        }
+
+
+        public function checkEmail($valid)
+        {
+            $existe = FALSE;
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            $sql = "SELECT nombre, email, telefono FROM usuario WHERE email = '$this->email'";
+            $msg ="";
+            if ($valid and $resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0) {
+                    $existe = TRUE;
+                    $msg = "Ya existe un usuario con ese ";
+                    //Comprobar cuales son los repetidos
+                    $user_fetched = $resultado->fetch_assoc();
+                    if($user_fetched['email'] == $this->email) $msg .= "email ";
+                } 
+            }
+            return $msg;
+        }
+
+
         public static function updateSaldo($saldo, $incSaldo, $idUsuario)
         {
             $app = Aplicacion::getSingleton();
@@ -71,11 +109,22 @@
             $conn = $app->conexionBd();
             $user = new Usuario(); //Usuario vacio
 
-            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen FROM usuario WHERE nombre = '$name'";
+            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, password FROM usuario WHERE nombre = '$name'";
             $resultado = $conn->query($sql);
             $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
 
             return $user;
+        }
+
+        public function updateUser(){
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+
+            $sql = "UPDATE usuario SET nombre = '$this->nombre', password = '$this->password', email = '$this->email', telefono = $this->telefono, imagen = '$this->imagen' WHERE idUsuario = $this->idUsuario";
+            $resultado = $conn->query($sql);
+
+            return $resultado;
+
         }
 
         public static function getUserbyId($id) {
@@ -147,6 +196,7 @@
             $this->tipoUsuario = $row['tipoUsuario'];
             $this->saldo = $row['saldo'];
             $this->imagen = $row['imagen'];
+            $this->password = $row['password'];
         }
     }
 ?>

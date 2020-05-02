@@ -23,8 +23,8 @@ require_once('./includes/FormularioRegistro.php');
                     echo '<div>'.$_SESSION['fail_msg'].'</div>';
                 }
                 unset($_SESSION['fail_msg']);
-                $form= new FormularioRegistro();
-                $form-> gestiona();
+                $form = new FormularioRegistro();
+                $form->gestiona();
             ?>
         </div>
     </div>
