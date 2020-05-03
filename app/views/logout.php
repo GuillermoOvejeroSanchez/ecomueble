@@ -28,6 +28,8 @@
 
     <?php
         require("./includes/common/cabecera.php");
+
+        header("refresh:2;url=/");
     ?>
 
         <div class="per">
