@@ -31,7 +31,7 @@
     ?>
 
         <div class="per">
-            <h1>Hasta pronto!</h1>
+            <h1>¡Hasta pronto!</h1>
 
         </div>
 
