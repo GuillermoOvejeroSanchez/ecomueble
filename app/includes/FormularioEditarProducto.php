@@ -12,13 +12,13 @@
         protected function generaCamposFormulario($form){
             $id = $_GET['id'];//Cogemos nombre user para realizar consulta
             $product = Producto::getProduct($id);
-            $imagen = "../profile_img/" . $product->imagen;
+            $imagen = "../product_img/" . $product->imagen;
             ?>
                 <?php
                 //Esto no se como ponerlo bonico
                 $html = " 
                     <fieldset>
-                    <legend> Editar Perfil </legend>
+                    <legend> Editar Producto </legend>
                     <table> 
                         <tr>
                             <th class='editarImg'> 
