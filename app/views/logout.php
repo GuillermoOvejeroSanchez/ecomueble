@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__.'/includes/config.php';
+    //require_once __DIR__.'/includes/config.php';
 
     //Doble seguridad: unset + destroy
     unset($_SESSION["login"]);
@@ -11,39 +11,31 @@
     unset($_SESSION['profile_pic']);
     unset($_SESSION['idUsuario']);
     session_destroy();
-    header("Location: /");
+    //header("Location: /");
 
-    session_destroy();
+   // session_destroy();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="estilo.css" />
+<link rel="stylesheet" type="text/css" href="default.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Portada</title>
+<title>¡Vuelve pronto!</title>
 </head>
 
     <body>
 
-    <div id="contenedor">
-
     <?php
-        require("includes/comun/cabecera.php");
-        require("includes/comun/sidebarIzq.php");
+        require("./includes/common/cabecera.php");
     ?>
 
-        <div id="contenido">
+        <div class="per">
             <h1>Hasta pronto!</h1>
+
         </div>
 
-    <?php
-        require("includes/comun/sidebarDer.php");
-        require("includes/comun/pie.php");
-    ?>
 
-
-    </div>
 
     </body>
 </html>

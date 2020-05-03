@@ -13,7 +13,7 @@ require('./includes/FormularioLogin.php');
 </head>
 
 <body>
-    <div id="contenedor">
+    
         <?php
             require("./includes/common/cabecera.php");
         ?>
@@ -23,5 +23,5 @@ require('./includes/FormularioLogin.php');
                     $form->gestiona();
                 ?>
         </div>
-    </div> 
+    
 </body>

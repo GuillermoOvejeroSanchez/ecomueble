@@ -13,7 +13,7 @@ require_once('./includes/FormularioRegistro.php');
 </head>
 
 <body>
-    <div id="contenedor">
+   
         <?php
             require("./includes/common/cabecera.php");
         ?>
@@ -27,5 +27,5 @@ require_once('./includes/FormularioRegistro.php');
                 $form->gestiona();
             ?>
         </div>
-    </div>
+  
 </body>

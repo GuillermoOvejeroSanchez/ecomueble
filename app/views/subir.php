@@ -14,7 +14,7 @@ require_once('./includes/FormularioSubir.php');
 </head>
 
 <body>
-    <div id="contenedor">
+ 
         <?php
             require("./includes/common/cabecera.php");
         ?>
@@ -28,7 +28,7 @@ require_once('./includes/FormularioSubir.php');
                 $form->gestiona();
             ?>
         </div>
-    </div>
+  
 </body>
 
 </html>

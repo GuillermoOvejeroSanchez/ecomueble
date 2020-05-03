@@ -52,8 +52,7 @@ function logged()
 
 
         <?php
-            //Obtener id, saldo del vendedor
-            $vendedor = Usuario::getUserbyId($product->idUsuario);
+
             //? ROLLBACK IF FAILED
 
             if (isset($_POST['borrarProducto'])) {
@@ -64,7 +63,7 @@ function logged()
                 header("Location: editarProducto?id=$id");
             }
             elseif (isset($_POST['comprarProducto'])) {
-                
+                comprarProducto();
             }elseif (isset($_POST['contactar'])) {
                 //Contactar
                 header("Location: /usuario?id=$vendedor->idUsuario");
@@ -82,6 +81,11 @@ function logged()
 
 function comprarProducto()
 {
+    
+    $id = $_GET['id']; //Cogemos id articulo para realizar consulta
+    $product = Producto::getProduct($id);
+    //Obtener id, saldo del vendedor
+    $vendedor = Usuario::getUserbyId($product->idUsuario);
     //TODO daba errores de que faltaban parametros al ponerlo aqui
     //Transaccion
     $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date(DATE_W3C)); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)

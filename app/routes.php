@@ -41,6 +41,10 @@ switch ($request) {
         require __DIR__.
         '/views/login.php';
         break;
+    case '/logout':
+        require __DIR__.
+        '/views/logout.php';
+        break;
     case '/registrar':
         require __DIR__.
         '/views/registrar.php';
