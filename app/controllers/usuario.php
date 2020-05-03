@@ -17,7 +17,7 @@ function logged()
     <div class="perfil"> 
     <form action="status" method="post">
         <?php
-        echo" <table class='per'> <tr> <th class='imagen'> <img src='$imagen' alt='imagen'></th> 
+        echo" <table> <tr> <th class='imagen'> <img src='$imagen' alt='imagen'></th> 
                             <th class='datos'><p>Nombre: <strong>$user->nombre</strong></p> 
                                             <p>Email: <strong>$user->email</strong></p>
                                             <p>Teléfono: <strong>$user->telefono</strong> </p></th>
