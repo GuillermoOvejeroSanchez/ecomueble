@@ -137,28 +137,7 @@
             }
             return $map;
         }
-        public function mostrarProductosBuscados()
-        {
-            $existe = TRUE;
-            if(!isset($_GET['nombre']))
-                $map =  Producto::getAllProducts();
-            else {
-                $producto = new Producto($_GET['nombre']);
-                //idCategoria para insertar en producto
-                $nombre = $producto->getNameProduct();
-                if($nombre != "")
-                    $map = Producto::getAllProductsFromNombre($nombre);
-                else
-                    $existe = FALSE;
-                }  
-                if($existe){
-                    foreach ($map as $link => $product_img) {
-                        ?>
-                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                    <?php
-                }       
-            }    
-        }
+        
 
         public function getNameProduct()
         {
