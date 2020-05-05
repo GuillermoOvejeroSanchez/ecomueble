@@ -18,12 +18,15 @@
         </div>
 
         <div class="buscar">
-            <div><label>Buscar por nombre:</label><input type="text" name="nombre"/></div>
+        <form method="POST"> 
+            <div class='b'><label> Busca un producto por su nombre: </label><input type="text" name="nombre"/>
+            <button  type="submit" name="submit_buscarNombre">Buscar</button></div>
+        </form>
         </div>
     <?php
         echo "<div class='productos'>";
-            mostrarProductos();
-            mostrarProductosBuscados();
+            if(!isset($_POST['nombre'])) mostrarProductos();
+            else mostrarProductosBuscados();
         echo '</div> 
     </div>';
 
@@ -55,23 +58,22 @@
     function mostrarProductosBuscados()
     {
         $existe = TRUE;
-        if(!isset($_GET['nombre']))
-            $map =  Producto::getAllProducts();
-        else {
-            $producto = new Producto($_GET['nombre']);
+        if(isset($_POST['submit_buscarNombre'])){
+           
             //idCategoria para insertar en producto
-            $nombre = $producto->getNameProduct();
+            $nombre = $_POST['nombre'];
             if($nombre != "")
                 $map = Producto::getAllProductsFromNombre($nombre);
             else
                 $existe = FALSE;
-            }  
+            
             if($existe){
                 foreach ($map as $link => $product_img) {
                     ?>
                 <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
                 <?php
-            }       
+                }  
+            }     
         }    
     }
 ?>

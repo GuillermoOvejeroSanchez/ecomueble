@@ -123,7 +123,8 @@
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
             $map = [];
-            $sql = sprintf("SELECT * FROM producto WHERE nombre = '$nombre' ");
+            $nombre = '%' . $nombre . '%';
+            $sql = sprintf("SELECT * FROM producto WHERE nombre LIKE '%s'", $nombre);
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
                     while ($fila = $resultado->fetch_assoc()) {

@@ -239,6 +239,9 @@ nav li a:hover {
     font-weight: bold;
     color:rgb(73, 68, 68);
 }
+.b label {
+    padding: 1%;
+}
 .bperfil button{
     width: 10%;
     padding: 0.2%;
