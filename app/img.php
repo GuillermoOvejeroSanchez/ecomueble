@@ -1,11 +1,11 @@
 <?php
 
-function saveImg($path, $filename){
+function saveImg($path, $filename, $id){
     if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])){
         $uploadOk = 0;
     }else{
         $target_dir = $path;
-        $newname = $filename;
+        $newname = $filename . '_' . $id;
         $ext = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
         $target_file = $target_dir . $newname . '.' .$ext;
         $uploadOk = 1;

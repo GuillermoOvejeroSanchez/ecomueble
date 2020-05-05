@@ -73,7 +73,7 @@
                 if($valid and count($result) === 1){
                     require('./img.php');
                     //Guardar img en server y session de la imagen
-                    $imgPath = saveImg("./profile_img/" , $user->nombre);
+                    $imgPath = saveImg("./profile_img/" , $user->nombre, "profile");
                     $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
                     $user->imagen = $imgPath;
                     

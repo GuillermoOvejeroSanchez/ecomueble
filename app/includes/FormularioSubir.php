@@ -57,7 +57,7 @@
             //Guardar imagen del producto
             require('./img.php');
             $_FILES['imagen']['tmp_name'];
-            $imgPro = saveImg("./product_img/" , $product->nombre);
+            $imgPro = saveImg("./product_img/" , $product->nombre, $product->idProducto);
             $imgPro = empty($imgPro) ? "default_profile.jpg" : $imgPro;
             $product->imagen = $imgPro;
 
