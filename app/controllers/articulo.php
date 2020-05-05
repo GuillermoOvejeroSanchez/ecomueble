@@ -52,7 +52,8 @@ function logged()
 
 
         <?php
-
+        //Obtener id, saldo del vendedor
+        $vendedor = Usuario::getUserbyId($product->idUsuario);
             //? ROLLBACK IF FAILED
 
             if (isset($_POST['borrarProducto'])) {
