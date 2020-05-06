@@ -17,7 +17,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <link rel="stylesheet" type="text/css" href="default.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

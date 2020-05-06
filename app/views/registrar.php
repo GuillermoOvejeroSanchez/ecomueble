@@ -3,7 +3,7 @@ require_once('./includes/FormularioRegistro.php');
 ?>  
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">

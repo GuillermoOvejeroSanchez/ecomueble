@@ -3,7 +3,7 @@ require('./includes/FormularioLogin.php');
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
