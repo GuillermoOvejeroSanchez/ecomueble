@@ -65,6 +65,10 @@ switch ($request) {
         require __DIR__.
         '/views/editar.php';
         break;
+    case '/admin':
+        require __DIR__.
+        '/views/admin.php';
+        break;
     case preg_match('((/editarProducto\?id)=\d+)', $request, $matches)? true : false:
         require __DIR__.
         '/views/editarProducto.php';

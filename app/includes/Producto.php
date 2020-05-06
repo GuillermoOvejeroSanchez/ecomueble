@@ -155,7 +155,7 @@
                 }
             }
             return $id;
-    }
+        }
           
         public static function getProduct($id) {
             $app = Aplicacion::getSingleton();
@@ -168,6 +168,60 @@
             $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
             
             return $product;
+        }
+
+        public function mostrarProductos()
+        {
+
+            $existe = TRUE;
+            if(!isset($_GET['categoria'])){
+            $producto = new Producto();
+            $map =  $producto->getAllProducts();
+            }
+            else {
+                $categoria = new Categoria($_GET['categoria']);
+    
+                //idCategoria para insertar en producto
+                $idCategoria = $categoria->getIDCategoria();
+                if($idCategoria != "") {
+                    $productoCat = new Producto();
+                    $map = $productoCat->getAllProductsFromCategoria($idCategoria);
+                }
+                else
+                    $existe = FALSE;
+                }  
+                if($existe){
+                    foreach ($map as $link => $product_img) {
+                    ?>
+                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                    <?php
+                }       
+            }
+            
+        }
+
+        public function mostrarProductosBuscados()
+        {
+            $existe = TRUE;
+            if(isset($_POST['submit_buscarNombre'])){
+            
+                //nombre de producto a buscar
+                $nombre = $_POST['nombreProducto'];
+                if($nombre != "") {
+                    $producto = new Producto($nombre);
+                    $map = $producto->getAllProductsFromNombre($nombre);
+                }
+                else
+                    $existe = FALSE;
+                
+                if($existe){
+                    foreach ($map as $link => $product_img) {
+                    ?>
+                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                    <?php
+                    }  
+                }     
+            }    
         }
 
         public static function changeStatus($idProducto, $status)

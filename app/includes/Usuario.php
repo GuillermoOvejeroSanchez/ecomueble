@@ -159,6 +159,50 @@
             return $map;
         }
 
+        public static function getAllUsersFromNombre($nombre)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $map = [];
+            $nombre = '%' . $nombre . '%';
+            $sql = sprintf("SELECT * FROM usuario WHERE nombre LIKE '%s'", $nombre);
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()) {
+                        $link = "./usuario?id=" .  $fila['idUsuario'];
+                        $product_img = "../profile_img/" . $fila['imagen'];
+                        $map[$link] = $product_img;
+                    }
+                }
+            }
+            return $map;
+        }
+
+        function mostrarUsuariosBuscados()
+        {
+            $existe = TRUE;
+            if(isset($_POST['submit_buscarNombre'])){
+            
+                //nombre de usuario a buscar
+                $nombre = $_POST['nombreUsuario'];
+                if($nombre != "") {
+                    $usuario = new Usuario ();
+                    $map = $usuario->getAllUsersFromNombre($nombre);
+                }
+                else
+                    $existe = FALSE;
+                
+                if($existe){
+                    foreach ($map as $link => $product_img) {
+                        ?>
+                        <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                        <?php
+                    }
+                }  
+                   
+            }    
+        }
+
         public function logUser()
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
