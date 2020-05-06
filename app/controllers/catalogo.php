@@ -26,7 +26,11 @@
     <?php
         echo "<div class='productos'>";
             if(!isset($_POST['nombreProducto'])) Producto::mostrarProductos();
-            else Producto::mostrarProductosBuscados();
+            else {
+                if(Producto::mostrarProductosBuscados() == null){
+                    echo "<h3> Lo sentimos, ningún producto coincide con su búsqueda.\n </h3>";
+                }
+            }
         echo '</div> 
     </div>';
 

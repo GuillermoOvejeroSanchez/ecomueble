@@ -26,8 +26,16 @@
         
         <?php
             echo "<div class='productos'>";
-                if(isset($_POST['nombreUsuario'])) Usuario::mostrarUsuariosBuscados();
-                else if (isset($_POST['nombreProducto'])) Producto::mostrarProductosBuscados();
+                if(isset($_POST['nombreUsuario'])) {
+                    if (Usuario::mostrarUsuariosBuscados() == null) {
+                        echo "<h3> Lo sentimos, ningún usuario coincide con su búsqueda.\n </h3>";
+                    }
+                }
+                else if (isset($_POST['nombreProducto'])) {
+                    if (Producto::mostrarProductosBuscados() == null) {
+                        echo "<h3> Lo sentimos, ningún producto coincide con su búsqueda.\n </h3>";
+                    }
+                } 
                 else {
                     echo '</div> 
                     </div>';   

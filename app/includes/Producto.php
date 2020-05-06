@@ -175,8 +175,8 @@
 
             $existe = TRUE;
             if(!isset($_GET['categoria'])){
-            $producto = new Producto();
-            $map =  $producto->getAllProducts();
+                $producto = new Producto();
+                $map =  $producto->getAllProducts();
             }
             else {
                 $categoria = new Categoria($_GET['categoria']);
@@ -187,16 +187,17 @@
                     $productoCat = new Producto();
                     $map = $productoCat->getAllProductsFromCategoria($idCategoria);
                 }
-                else
+                else {
                     $existe = FALSE;
                 }  
-                if($existe){
-                    foreach ($map as $link => $product_img) {
+            }
+            if($existe) {
+                foreach ($map as $link => $product_img) {
                     ?>
                     <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
                     <?php
-                }       
-            }
+                }
+            }       
             
         }
 
