@@ -211,17 +211,11 @@
                 if($nombre != "") {
                     $producto = new Producto($nombre);
                     $map = $producto->getAllProductsFromNombre($nombre);
+                    return $map;
                 }
                 else
                     $existe = FALSE;
-                
-                if($existe){
-                    foreach ($map as $link => $product_img) {
-                    ?>
-                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                    <?php
-                    }  
-                }     
+                    return null;    
             }    
         }
 

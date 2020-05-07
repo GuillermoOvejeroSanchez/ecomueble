@@ -27,7 +27,14 @@
         echo "<div class='productos'>";
             if(!isset($_POST['nombreProducto'])) Producto::mostrarProductos();
             else {
-                if(Producto::mostrarProductosBuscados() == null){
+                $map = Producto::mostrarProductosBuscados();
+                if ($map !== null) {
+                    foreach ($map as $link => $product_img) {
+                        ?>
+                        <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                        <?php
+                        } 
+                }else{
                     echo "<h3> Lo sentimos, ningún producto coincide con su búsqueda.\n </h3>";
                 }
             }

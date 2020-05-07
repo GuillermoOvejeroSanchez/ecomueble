@@ -188,20 +188,13 @@
                 if($nombre != "") {
                     $usuario = new Usuario ();
                     $map = $usuario->getAllUsersFromNombre($nombre);
+                    return $map;
                 }
                 else
                     $existe = FALSE;
-                
-                if($existe){
-                    foreach ($map as $link => $product_img) {
-                        ?>
-                        <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                        <?php
-                    }
+                    return null;
                 }  
-                   
-            }    
-        }
+            }   
 
         public function logUser()
         {
