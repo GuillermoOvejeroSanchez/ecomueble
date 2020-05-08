@@ -38,12 +38,16 @@ function logged()
                     </table>";
 
                     $ownProduct = ($_SESSION['idUsuario'] == $product->idUsuario);
+                    $messageDelete = '¿Seguro que quieres borrar el producto?';
+                    $jscodeDelete = 'confirmAction('.json_encode($messageDelete).');';
+                    $messageBuy = 'Este producto vale ' . $product->precio . ' puntos ¿Desea confimar la compra?' ;
+                    $jscodeBuy = 'confirmAction('.json_encode($messageBuy).');';
                     if(!$product->idEstado){ //No esta vendido o reservado
                         if($ownProduct){
-                            echo "<div class='bperfil'><button type='submit' name='borrarProducto'>Borrar</button>";
+                            echo '<div class="bperfil"><button onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
                             echo" <button type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
                         }else{ //Si no lo es mostrar comprar/contactar
-                            echo "<div class='bperfil'><button type='submit' name='comprarProducto'>Comprar</button>";
+                            echo '<div class="bperfil"><button onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
                             echo "<button type='submit' name='contactar'>Contactar</button></div>";
                         }
                     }
