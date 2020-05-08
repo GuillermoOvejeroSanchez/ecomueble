@@ -10,9 +10,13 @@
         $saldo = $_SESSION['saldo'];
         $imagen = "../profile_img/" . $_SESSION['profile_pic'];
         
+        $message = '¿Quieres salir?';
+        $jscode = 'confirmAction('.json_encode($message).');';
+    
+        
         echo  "<div class='imgprofile'><a href='perfil'><img src='$imagen' alt='imagen''></a></div>";
         echo '<span>'. $user . ' - Saldo actual: '.$saldo.'</span>
-        <div class="b"><button type="submit" name="logout_btn">Logout</button></div>';
+        <div class="b"><button onclick="return '.htmlspecialchars($jscode).'" type="submit" name="logout_btn">Logout</button></div>';
     }else{
         echo '
         <div class="b"><button type="submit" name="login_btn">Login</button>
