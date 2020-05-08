@@ -32,11 +32,12 @@
 
             //Comprobar si existe user,email,tlfn
             $resultado[] = "<a>¡Error al iniciar sesión!</a>";
-            if($user->logUser() == "/") {
+            echo '<script> swalTest(); </script>';
+            $resultado[] = $user->logUser();
+            if(end($resultado) == "/") {
                 return "/";
             }
-            $resultado[] = $user->logUser();
-            return $resultado;     
+            return $resultado;
         }
     }
 ?>
