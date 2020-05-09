@@ -51,6 +51,10 @@ function logged()
                             echo "<button type='submit' name='contactar'>Contactar</button></div>";
                         }
                     }
+
+                    if(isset($_SESSION['admin'])){
+                        echo '<div class="badmin"><button onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
+                    }
                 ?>
         </div>
 

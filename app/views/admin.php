@@ -75,7 +75,7 @@
                         <tr>
                     
                             <th  class='usuariosInicio'> <?php
-                                echo Usuario::mostrarXUsuarios(20);
+                                echo Usuario::mostrarTodosUsuarios();
                                 ?>
                             </th>                 
                         </tr> 

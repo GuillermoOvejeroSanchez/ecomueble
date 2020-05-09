@@ -11,9 +11,10 @@
         public $tipoUsuario;
         public $saldo;
         public $imagen;
+        public $bloq;
 
 
-        function __construct($nombre ="", $email = "", $telefono = "", $password = "", $tipoUsuario = 0, $saldo = 50, $imagen = 'default_profile.jpg')
+        function __construct($nombre ="", $email = "", $telefono = "", $password = "", $tipoUsuario = 0, $saldo = 50, $imagen = 'default_profile.jpg', $bloq = 0)
         {
             $this->nombre = $nombre;
             $this->email = $email;
@@ -22,13 +23,14 @@
             $this->tipoUsuario = $tipoUsuario;
             $this->saldo = $saldo;
             $this->imagen = $imagen;
+            $this->bloq = $bloq;
         }
 
         public function insertUser()
         {   
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen) 
-            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen')");
+            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen, bloq) 
+            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen', '$this->bloq')");
             
             if($conn->query($sql) === TRUE){
                 return TRUE;
@@ -109,7 +111,7 @@
             $conn = $app->conexionBd();
             $user = new Usuario(); //Usuario vacio
 
-            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, password FROM usuario WHERE nombre = '$name'";
+            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, bloq, password FROM usuario WHERE nombre = '$name'";
             $resultado = $conn->query($sql);
             $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
 
@@ -145,7 +147,7 @@
             $conn = $app->conexionBd();
             $map = [];
 
-            $sql = sprintf("SELECT * FROM usuario ");
+            $sql = sprintf("SELECT * FROM usuario WHERE tipoUsuario = '0'");
 
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
@@ -159,19 +161,47 @@
             return $map;
         }
 
-        function mostrarXUsuarios($num)
+        public static function getAllActiveUsers()
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $map = [];
+
+            $sql = sprintf("SELECT * FROM usuario WHERE tipoUsuario = '0' AND bloq = '0'");
+
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()  ) {
+                        $link = "./usuario?id=" .  $fila['idUsuario']; 
+                        $product_img = "../profile_img/" . $fila['imagen'];
+                        $map[$link] = $product_img;
+                    }
+                }
+            }
+            return $map;
+        }
+
+        function mostrarTodosUsuarios()
         {
             $usuario = new Usuario ();
             $map = $usuario->getAllUsers();
+            $html = '';
+            foreach ($map as $link => $product_img) {
+                $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+            }
+            return $html;
+        }
+
+        function mostrarXUsuarios($num)
+        {
+            $usuario = new Usuario ();
+            $map = $usuario->getAllActiveUsers();
             $html = '';
             foreach ($map as $link => $product_img) {
                 if($num == 0){
                     break;
                 }else{
                     $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
-                   /*?>
-                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                    <?php */
                     $num--;
                 }
             }
@@ -220,14 +250,17 @@
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
             
-            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
-            
+            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen, bloq FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
+
             if ($resultado = $conn->query($sql)) { 
                 if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
                     $user_fetched = $resultado->fetch_assoc();
 
                     $ok = password_verify($this->password, $user_fetched['password']); 
                     if ($ok) {
+                        if($user_fetched['bloq'] == 1){ 
+                            return "Tu cuenta está bloqueada temporalmente.";
+                        }
                         $_SESSION['login'] = TRUE;
                         $_SESSION['username'] = $user_fetched['nombre'];
                         $_SESSION['saldo'] = $user_fetched['saldo'];
@@ -244,6 +277,35 @@
             return "Usuario o Contraseña no coinciden";
         }
 
+        public function deleteUser($idUsuario){
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $sql = sprintf("DELETE FROM usuario WHERE idUsuario = '$idUsuario'");
+            $ok = $conn->query($sql); 
+            return $ok;
+        }
+
+        public function bloqUser($idUsuario) {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $ok = FALSE;
+            $sql = "SELECT bloq FROM usuario WHERE idUsuario = '$idUsuario'";
+
+            if ($resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
+                    $user_fetched = $resultado->fetch_assoc();
+                    if($user_fetched['bloq'] == 0){
+                        $sql = "UPDATE usuario SET bloq = 1 WHERE idUsuario = '$idUsuario'";
+                    }
+                    else {
+                        $sql = "UPDATE usuario SET bloq = 0 WHERE idUsuario = '$idUsuario'";
+                    }
+                    $ok = $conn->query($sql);
+                }
+            }
+            return $ok;
+        }
+
         public function createUser($row)
         {
             $this->idUsuario = $row['idUsuario'];
@@ -254,6 +316,7 @@
             $this->saldo = $row['saldo'];
             $this->imagen = $row['imagen'];
             $this->password = $row['password'];
+            $this->bloq = $row['bloq'];
         }
     }
 ?>

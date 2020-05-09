@@ -122,7 +122,8 @@ CREATE TABLE `usuario` (
   `password` varchar(256) NOT NULL,
   `tipoUsuario` tinyint(1) NOT NULL DEFAULT 0,
   `saldo` int(10) NOT NULL DEFAULT 0,
-  `imagen` varchar(255) DEFAULT NULL
+  `imagen` varchar(255) DEFAULT NULL,
+  `bloq` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -184,6 +185,7 @@ ALTER TABLE `transacciones`
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
+
 --
 -- Indexes for table `valoracion`
 --
@@ -239,9 +241,10 @@ ALTER TABLE `valoracion`
 -- Constraints for table `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE,
   ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`),
   ADD CONSTRAINT `producto_ibfk_3` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`);
+  
 
 --
 -- Constraints for table `reporte`
@@ -255,7 +258,7 @@ ALTER TABLE `reporte`
 --
 ALTER TABLE `transacciones`
   ADD CONSTRAINT `transacciones_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
-  ADD CONSTRAINT `transacciones_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`);
+  ADD CONSTRAINT `transacciones_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `valoracion`

@@ -24,7 +24,6 @@ $conn->query("CREATE DATABASE ecomueble");
 
 $conn = new mysqli(SERVERNAME, USER, PASS, DB) or die("Connection failed");
 $output = shell_exec($command . '/ecomueble.sql'); //Crear BD
-$output = shell_exec($command . '/populate_ecomueble.sql'); //Popular BD
 $output = shell_exec($command . '/populate_ecomueble2.sql'); //Popular BD
 
 $conn->close();
