@@ -99,6 +99,26 @@
             }
             return $map;                
         }
+
+        function mostrarXProductos($num)
+        {
+            $producto = new Producto();
+            $map =  $producto->getAllProducts();
+            $html = '';
+            foreach ($map as $link => $product_img) {
+                if($num == 0){
+                    break;
+                }else{
+                    $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+                    /* ?>
+                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                    <?php */
+                    $num--;
+                }
+            }
+            return $html;
+        } 
+
         public static function getAllProductsFromCategoria($idCategoria)
         {
             $app = Aplicacion::getSingleton();

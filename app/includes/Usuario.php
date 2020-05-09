@@ -159,6 +159,25 @@
             return $map;
         }
 
+        function mostrarXUsuarios($num)
+        {
+            $usuario = new Usuario ();
+            $map = $usuario->getAllUsers();
+            $html = '';
+            foreach ($map as $link => $product_img) {
+                if($num == 0){
+                    break;
+                }else{
+                    $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+                   /*?>
+                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
+                    <?php */
+                    $num--;
+                }
+            }
+            return $html;
+        }
+
         public static function getAllUsersFromNombre($nombre)
         {
             $app = Aplicacion::getSingleton();
@@ -190,11 +209,12 @@
                     $map = $usuario->getAllUsersFromNombre($nombre);
                     return $map;
                 }
-                else
+                else {
                     $existe = FALSE;
                     return null;
                 }  
             }   
+        } 
 
         public function logUser()
         {

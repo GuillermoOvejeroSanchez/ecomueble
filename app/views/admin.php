@@ -21,7 +21,9 @@
 		<h1>Consola de administración</h1>
 	<?php
         }
-        require('./controllers/admin.php');
+        //require('./controllers/admin.php'); Si dais el visto bueno borramos este script
+        require('./includes/Producto.php');
+        require('./includes/Usuario.php');
     ?>
         
         <?php
@@ -73,7 +75,7 @@
                         <tr>
                     
                             <th  class='usuariosInicio'> <?php
-                                mostrarXUsuarios(20);
+                                echo Usuario::mostrarXUsuarios(20);
                                 ?>
                             </th>                 
                         </tr> 
@@ -92,7 +94,7 @@
                         <tr>
 
                             <th class='productosInicio'> <?php
-                                mostrarXProductos(10);
+                                echo Producto::mostrarXProductos(10);
                 } ?>
                 </th> 
             </tr> 

@@ -10,7 +10,9 @@
 <body>
     <?php
         require('./includes/common/cabecera.php');
-        require('./controllers/home.php');
+        //require('./controllers/home.php'); Si dais el visto bueno borramos este script
+        require('./includes/Producto.php');
+        require('./includes/Usuario.php');
 
         echo"
         <table class='per'>
@@ -20,12 +22,13 @@
             </tr> 
             <tr> 
                 <th class='productosInicio'>";
-                mostrarXProductos(12);
-                echo " </th> 
+                echo Producto::mostrarXProductos(12);
+                echo 
+                " </th> 
 
                 <th  class='usuariosInicio'>";
-                mostrarXUsuarios(20);
-                echo " </th>
+                echo Usuario::mostrarXUsuarios(20);                
+                " </th>
             </tr> 
         </table>
     ";
