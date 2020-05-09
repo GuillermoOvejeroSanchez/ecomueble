@@ -41,7 +41,10 @@ INSERT INTO `categoria` (`idCategoria`, `tipo`) VALUES
 (1, 'silla'),
 (2, 'armario'),
 (3, 'mesa'),
-(4, 'estanteria');
+(4, 'estanteria'),
+(5, 'sofa'),
+(6, 'cama'),
+(7, 'lampara');
 
 -- --------------------------------------------------------
 

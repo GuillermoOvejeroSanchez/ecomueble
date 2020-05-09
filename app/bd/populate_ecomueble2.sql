@@ -111,7 +111,22 @@ INSERT INTO `producto` (`idProducto`, `descripcion`, `precio`, `idEstado`, `idCa
 (63, 'Armario bajo con puertas de mimbre', '20', 1, 2, 'Armario bajo', 16, 'Armario bajo_63.jpg'),
 (64, 'Armario vajillero con tiradores de forja', '50', 0, 2, 'Armario vajillero', 13, 'Armario vajillero_64.jpg'),
 (65, 'Silla blanca de madera y respaldo alto', '15', 0, 1, 'Silla blanca', 20, 'Silla blanca_65.jpg'),
-(66, 'Silla antigua de bambú y mimbre', '10', 0, 1, 'Silla de mimbre', 6, 'Silla de mimbre_66.jpg');
+(66, 'Silla antigua de bambú y mimbre', '10', 0, 1, 'Silla de mimbre', 6, 'Silla de mimbre_66.jpg'),
+(67, 'Sofa elegante de color gris', '50', 0, 5, 'Sofa gris', 15, 'sofa1.jpg'),
+(68, 'Sofa clasico marron', '30', 0, 5, 'Sofa clasico', 6, 'sofa2.jpg'),
+(69, 'Sofa de cuero blanco estilo clasico', '40', 0, 5, 'Sofa de cuero', 7, 'sofa3.jpg'),
+(70, 'Sofa abatible electrico', '70', 0, 5, 'Sofa abatible', 13, 'sofa4.jpg'),
+(71, 'Cama individual abatible', '50', 0, 6, 'Cama plegable', 2, 'cama1.jpg'),
+(72, 'Cama matrimonio azul con cajonera', '60', 0, 6, 'Cama matrimonio', 3, 'cama2.jpg'),
+(73, 'Cama infantil fantasia con cama inferior', '45', 0, 6, 'Cama infantil', 12, 'cama3.jpg'),
+(74, 'Cama matrimonio alta con arcon espacioso', '65', 0, 6, 'Cama matrimonio', 17, 'cama4.jpg'),
+(75, 'Lampara de techo con forma cilindrica elaborada en vidrio gris', '35', 0, 7, 'Lampara moderna', 7, 'lampara1.jpg'),
+(76, 'Lampara de pie de metal color anticuario con flecos en beige', '45', 0, 7, 'Lampara de pie', 10, 'lampara2.jpg'),
+(77, 'Lampara de noche cuadrada moderna', '20', 0, 7, 'Lampara de noche', 11, 'lampara3.jpg'),
+(78, 'Lampara de araña de estilo antiguo', '60', 0, 7, 'Lampara de araña', 14, 'lampara4.jpg')
+
+
+;
 
 -- --------------------------------------------------------
 
