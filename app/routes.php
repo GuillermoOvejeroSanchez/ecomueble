@@ -53,6 +53,10 @@ switch ($request) {
         require __DIR__.
         '/views/perfil.php';
         break;
+    case preg_match('((/perfil\?upload)=\d+)', $request, $matches)? true : false:
+        require __DIR__.
+        '/views/perfil.php';
+        break;
     case '/subir':
         require __DIR__.
         '/views/subir.php';

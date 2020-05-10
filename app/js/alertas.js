@@ -14,6 +14,13 @@ function swalBuy(accepted) {
   }
 }
 
+function swalUpload() {
+    swal({
+      title: "Producto subido con exito",
+      icon: "success",
+      timer: 3000,
+    })
+}
 
 function confirmAction(msg) {
   if(!confirm(msg)){

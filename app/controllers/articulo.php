@@ -106,24 +106,22 @@ function logged()
 
 function comprarProducto()
 {
-    
     $id = $_GET['id']; //Cogemos id articulo para realizar consulta
     $product = Producto::getProduct($id);
     //Obtener id, saldo del vendedor
     $vendedor = Usuario::getUserbyId($product->idUsuario);
-    //TODO daba errores de que faltaban parametros al ponerlo aqui
     //Transaccion
     $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date('Y-m-d')); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
 
     //Comprobar si tenemos monedas (monedas >= precio)
     if($_SESSION['saldo'] >= $product->precio && $product->idEstado == 0){
-        //TODO cambiar a una Transaccion de SQL (poder hacer ROLLBACK y COMMIT por si algo sale mal)
-
+       
         //? START TRANSACTION            
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $conn->autocommit(FALSE);
         $failed = FALSE;
+        
         //Restar monedas comprador
         $ok = Usuario::updateSaldo($_SESSION['saldo'], -$product->precio, $_SESSION['idUsuario']);
         if(!$ok){
