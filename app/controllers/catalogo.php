@@ -1,11 +1,26 @@
+<!-- PENDIENTE DE HACER //VICTOR -->
+    <!-- Carrusel categorias -->
+<!-- 
+
+    <div>
+        <div>
+            <div><img src="../img/armarioicon.png"></div>
+            <div><img src="./img/armarioicon.png"></div>
+            <div><img src="./img/armarioicon.png"></div>
+        </div>
+    </div>
+    
+-->
+    <!-- /Carrusel categorias -->    
 <?php
     require('./includes/Producto.php');
     require('./includes/Categoria.php');
 
     $arrayTags = Categoria::getAllTags();
 
-    echo " <div class='perfil'> ";
+    echo " <div class='container'> ";
     ?>
+
         <div class="categorias">
             <ul>
                 <li><a href="catalogo">Todos los Productos </a></li>
@@ -19,12 +34,12 @@
 
         <div class="buscar">
         <form method="POST"> 
-            <div class='b'><label> Busca un producto por su nombre: </label><input type="text" name="nombreProducto"/>
-            <button  type="submit" name="submit_buscarNombre">Buscar</button></div>
+            <div><label> Busca un producto por su nombre: </label><input type="text" name="nombreProducto"/>
+            <button class='btn' type="submit" name="submit_buscarNombre">Buscar</button></div>
         </form>
         </div>
     <?php
-        echo "<div class='productos'>";
+        echo "<div class='productosInicio'>";
             if(!isset($_POST['nombreProducto'])) Producto::mostrarProductos();
             else {
                 $map = Producto::mostrarProductosBuscados();

@@ -1,15 +1,23 @@
 /*              GENERAL              */
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     scroll-behavior: smooth;
-    margin-right: 3%;
-    margin-left: 3%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    margin-top: 2%;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /*background-color: rgb(98, 241, 181);*/
     background-image: url("img/bg.png");
+    background-size: auto;
     background-attachment: fixed;
 }
 
@@ -21,9 +29,21 @@ color: white;
 text-decoration: none;
 }
 
+
 h1, h3{color:rgb(8, 46, 21);}
 h1 {text-align: center;}
 h3 {margin-left: 2%;}
+
+.container {
+    width:80%;
+    margin: auto;
+    margin-top: 20px;
+    background-color:rgb(179, 247, 202);
+    border-color: rgb(22, 22, 22);
+    border-style: solid;
+    box-shadow: 7px 5px 5px rgba(27, 27, 27, 1);
+}
+
 
 p{
     text-align: center;
@@ -39,10 +59,68 @@ strong {
 }
 
 
-/* --------------------------------- */
+/*             Cabecera              */
 
+cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+    padding: 0px 10%;
+}
 
+.logo{
+    margin-top: 15px;
+    position: relative;
+    align-self: center;
+}
 
+.logo a img {
+    height: 120px;
+}
+
+.proficon {
+    margin-bottom: 5px;
+    background-color: rgba(54, 54, 54, 0.75);
+    border-style: solid;
+    border-color: rgb(22, 22, 22);
+    height: 100px;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    box-shadow: 7px 5px 5px rgba(27, 27, 27, 1);
+}
+
+.imgprofile {
+    margin-right: 45%;
+    margin: auto;
+    width: min-content;
+    align-self: center;
+    
+}
+
+.imgprofile img {
+    position: block;
+    margin: auto;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: rgb(22, 22, 22);
+}
+
+.textprofile {
+    margin-right: 22.5%;
+    margin: auto;
+    width: max-content;
+    align-self: center; 
+}
+
+.textprofile span {
+    color: black;
+    font-weight: bold;
+}
 
 /*        BARRA DE NAVEGACION        */
 
@@ -50,16 +128,26 @@ nav_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 10%;
+    padding: 7px;
+    padding-right: 3.5%;
+    padding-left: 1.5%;
+    background-color: rgba(54, 54, 54, 0.75);
+    border-color: rgb(22, 22, 22);
+    border-style: solid;
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 7px 5px 5px rgba(27, 27, 27, 1);
+
 }
 
 .nav_bar {
     list-style: none;
+    display: inline-block;
 }
 
 .nav_bar li {
     display: inline-block;
-    padding: 0px 20px;
+    padding: 0px 15px;
 
 }
 
@@ -74,43 +162,61 @@ nav_header {
 }
 
 .btn {
-    padding: 9px 25px;
-    background-color: rgba(0, 136, 169, 1);
+    padding: 7px 20px;
+    background-color: rgb(34, 34, 34);
     border: none;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
 .btn:hover {
 
-    background-color: red;
+    background-color: grey;
 
 }
 
-/* --------------------------------- */
+/*                  INICIO                 */
 
-/******** ESTADO *********/
-.logo a img {
-    display: block;
-    margin: auto;
-    width: 15%;
-    height: 15%;
-    position: relative;
+/*
+.productosInicio, .usuariosInicio {
+    width: 49%;
+    background-color:rgb(179, 247, 202);
 }
-.imgprofile img {
-    position: relative;
+*/
+
+.productosInicio {
+    border-style: solid;
+    border-width: 0px;
+}
+
+.productosInicio img {
+    width: 120px;
+    height: 120px;
+    border-radius:20%;
+    margin: 0.75%;
+    border-style: solid;
+    border-color: darkolivegreen;
+}
+
+.productosInicio img:hover{
+    box-shadow: 7px 5px 5px rgb(1, 65, 15);
+}
+
+.usuariosInicio img {
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    
+    padding:0.5%;
 }
-span {
-    color: darkolivegreen;
-    font-weight: bold;
-    position: absolute;
-    top: 12%;
-    right:1%;
+
+.ini {
+    background-color: rgb(34, 104, 81);
+    color: white;
+    font-weight: normal;
+    text-align: center;
 }
+
+
 
 /*******************/
 .perfil, .per {
@@ -165,30 +271,6 @@ span {
 /********PARA HOME********/
 
 
-.productosInicio, .usuariosInicio {
-    width: 49%;
-    background-color:rgb(179, 247, 202);
-}
-
-.productosInicio img {
-    width: 150px;
-    height: 150px;
-    border-radius:20%;
-	padding:0.5%;
-}
-.usuariosInicio img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    padding:0.5%;
-}
-
-.ini {
-    background-color: rgb(34, 104, 81);
-    color: white;
-    font-weight: normal;
-    text-align: center;
-}
 /*******************************/
 
 /*********FORMULARIOS***********/
@@ -260,7 +342,6 @@ fieldset{
 }
 /********************************/
 
-/* ********BARRA PRICIPAL********
 nav {
     text-align: center;
     font-size: 16pt;
@@ -287,118 +368,10 @@ nav li a {
 nav li a:hover {
     transform: scale(1.2);
     background-color: rgb(209, 112, 68);
-} */
-
-/********************************/
-
-/********BOTONES*****/
-.b button{
-    width: 10%;
-    padding: 0.2%;
-    border-radius:5px;
-    background-color:rgb(200, 243, 214);
-    font-weight: bold;
-    color:rgb(73, 68, 68);
-}
-.b label {
-    padding: 1%;
-}
-.bperfil button{
-    width: 10%;
-    padding: 0.2%;
-    border-radius:5px;
-    background-color:rgb(127, 194, 148);
-    font-weight: bold;
-    color:rgb(49, 58, 49);
-    margin-bottom: 2%;
-    margin-left: 1%;
-    margin-top: 1%;
 }
 
-.badmin button{
-    width: 10%;
-    padding: 0.2%;
-    border-radius:5px;
-    background-color:rgb(212, 135, 139);
-    font-weight: bold;
-    color:rgb(49, 58, 49);
-    margin-bottom: 2%;
-    margin-left: 1%;
-    margin-top: 1%;
-}
+/****************************************************
 
-/************************/
 
-/*********** BARRA DE CATEGORIAS***************/
-.categorias ul{
-    list-style-type: none;
-    background-color: rgb(34, 104, 81);
-    overflow: hidden;
-}
-.categorias a{
-    color: white;
-    float: left;
-    display: block;
-    padding: 1%;
-    text-decoration: none; 
-    background: linear-gradient(to right, rgb(93, 153, 133), rgb(93, 153, 133));
-    background-repeat: no-repeat;
-    background-size: 0 100%;
-    transition: background-size 1s 0s;
-}
-.categorias li a:hover {
-    background-size: 100% 100%;
-}
-/**********************************/
 
-/*******MSG NO REGISTRADO***************/
-.noReg {
-    width: 50%;
-    margin: auto;
-    margin-top: 10%;
-    background-color:rgb(179, 247, 202);
-    border-radius:10px;
-}
-.noReg p {
-    padding-bottom: 2%;
-}
-.noReg img {
-    width: 20%;
-    margin: auto;
-    display: block;
-}
-/***************************************/
-
-/***********PARA ABOUT US**************/
-.miembros ul{
-    margin-top: 2%;
-    background-color: rgb(34, 104, 81);
-    font-size: 14pt;
-    font-weight: normal;
-}
-.miembros li a:hover {
-    transform: scale(1.2);
-    background-color:  rgb(93, 153, 133);
-}
-
-.miembro{
-    text-align: center;
-    margin-top: 3%;
-	width:30%;
-	padding:3%;
-    border-radius:10px;
-    margin:auto;
-    margin-top: 3%;
-	background-color:rgb(179, 247, 202);
-}
-
-.miembro ul li{
-    list-style: none;
-    margin-left: -10%;
-}
-
-.contacto {
-    color:rgb(8, 46, 21);
-    font-weight: bold;
-}
-/**************************************/
+********************************************************/

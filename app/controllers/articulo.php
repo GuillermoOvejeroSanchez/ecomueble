@@ -60,16 +60,16 @@ function logged()
                     $jscodeBuy = 'confirmAction('.json_encode($messageBuy).');';
                     if(!$product->idEstado){ //No esta vendido o reservado
                         if($ownProduct){
-                            echo '<div class="bperfil"><button onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
-                            echo" <button type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
+                            echo '<div><button class="btn" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
+                            echo" <button class='btn' type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
                         }else{ //Si no lo es mostrar comprar/contactar
-                            echo '<div class="bperfil"><button onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
-                            echo "<button type='submit' name='contactar'>Contactar</button></div>";
+                            echo '<div><button class="btn" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
+                            echo "<button class='btn' type='submit' name='contactar'>Contactar</button></div>";
                         }
                     }
 
                     if(isset($_SESSION['admin'])){
-                        echo '<div class="badmin"><button onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
+                        echo '<div><button class="btn" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
                     }
                 ?>
         </div>

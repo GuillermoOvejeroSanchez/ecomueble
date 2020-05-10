@@ -1,10 +1,57 @@
+<?php
+    $map = getButtons();
+?>
 
-<div class="logo"><a href="/"><img src="./img/logo.jpg" alt="Logo"></a></div>
+<cabecera>
+    <div class="logo"><a href="/"><img src="./img/logo.png" alt="Logo"></a></div>
+    <?php
+            if($map['logged']){        ?>
+                <div class="proficon">
+                <?php
+                    echo $map['img'];
+                    echo $map['saldo'];
+                ?>
+                </div>
+                <?php }else{}  ?>
+</cabecera>
 
-<div class="status">
-   <form action="status" method="post">
-   
-    <?php //Ruta a status -> status_redirect.php
+<nav_header>
+
+    <ul class="nav_bar">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="catalogo">Catálogo</a></li>
+        <li><a href="perfil">Perfil</a></li>
+        <li><a href="about">Sobre nosotros</a></li>
+        <li>
+            <?php
+            if(isset($_SESSION['admin'])){
+                echo '<a href="admin">Administrar</a>';
+            }
+            ?>
+        </li>
+    </ul>
+
+    <form action="status" method="post">
+        <?php
+            if($map['logged']){
+                echo $map['logout'];
+            }else{
+                echo $map['login'];
+
+            }
+        ?>
+    </form>
+
+
+</nav_header>
+    
+
+<?php
+function getButtons()
+{
+
+    $map = [];
+
     if(isset($_SESSION['login'])){
         $user = $_SESSION['username'];
         $saldo = $_SESSION['saldo'];
@@ -13,31 +60,15 @@
         $message = '¿Quieres salir?';
         $jscode = 'confirmAction('.json_encode($message).');';
     
-        
-        echo  "<div class='imgprofile'><a href='perfil'><img src='$imagen' alt='imagen''></a></div>";
-        echo '<span>'. $user . ' - Saldo actual: '.$saldo.'</span>
-        <div class="b"><button onclick="return '.htmlspecialchars($jscode).'" type="submit" name="logout_btn">Logout</button></div>';
+        $map['logged'] = TRUE;
+        $map['img'] =  "<div class='imgprofile'><a href='perfil'><img src='$imagen' alt='imagen''></a></div>";
+        $map ['saldo'] = "<div class='textprofile'> <span> $user - Saldo actual: $saldo</span> </div>";
+        $map['logout'] = '<div><button class="btn" onclick="return '.htmlspecialchars($jscode).'" type="submit" name="logout_btn">Logout</button></div>';
     }else{
-        echo '
-        <div class="b"><button type="submit" name="login_btn">Login</button>
-        <button type="submit" name="registrar_btn">Registrar</button></div>';
+        $map['logged'] = FALSE;
+        $map['login'] = '<div><button class="btn" type="submit" name="login_btn">Login</button><button class="btn" type="submit" name="registrar_btn">Registrar</button></div>';
     }
-    ?>
-    </form>
-</div>
 
-
-
-<nav>
-    <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="catalogo">Catálogo</a></li>
-        <li><a href="perfil">Perfil</a></li>
-        <li><a href="about">Sobre nosotros</a></li>
-        <?php
-        if(isset($_SESSION['admin'])){
-            echo '<li><a href="admin">Administrar</a></li>';
-        }
-        ?>
-    </ul>
-</nav>
+    return $map;
+}
+?>

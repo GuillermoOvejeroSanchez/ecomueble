@@ -8,31 +8,28 @@
 </head>
 
 <body>
+    
     <?php
         require('./includes/common/cabecera.php');
         //require('./controllers/home.php'); Si dais el visto bueno borramos este script
         require('./includes/Producto.php');
         require('./includes/Usuario.php');
+    ?>
+        <div class='container'>
+                <div class='ini'> Productos </div>
+                <div class='productosInicio'>
+                    <?php echo Producto::mostrarXProductos(20); ?>
+                </div> 
+        </div> 
+        <div class="container"> 
+                <div class='ini'> Usuarios </div> 
 
-        echo"
-        <table class='per'>
-            <tr>
-                <th class='ini'> Productos </th>
-                <th class='ini'> Usuarios </th> 
-            </tr> 
-            <tr> 
-                <th class='productosInicio'>";
-                echo Producto::mostrarXProductos(12);
-                echo 
-                " </th> 
+                <div class='usuariosInicio'>
+                    <?php echo Usuario::mostrarXUsuarios(20); ?>             
+                </div>
+        </div> 
 
-                <th  class='usuariosInicio'>";
-                echo Usuario::mostrarXUsuarios(20);                
-                " </th>
-            </tr> 
-        </table>
-    ";
-        ?>
+
 </body>
 
 </html>
