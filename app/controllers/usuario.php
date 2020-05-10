@@ -68,7 +68,7 @@ function logged()
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
         //echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
         echo "<div class='productos'>";
-            mostrarProductosUser($_GET['id']);
+            echo Producto::mostrarProductosUser($_GET['id']);
         echo "</div>";
         ?>
     </div>
@@ -76,18 +76,5 @@ function logged()
     
 
 
-}
-
-
-function mostrarProductosUser($idUsuario)
-{
-    $links_id = Producto::getAllProductsFromUser($idUsuario);
-    if(count($links_id) != 0){
-        foreach ($links_id as $key => $value) {
-            echo "<a href='".$key."'><img src='".$value."' alt='imagen'></a>";
-        }
-    }else{
-        echo "<label>Este usuario no tiene articulos</label>";
-    }
 }    
 ?>
