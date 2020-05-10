@@ -11,6 +11,22 @@ isset($_SESSION['login']) ? logged() : not_logged();
 
 function logged()
 {
+
+    if(isset($_GET['buy']) and isset($_GET['buy'])){
+        if(password_verify($_GET['id'], $_GET['buy'])){
+            ?>
+        <script>
+            swalBuy(true);
+        </script>
+        <?php
+        }else{
+            ?>
+        <script>
+            swalBuy(false);
+        </script>
+            <?php
+        }
+    }
     $id = $_GET['id']; //Cogemos id articulo para realizar consulta
     $product = Producto::getProduct($id);
 
@@ -90,48 +106,68 @@ function logged()
 
 function comprarProducto()
 {
-    
     $id = $_GET['id']; //Cogemos id articulo para realizar consulta
     $product = Producto::getProduct($id);
     //Obtener id, saldo del vendedor
     $vendedor = Usuario::getUserbyId($product->idUsuario);
-    //TODO daba errores de que faltaban parametros al ponerlo aqui
     //Transaccion
-    $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date(DATE_W3C)); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
+    $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date('Y-m-d')); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
 
     //Comprobar si tenemos monedas (monedas >= precio)
     if($_SESSION['saldo'] >= $product->precio && $product->idEstado == 0){
-        //TODO cambiar a una Transaccion de SQL (poder hacer ROLLBACK y COMMIT por si algo sale mal)
-
-        //? START TRANSACTION
+       
+        //? START TRANSACTION            
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $conn->autocommit(FALSE);
+        $failed = FALSE;
+        
         //Restar monedas comprador
         $ok = Usuario::updateSaldo($_SESSION['saldo'], -$product->precio, $_SESSION['idUsuario']);
         if(!$ok){
-            return;
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
         }
-        $_SESSION['saldo'] -= $product->precio;
         
         //Sumar monedas 
         //? ROLLBACK IF FAILED
         $ok = Usuario::updateSaldo($vendedor->saldo, $product->precio, $vendedor->idUsuario);
         if(!$ok){
-            return;
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
         }
         //Eliminar producto (cambiar status a vendido)
         //? ROLLBACK IF FAILED
         $ok = Producto::changeStatus($id, VENDIDO);
         if(!$ok){
-            return;
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
         }
         //Realizar transaccion
         //? ROLLBACK IF FAILED
         $ok = $transaccion->newTransaction();
         if(!$ok){
-            return;
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
         }
         //? COMMIT
-
-        header("Location: /articulo?id=$id");
+        ?>
+        <?php
+        if(!$failed){
+            $conn->commit();
+            $_SESSION['saldo'] -= $product->precio;
+            $idcompra = password_hash($product->idProducto, PASSWORD_BCRYPT);
+            header("Location: /articulo?id=$id&buy=$idcompra");     
+            die();
+        }else{
+            $conn->rollback();
+            header("Location: /articulo?id=$id&buy=0");
+            die(); 
+        }
     }
 }
 ?>

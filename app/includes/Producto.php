@@ -33,7 +33,7 @@
             if($conn->query($sql)){
                 //Enviar mensaje, subido con exito
                 $_POST['submit_producto'] = TRUE;
-                $result = '/perfil';
+                $result = '/perfil?upload=1';
             }else{
                 //Enviar mensaje, no se ha podido subir
                 $_POST['submit_producto'] = FALSE;

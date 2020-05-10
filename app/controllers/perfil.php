@@ -12,7 +12,15 @@ function logged()
 
     $imagen = "../profile_img/" . $user->imagen;
 
+    if(isset($_GET['upload'])){
     ?>
+        <script>
+            swalUpload();
+        </script>
+    <?php
+       }
+    ?>
+
     <div class="perfil"> 
     <form action="status" method="post">
         <?php
