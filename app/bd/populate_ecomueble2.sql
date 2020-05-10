@@ -39,7 +39,7 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `telefono`, `password`, `
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `idProducto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- Volcado de datos para la tabla `producto`
@@ -123,10 +123,16 @@ INSERT INTO `producto` (`idProducto`, `descripcion`, `precio`, `idEstado`, `idCa
 (75, 'Lampara de techo con forma cilindrica elaborada en vidrio gris', '35', 0, 7, 'Lampara moderna', 7, 'lampara1.jpg'),
 (76, 'Lampara de pie de metal color anticuario con flecos en beige', '45', 0, 7, 'Lampara de pie', 10, 'lampara2.jpg'),
 (77, 'Lampara de noche cuadrada moderna', '20', 0, 7, 'Lampara de noche', 11, 'lampara3.jpg'),
-(78, 'Lampara de araña de estilo antiguo', '60', 0, 7, 'Lampara de araña', 14, 'lampara4.jpg')
-
-
-;
+(78, 'Lampara de araña de estilo antiguo', '60', 0, 7, 'Lampara de araña', 14, 'lampara4.jpg'),
+(79, 'Cama individual simple de madera', '40', 0, 6, 'Cama individual', 17, 'cama5.jpg'),
+(80, 'Litera moderna de madera color blanco', '75', 0, 6, 'Litera moderna', 8, 'cama6.jpg'),
+(81, 'Cama plegable de matrimonio y de madera, sin colchon', '60', 0, 6, 'Cama plegable', 9, 'cama7.jpg'),
+(82, 'Sofa simple a base de palets de madera', '45', 0, 5, 'Lampara moderna', 7, 'sofa5.jpg'),
+(83, 'Sofa exterior con estructura de aluminio, color chocolate', '50', 0, 5, 'Sofa exterior', 10, 'sofa6.jpg'),
+(84, 'Sofa azul de tres plazas con arcon', '50', 0, 5, 'Sofa con arcon', 3, 'sofa7.jpg'),
+(85, 'Lampara de lava clasica de metal', '45', 0, 7, 'Lampara de lava', 5, 'lampara5.jpg'),
+(86, 'Lampara de techo retro vintage negra', '50', 0, 7, 'Lampara de techo', 6, 'lampara6.jpg'),
+(87, 'Lampara de techo led de metal', '70', 0, 7, 'Lampara de techo led', 18, 'lampara7.jpg');
 
 -- --------------------------------------------------------
 
