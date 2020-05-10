@@ -14,23 +14,22 @@ function logged()
     $imagen = "../profile_img/" . $user->imagen;
 
     ?>
-    <div class="perfil"> 
+    
+    <div class="container">
     <form action="status" method="post">
         <?php
-        echo"<table class='per'> 
-                <tr> 
-                    <th class='imagen'> <img src='$imagen' alt='imagen'></th> 
-                    <th class='datos'>
-                        <p>Nombre: <strong>$user->nombre</strong></p> 
-                        <p>Email: <strong>$user->email</strong></p>
-                        <p>Teléfono: <strong>$user->telefono</strong> </p>
-                    </th>
-                </tr>
-            </table>";//Imagen de perfil y datos informativos
+        echo"<div class='contenido_perfil'> 
+                <div class='perfil img'> <img src='$imagen' alt='imagen'></div> 
+                <div class='datos'>
+                    <p>Nombre: <strong>$user->nombre</strong></p> 
+                    <p>Email: <strong>$user->email</strong></p>
+                    <p>Teléfono: <strong>$user->telefono</strong> </p>
+                </div>
+            </div>";//Imagen de perfil y datos informativos
 
         if($_SESSION['idUsuario'] == $user->idUsuario){
-            echo "<div class='bperfil'><button type='submit' name='subirProducto'>Subir Producto</button>
-            <button type='submit' name='editarPerfil'>Editar Perfil</button></div>";//botones
+            echo "<div><button class='btn b_margen' type='submit' name='subirProducto'>Subir Producto</button>
+            <button class='btn b_margen' type='submit' name='editarPerfil'>Editar Perfil</button></div>";//botones
         }
         ?>
     </form>
@@ -39,15 +38,15 @@ function logged()
         if(isset($_SESSION['admin'])){
             $messageDelete = '¿Seguro que quieres borrar el usuario?';
             $jscodeDelete = 'confirmAction('.json_encode($messageDelete).');';           
-            echo '<div class="badmin"><button onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarUsuario">Eliminar usuario</button>';
+            echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarUsuario">Eliminar usuario</button>';
             if($user->bloq == 0) {   
                 $messageBloq = '¿Seguro que quieres bloquear al usuario?';
                 $jscodeBloq = 'confirmAction('.json_encode($messageBloq).');';
-               echo '<button onclick="return '.htmlspecialchars($jscodeBloq).'" type="submit" name="bloqUsuario">Bloquear usuario</button></div>';
+               echo '<button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBloq).'" type="submit" name="bloqUsuario">Bloquear usuario</button></div>';
             } else {
                 $messageBloq = '¿Seguro que quieres desbloquear al usuario?';
                 $jscodeBloq = 'confirmAction('.json_encode($messageBloq).');';
-                echo '<button onclick="return '.htmlspecialchars($jscodeBloq).'" type="submit" name="DesbloqUsuario">Desbloquear usuario</button></div>';
+                echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBloq).'" type="submit" name="DesbloqUsuario">Desbloquear usuario</button></div>';
             }
 
             if (isset($_POST['borrarUsuario'])) {
@@ -67,7 +66,7 @@ function logged()
         
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
         //echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
-        echo "<div class='productos'>";
+        echo "<div class='productosInicio'>";
             mostrarProductosUser($_GET['id']);
         echo "</div>";
         ?>
