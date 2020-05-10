@@ -29,6 +29,14 @@ color: white;
 text-decoration: none;
 }
 
+e{
+    font-family: sans-serif;
+    font-weight: 500px;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
 
 h1, h3{color:rgb(8, 46, 21);}
 h1 {text-align: center;}
@@ -344,6 +352,14 @@ nav_about {
     margin-top: 3%;
     background-color:rgb(179, 247, 202);
     border-radius:10px;
+}
+.noReg p {
+    padding-bottom: 2%;
+}
+.noReg img {
+    width: 20%;
+    margin: auto;
+    display: block;
 }
 .cajita ul {
     list-style-type: none;
