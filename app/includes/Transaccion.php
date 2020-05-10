@@ -19,9 +19,8 @@
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
 
-            $sql = sprintf("INSERT INTO transacciones(idProducto, idComprador, fecha) 
-            VALUES ( '$this->idProducto', '$this->idComprador', '$this->fecha')");
-            
+            $sql = "INSERT INTO transacciones(idProducto, idComprador, fecha) 
+            VALUES ('$this->idProducto', '$this->idComprador', '$this->fecha')";
             $ok = $conn->query($sql);
             return $ok;
         }

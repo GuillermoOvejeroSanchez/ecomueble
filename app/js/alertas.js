@@ -1,22 +1,17 @@
-function swalTest() {
-  swal({
-    title: "Are you sure?",
-    text: "You will not be able to recover this imaginary file!",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonClass: "btn-danger",
-    confirmButtonText: "Yes, delete it!",
-    cancelButtonText: "No, cancel plx!",
-    closeOnConfirm: false,
-    closeOnCancel: false
-  },
-  function(isConfirm) {
-    if (isConfirm) {
-      swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    } else {
-      swal("Cancelled", "Your imaginary file is safe :)", "error");
-    }
-  });
+function swalBuy(accepted) {
+  if(accepted){
+    swal({
+      title: "Has comprado tu producto",
+      icon: "success",
+      timer: 5000,
+    })
+  }else{
+    swal({
+      title: "Fallo al comprar tu producto",
+      icon: "error",
+      timer: 5000,
+    })
+  }
 }
 
 
