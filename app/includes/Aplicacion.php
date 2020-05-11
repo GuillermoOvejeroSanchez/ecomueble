@@ -39,7 +39,7 @@ class Aplicacion
 	{
         if (!$this->estaIniciada ) {
     	    $this->datosBD = $datosBD;
-    		session_start();
+    		//session_start();
     		$this->estaIniciada = true;
         }
 	}
