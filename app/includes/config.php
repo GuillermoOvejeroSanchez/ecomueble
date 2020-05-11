@@ -10,10 +10,10 @@ date_default_timezone_set('Europe/Madrid');
 //TODO Cambiar puerto y usarlo mas adelante
 const PORT = 3000;
 
-const SERVERNAME = 'localhost';
-const USER = 'root';
-const PASS = '';
-CONST DB = 'ecomueble';
+const SERVERNAME = 'vm19.db.swarm.test';
+const USER = 'ecomuebledb';
+const PASS = 'ecomuebledb';
+CONST DB = 'ecomuebledb';
 
 const APP_DIR = __DIR__ . DIRECTORY_SEPARATOR;
 const LOCAL = SERVERNAME . ":" . PORT . DIRECTORY_SEPARATOR;
