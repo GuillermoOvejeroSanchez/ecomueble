@@ -46,7 +46,7 @@ function logged()
             } else {
                 $messageBloq = '¿Seguro que quieres desbloquear al usuario?';
                 $jscodeBloq = 'confirmAction('.json_encode($messageBloq).');';
-                echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBloq).'" type="submit" name="DesbloqUsuario">Desbloquear usuario</button></div>';
+                echo '<button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBloq).'" type="submit" name="DesbloqUsuario">Desbloquear usuario</button></div>';
             }
 
             if (isset($_POST['borrarUsuario'])) {
