@@ -16,7 +16,7 @@ function swalBuy(accepted) {
 
 function swalUpload() {
     swal({
-      title: "Producto subido con exito",
+      title: "Producto subido con éxito",
       icon: "success",
       timer: 3000,
     })
