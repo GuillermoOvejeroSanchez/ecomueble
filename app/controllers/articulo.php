@@ -34,24 +34,22 @@ function logged()
         $estado = $product->idEstado ? "No Disponible" : "En Venta";
         $imagen = "../product_img/" . $product->imagen;
         ?>
-        <div class="perfil">
+        <div class="container">
             <form action="" method="post">
                 <?php
                     echo"  
-                    <table class='per'> 
-                        <tr> 
-                            <th class='producto'> 
-                                <img src='$imagen' alt='imagen'>
-                            </th> 
+                    <div class='contenido_perfil'> 
+                        <div class='producto img'> 
+                            <img src='$imagen' alt='imagen'>
+                        </div> 
 
-                            <th class='datos'>
-                                <p>Nombre: <strong>$product->nombre</strong></p> 
-                                <p>Precio: <strong>$product->precio</strong></p>
-                                <p>Descripción: <strong>$product->descripcion</strong> </p>
-                                <p>Estado: <strong>$estado</strong> </p>
-                            </th>
-                        </tr> 
-                    </table>";
+                        <div class='datos'>
+                            <p>Nombre: <strong>$product->nombre</strong></p> 
+                            <p>Precio: <strong>$product->precio</strong></p>
+                            <p>Descripción: <strong>$product->descripcion</strong> </p>
+                            <p>Estado: <strong>$estado</strong> </p>
+                        </div>
+                    </div>";
 
                     $ownProduct = ($_SESSION['idUsuario'] == $product->idUsuario);
                     $messageDelete = '¿Seguro que quieres borrar el producto?';
@@ -60,16 +58,16 @@ function logged()
                     $jscodeBuy = 'confirmAction('.json_encode($messageBuy).');';
                     if(!$product->idEstado){ //No esta vendido o reservado
                         if($ownProduct){
-                            echo '<div class="bperfil"><button onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
-                            echo" <button type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
+                            echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
+                            echo" <button class='btn b_margen' type='submit' name='editarProducto'>Editar Articulo</button></div>"; //TODO Editar P3
                         }else{ //Si no lo es mostrar comprar/contactar
-                            echo '<div class="bperfil"><button onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
-                            echo "<button type='submit' name='contactar'>Contactar</button></div>";
+                            echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
+                            echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button></div>";
                         }
                     }
 
                     if(isset($_SESSION['admin'])){
-                        echo '<div class="badmin"><button onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
+                        echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Borrar</button>';
                     }
                 ?>
         </div>

@@ -28,7 +28,7 @@
         }
 
         protected function procesaFormulario($form){
-            $result[] = "<a>¡Error al Registrarse!</a>";
+            $result[] = "<e>¡Error al Registrarse!</e>";
            
             $username = isset($form['username']) ? $form['username'] : null;
             if ( empty($username) ) {
