@@ -26,4 +26,3 @@ $app = Aplicacion::getSingleton();
 $app->init(array('host'=>SERVERNAME, 'bd'=>DB, 'user'=>USER, 'pass'=>PASS));
 
 register_shutdown_function(array($app, 'shutdown'));
-?>

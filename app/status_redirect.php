@@ -57,4 +57,3 @@ elseif (isset($_REQUEST['editarPerfil'])) {
     <?php
 }
 die();
-?>

@@ -71,4 +71,3 @@ function getButtons()
 
     return $map;
 }
-?>

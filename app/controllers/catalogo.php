@@ -44,9 +44,9 @@
         echo '</div> 
     </div>';
     
-?>
 
 
+/*
 <!-- PENDIENTE DE HACER -->
     <!-- Carrusel categorias -->
  
@@ -72,3 +72,4 @@
     
  -->
     <!-- /Carrusel categorias -->  
+    */

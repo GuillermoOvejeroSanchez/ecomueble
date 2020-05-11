@@ -27,4 +27,3 @@ $output = shell_exec($command . '/ecomueble.sql'); //Crear BD
 $output = shell_exec($command . '/populate_ecomueble.sql'); //Poblar BD
 
 $conn->close();
-?>

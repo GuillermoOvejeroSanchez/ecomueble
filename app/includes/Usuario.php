@@ -328,4 +328,3 @@
             $this->bloq = $row['bloq'];
         }
     }
-?>

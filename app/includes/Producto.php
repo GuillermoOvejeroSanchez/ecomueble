@@ -281,4 +281,3 @@
             $this->imagen = $row['imagen'];
         }
     }
-?>

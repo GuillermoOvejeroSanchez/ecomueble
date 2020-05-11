@@ -22,4 +22,3 @@ function saveImg($path, $filename, $id){
         }
     }
 }
-?>
