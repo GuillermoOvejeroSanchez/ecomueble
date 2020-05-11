@@ -29,7 +29,12 @@
     <?php
         require("./includes/common/cabecera.php");
 
-        header("refresh:2;url=/");
+        //header("refresh:2;url=/");
+        ?>
+        <script type="text/javascript">
+        window.location.href = "refresh:2;url=/";
+        </script>
+        <?php
     ?>
 
         <div class="per">

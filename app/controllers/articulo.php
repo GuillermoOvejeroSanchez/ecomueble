@@ -80,16 +80,31 @@ function logged()
 
             if (isset($_POST['borrarProducto'])) {
                 $ok = Producto::deleteProduct($id);
-                header("Location: /perfil");
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/perfil";
+                </script>
+                <?php
+                //header("Location: /perfil");
             } 
             elseif (isset($_POST['editarProducto'])) {
-                header("Location: editarProducto?id=$id");
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/editarProducto?id=<?php echo $id;?>";
+                </script>
+                <?php
+                //header("Location: editarProducto?id=$id");
             }
             elseif (isset($_POST['comprarProducto'])) {
                 comprarProducto();
             }elseif (isset($_POST['contactar'])) {
                 //Contactar
-                header("Location: /usuario?id=$vendedor->idUsuario");
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/usuario?id=<?php echo $vendedor->idUsuario;?>";
+                </script>
+                <?php
+                //header("Location: /usuario?id=$vendedor->idUsuario");
             }
     }
     else{ //Buscamos un articulo que no existe (poner un parametro a mano)
