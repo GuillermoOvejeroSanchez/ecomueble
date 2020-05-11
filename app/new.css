@@ -169,8 +169,8 @@ nav_about {
     background-color: rgba(16, 119, 76, 0.75);
     border-color: rgb(22, 22, 22);
     border-style: solid;
-    margin-left: 16%;
-    margin-right: 16%;
+    margin-left: 13%;
+    margin-right: 13%;
     margin-top: 20px;
     margin-bottom: 10px;
     box-shadow: 7px 5px 5px rgba(27, 27, 27, 1);
@@ -227,6 +227,10 @@ nav_about {
 .productosInicio {
     border-style: solid;
     border-width: 0px;
+    padding-right: 5%;
+    padding-left: 7%;  
+    padding-top: 2%;
+    padding-bottom: 1%;  
 }   
 
 .productosInicio img {
@@ -293,6 +297,14 @@ nav_about {
 }
 .datos p{
     text-align: left;
+}
+
+
+/*              CATÁLOGO           */
+
+
+.buscar{
+    margin-left: 2%;
 }
 
 
