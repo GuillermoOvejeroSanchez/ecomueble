@@ -32,10 +32,10 @@
         //header("refresh:2;url=/");
         ?>
         <script type="text/javascript">
-        window.location.href = "refresh:2;url=/";
+        setTimeout(function(){ window.location.href= '/';}, 1500);
         </script>
         <?php
-    ?>
+        ?>
 
         <div class="per">
             <h1>¡Hasta pronto!</h1>
