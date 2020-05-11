@@ -28,5 +28,3 @@ function not_logged() {
 </div>
 <?php
 }
-
-?>

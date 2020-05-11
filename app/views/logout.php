@@ -29,8 +29,13 @@
     <?php
         require("./includes/common/cabecera.php");
 
-        header("refresh:2;url=/");
-    ?>
+        //header("refresh:2;url=/");
+        ?>
+        <script type="text/javascript">
+        setTimeout(function(){ window.location.href= '/';}, 1500);
+        </script>
+        <?php
+        ?>
 
         <div class="per">
             <h1>¡Hasta pronto!</h1>

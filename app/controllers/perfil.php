@@ -48,5 +48,3 @@ function logged()
     </div>
     <?php
 }
-
-?>

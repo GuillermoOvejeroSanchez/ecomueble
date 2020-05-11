@@ -51,15 +51,31 @@ function logged()
 
             if (isset($_POST['borrarUsuario'])) {
                 $ok = Usuario::deleteUser($p);
-                header("Location: /admin");                
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/admin";
+                </script>
+                <?php
+                //header("Location: /admin");                
             } 
             else if (isset($_POST['bloqUsuario'])) {
                 $ok = Usuario::bloqUser($p);
-                header("Location: /usuario?id=".$p);
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/usuario?id=<?php echo $p;?>";
+                </script>
+                <?php
+                //header("Location: /usuario?id=".$p);
             }
             else if (isset($_POST['DesbloqUsuario'])) {
                 $ok = Usuario::bloqUser($p);
-                header("Location: /usuario?id=".$p);
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/usuario?id=<?php echo $p;?>";
+                </script>
+                <?php
+                //header("Location: /usuario?id=".$p);
+
             }   
 
         }
@@ -77,4 +93,3 @@ function logged()
 
 
 }    
-?>

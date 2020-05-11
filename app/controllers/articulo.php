@@ -80,16 +80,31 @@ function logged()
 
             if (isset($_POST['borrarProducto'])) {
                 $ok = Producto::deleteProduct($id);
-                header("Location: /perfil");
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/perfil";
+                </script>
+                <?php
+                //header("Location: /perfil");
             } 
             elseif (isset($_POST['editarProducto'])) {
-                header("Location: editarProducto?id=$id");
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/editarProducto?id=<?php echo $id;?>";
+                </script>
+                <?php
+                //header("Location: editarProducto?id=$id");
             }
             elseif (isset($_POST['comprarProducto'])) {
                 comprarProducto();
             }elseif (isset($_POST['contactar'])) {
                 //Contactar
-                header("Location: /usuario?id=$vendedor->idUsuario");
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/usuario?id=<?php echo $vendedor->idUsuario;?>";
+                </script>
+                <?php
+                //header("Location: /usuario?id=$vendedor->idUsuario");
             }
     }
     else{ //Buscamos un articulo que no existe (poner un parametro a mano)
@@ -159,13 +174,22 @@ function comprarProducto()
             $conn->commit();
             $_SESSION['saldo'] -= $product->precio;
             $idcompra = password_hash($product->idProducto, PASSWORD_BCRYPT);
+            ?>
+            <script type="text/javascript">
+            window.location.href = "/articulo?id=<?php echo $id;?>&buy=<?php echo $idcompra;?>";
+            </script>
+            <?php
             header("Location: /articulo?id=$id&buy=$idcompra");     
             die();
         }else{
             $conn->rollback();
+            ?>
+            <script type="text/javascript">
+            window.location.href = "/articulo?id=<?php echo $id;?>&buy=0";
+            </script>
+            <?php
             header("Location: /articulo?id=$id&buy=0");
             die(); 
         }
     }
 }
-?>

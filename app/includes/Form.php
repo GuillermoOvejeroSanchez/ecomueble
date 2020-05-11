@@ -71,7 +71,11 @@
                     if (is_array($result) ) {
                         echo $this->generaFormulario($result, $_POST);
                     } else {
-                        header('Location: '.$result);
+                        ?>
+                        <script type="text/javascript">
+                        window.location.href = "<?php echo $result;?>";
+                        </script>
+                        <?php
                         exit();
                     }
                 }  
@@ -162,4 +166,4 @@
                 $html .="</div>";
                 return $html;
             }
-    }
+    }    
