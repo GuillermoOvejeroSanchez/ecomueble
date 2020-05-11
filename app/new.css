@@ -242,7 +242,7 @@ nav_about {
     border-color: darkolivegreen;
 }
 
-.productosInicio img:hover{
+.productosInicio, .productos img:hover{
     box-shadow: 7px 5px 5px rgb(1, 65, 15);
 }
 
@@ -283,14 +283,18 @@ nav_about {
     border-style: solid;
 }
 
-.producto img {
+.producto img, .productos img {
     display: inline-block;
     width: 150px;
     height: 150px;
     border-radius: 20%;
     border-style: solid;
+    
 }
-
+.productos img {
+    margin: 1%;
+    border-color: darkolivegreen;
+}
 .datos{
     display: inline-block;
     width: 50%;

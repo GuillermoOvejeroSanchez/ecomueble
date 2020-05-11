@@ -1,13 +1,13 @@
 function swalBuy(accepted) {
   if(accepted){
     swal({
-      title: "Has comprado tu producto",
+      title: "Has comprado el producto",
       icon: "success",
       timer: 5000,
     })
   }else{
     swal({
-      title: "Fallo al comprar tu producto",
+      title: "Fallo al comprar el producto",
       icon: "error",
       timer: 5000,
     })
