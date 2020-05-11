@@ -26,7 +26,7 @@
         require('./includes/Producto.php');
         require('./includes/Usuario.php');
     ?>
-    <div class="contenido_producto">
+    <div>
 
         <?php
             echo "<div class='productosInicio'>";
