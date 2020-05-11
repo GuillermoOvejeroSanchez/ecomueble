@@ -179,7 +179,7 @@ function comprarProducto()
             window.location.href = "/articulo?id=<?php echo $id;?>&buy=<?php echo $idcompra;?>";
             </script>
             <?php
-            header("Location: /articulo?id=$id&buy=$idcompra");     
+            //header("Location: /articulo?id=$id&buy=$idcompra");     
             die();
         }else{
             $conn->rollback();
@@ -188,7 +188,7 @@ function comprarProducto()
             window.location.href = "/articulo?id=<?php echo $id;?>&buy=0";
             </script>
             <?php
-            header("Location: /articulo?id=$id&buy=0");
+            //header("Location: /articulo?id=$id&buy=0");
             die(); 
         }
     }
