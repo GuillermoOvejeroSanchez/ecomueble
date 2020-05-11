@@ -11,7 +11,6 @@
     
     <?php
         require('./includes/common/cabecera.php');
-        //require('./controllers/home.php'); Si dais el visto bueno borramos este script
         require('./includes/Producto.php');
         require('./includes/Usuario.php');
     ?>
