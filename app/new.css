@@ -227,12 +227,24 @@ nav_about {
 .productosInicio {
     border-style: solid;
     border-width: 0px;
-    padding-right: 5%;
-    padding-left: 7%;  
-    padding-top: 2%;
-    padding-bottom: 1%;  
 }   
 
+.pad {
+
+    padding-right: 5%;
+    padding-left: 5%;  
+    padding-top: 2%;
+    padding-bottom: 1%;  
+}
+
+.padcat{
+
+    padding-right: 3%;
+    padding-left: 5%;  
+    padding-top: 2%;
+    padding-bottom: 1%;  
+}
+    
 .productosInicio img {
     width: 120px;
     height: 120px;
@@ -242,7 +254,7 @@ nav_about {
     border-color: darkolivegreen;
 }
 
-.productosInicio, .productos img:hover{
+.productosInicio img:hover{
     box-shadow: 7px 5px 5px rgb(1, 65, 15);
 }
 

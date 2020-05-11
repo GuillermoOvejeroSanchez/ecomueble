@@ -17,14 +17,14 @@
     ?>
         <div class='container'>
                 <div class='ini'> Productos </div>
-                <div class='productosInicio'>
+                <div class='productosInicio pad'>
                     <?php echo Producto::mostrarXProductos(20); ?>
                 </div> 
         </div> 
         <div class="container"> 
                 <div class='ini'> Usuarios </div> 
 
-                <div class='usuariosInicio'>
+                <div class='usuariosInicio pad'>
                     <?php echo Usuario::mostrarXUsuarios(20); ?>             
                 </div>
         </div> 

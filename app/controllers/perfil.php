@@ -41,7 +41,7 @@ function logged()
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
         //echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
 
-        echo "<div class='productos'>";
+        echo "<div class='productosInicio'>";
             echo Producto::mostrarProductosUser($_SESSION['idUsuario']);
 
         echo "</div>";

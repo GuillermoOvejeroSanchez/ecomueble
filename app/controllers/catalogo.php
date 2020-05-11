@@ -27,7 +27,7 @@
         </form>
         </div>
     <?php
-        echo "<div class='productosInicio'>";
+        echo "<div class='productosInicio padcat'>";
             if(!isset($_POST['nombreProducto'])) Producto::mostrarProductos();
             else {
                 $map = Producto::mostrarProductosBuscados();

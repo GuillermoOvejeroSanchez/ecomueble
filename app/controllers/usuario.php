@@ -60,14 +60,14 @@ function logged()
             else if (isset($_POST['DesbloqUsuario'])) {
                 $ok = Usuario::bloqUser($p);
                 header("Location: /usuario?id=".$p);
-            }
+            }   
 
         }
         
         echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
         //echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
 
-        echo "<div class='productos'>";
+        echo "<div class='productosInicio'>";
             echo Producto::mostrarProductosUser($_GET['id']);
 
         echo "</div>";
