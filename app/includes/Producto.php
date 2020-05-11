@@ -23,6 +23,7 @@
             $this->imagen = $imagen; //
         }
 
+        /***** FUNCIÓN PARA AÑADIR PRODUCTO *****/
         public function insertProduct()
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
@@ -42,7 +43,9 @@
             return $result;
         }
 
-        public function updateProduct(){
+        /***** FUNCIONES PARA ACTUALIZAR DATOS DE PRODUCTO O ELIMINARLO *****/
+        public function updateProduct()
+        {
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
 
@@ -50,35 +53,41 @@
             $resultado = $conn->query($sql);
 
             return $resultado;
-
         }
 
-        public static function getAllProductsFromUser($idUsuario)
+        public function deleteProduct($idProducto)
         {
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-            $sql = sprintf("SELECT * FROM producto WHERE idUsuario = '$idUsuario'");
-            $link_id = [];
-            if($resultado = $conn->query($sql)){
-                if($resultado->num_rows > 0){
-                    while ($fila = $resultado->fetch_assoc()) {
-                        $product_img = "../product_img/" . $fila['imagen'];
-                        $link_articulo = "./articulo?id=" .  $fila['idProducto']; 
-                        $link_id[$link_articulo] = $product_img;
-                    }
-                }
-            }
-            return $link_id;
-        }
-
-        public function deleteProduct($idProducto){
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
             $sql = sprintf("DELETE FROM producto WHERE idProducto = '$idProducto'");
             $ok = $conn->query($sql); 
             return $ok;
         }
-        
+
+        /***** FUNCIONES PARA CONSULTAR PRODUCTOS Y CAMBIAR SU ESTADO EN LOS CONTROLLERS *****/
+        public static function getProduct($id)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $product = new Producto();
+
+            $sql = "SELECT idProducto, descripcion, precio, idEstado, idCategoria, nombre, idUsuario, imagen FROM producto WHERE idProducto = '$id'";
+            $resultado = $conn->query($sql);
+            $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
+            
+            return $product;
+        }
+
+        public static function changeStatus($idProducto, $status)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $sql = "UPDATE producto SET idEstado = $status WHERE idProducto = $idProducto";
+            $ok = $conn->query($sql);
+            return $ok;
+        }
+
+        /***** FUNCIONES PARA MOSTRAR PRODUCTOS EN VENTA *****/
         public static function getAllProducts()
         {
             $app = Aplicacion::getSingleton();
@@ -110,15 +119,47 @@
                     break;
                 }else{
                     $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
-                    /* ?>
-                    <a href=<?php echo "'$link'"?>> <img src=<?php echo "'$product_img'"?> alt='imagen'></a>
-                    <?php */
                     $num--;
                 }
             }
             return $html;
-        } 
+        }
 
+        /***** FUNCIONES PARA MOSTRAR PRODUCTOS DE UN USUARIO *****/
+        public static function getAllProductsFromUser($idUsuario)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $sql = sprintf("SELECT * FROM producto WHERE idUsuario = '$idUsuario'");
+            $link_id = [];
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()) {
+                        $product_img = "../product_img/" . $fila['imagen'];
+                        $link_articulo = "./articulo?id=" .  $fila['idProducto']; 
+                        $link_id[$link_articulo] = $product_img;
+                    }
+                }
+            }
+            return $link_id;
+        }
+
+        function mostrarProductosUser($idUsuario)
+        {
+            $producto = new Producto();
+            $links_id = $producto->getAllProductsFromUser($idUsuario);
+            $html = '';
+            if(count($links_id) != 0){
+                foreach ($links_id as $key => $value) {
+                    $html .= '<a href="'.$key.'">'.'<img src="'.$value.'"alt="imagen"></a>';
+                }
+            }else{
+                $html .= '<label>Este usuario no tiene artículos</label>';
+            }
+            return $html;
+        }
+
+        /***** FUNCIONES PARA MOSTRAR PRODUCTOS DE UNA CATEGORÍA O DE TODAS *****/
         public static function getAllProductsFromCategoria($idCategoria)
         {
             $app = Aplicacion::getSingleton();
@@ -138,61 +179,9 @@
             }
             return $map;
         }
-        public static function getAllProductsFromNombre($nombre)
-        {
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-            $map = [];
-            $nombre = '%' . $nombre . '%';
-            $sql = sprintf("SELECT * FROM producto WHERE nombre LIKE '%s'", $nombre);
-            if($resultado = $conn->query($sql)){
-                if($resultado->num_rows > 0){
-                    while ($fila = $resultado->fetch_assoc()) {
-                        if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
-                            $link = "./articulo?id=" .  $fila['idProducto'];
-                            $product_img = "../product_img/" . $fila['imagen'];
-                            $map[$link] = $product_img;
-                        }
-                    }
-                }
-            }
-            return $map;
-        }
-        
-
-        public function getNameProduct()
-        {
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-            $id = "";
-
-            $sql = "SELECT nombre FROM producto WHERE nombre = '$this->nombre'";
-            
-            if($resultado = $conn->query($sql)) {
-                if ($resultado->num_rows > 0) {
-                    $cat_fetched = $resultado->fetch_assoc();
-                    $id = $cat_fetched['nombre'];
-                }
-            }
-            return $id;
-        }
-          
-        public static function getProduct($id) {
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-            $product = new Producto();
-
-            $sql = "SELECT idProducto, descripcion, precio, idEstado, idCategoria, nombre, idUsuario, imagen FROM producto WHERE idProducto = '$id'";
-
-            $resultado = $conn->query($sql);
-            $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
-            
-            return $product;
-        }
 
         public function mostrarProductos()
         {
-
             $existe = TRUE;
             if(!isset($_GET['categoria'])){
                 $producto = new Producto();
@@ -218,7 +207,28 @@
                     <?php
                 }
             }       
-            
+        }
+
+        /***** FUNCIONES PARA BUSCAR PRODUCTOS POR NOMBRE *****/
+        public static function getAllProductsFromNombre($nombre)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $map = [];
+            $nombre = '%' . $nombre . '%';
+            $sql = sprintf("SELECT * FROM producto WHERE nombre LIKE '%s'", $nombre);
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()) {
+                        if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
+                            $link = "./articulo?id=" .  $fila['idProducto'];
+                            $product_img = "../product_img/" . $fila['imagen'];
+                            $map[$link] = $product_img;
+                        }
+                    }
+                }
+            }
+            return $map;
         }
 
         public function mostrarProductosBuscados()
@@ -233,21 +243,32 @@
                     $map = $producto->getAllProductsFromNombre($nombre);
                     return $map;
                 }
-                else
+                else {
                     $existe = FALSE;
                     return null;    
+                }
             }    
         }
 
-        public static function changeStatus($idProducto, $status)
+        ///////////////////////////////////////// NO VEO PARA QUÉ USAMOS ESTA, NO SÉ CATEGORIZARLA
+        public function getNameProduct()
         {
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
-            $sql = "UPDATE producto SET idEstado = $status WHERE idProducto = $idProducto";
-            $ok = $conn->query($sql);
-            return $ok;
+            $id = "";
+
+            $sql = "SELECT nombre FROM producto WHERE nombre = '$this->nombre'";
+            
+            if($resultado = $conn->query($sql)) {
+                if ($resultado->num_rows > 0) {
+                    $cat_fetched = $resultado->fetch_assoc();
+                    $id = $cat_fetched['nombre'];
+                }
+            }
+            return $id;
         }
-        
+          
+        /***** FUNCIÓN PARA CREAR UN PRODUCTO Y DEVOLVERLO TRAS UNA CONSULTA ******/
         public function createProduct($row)
         {   
             $this->idProducto = $row['idProducto'];

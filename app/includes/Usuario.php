@@ -26,18 +26,7 @@
             $this->bloq = $bloq;
         }
 
-        public function insertUser()
-        {   
-            $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen, bloq) 
-            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen', '$this->bloq')");
-            
-            if($conn->query($sql) === TRUE){
-                return TRUE;
-            }
-            return FALSE;
-        }
-
+        /***** FUNCIONES PARA REGISTRAR USUARIO *****/
         public function checkUser($valid)
         {
             $existe = FALSE;
@@ -57,6 +46,51 @@
             return $msg;
         }
 
+        public function insertUser()
+        {   
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen, bloq) 
+            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen', '$this->bloq')");
+            
+            if($conn->query($sql) === TRUE) {
+                return TRUE;
+            }
+            return FALSE;
+        }
+
+        /***** FUNCIÓN PARA INICIAR SESIÓN *****/
+        public function logUser()
+        {
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            
+            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen, bloq FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
+
+            if ($resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
+                    $user_fetched = $resultado->fetch_assoc();
+
+                    $ok = password_verify($this->password, $user_fetched['password']); 
+                    if ($ok) {
+                        if($user_fetched['bloq'] == 1){ 
+                            return "Tu cuenta está bloqueada temporalmente.";
+                        }
+                        $_SESSION['login'] = TRUE;
+                        $_SESSION['username'] = $user_fetched['nombre'];
+                        $_SESSION['saldo'] = $user_fetched['saldo'];
+                        $_SESSION['profile_pic'] = $user_fetched['imagen'];
+                        $_SESSION['idUsuario'] = $user_fetched['idUsuario'];
+                        
+                        if ($user_fetched['tipoUsuario'] == 1) {
+                            $_SESSION['admin'] = TRUE;
+                        }
+                        return  '/';
+                    }
+                } 
+            }
+            return "Usuario o Contraseña no coinciden";
+        }
+
+        /***** FUNCIONES PARA COMPROBAR QUE NO SE REPITAN NOMBRE O EMAIL AL ACTUALIZAR PERFIL *****/
         public function checkUsername($valid)
         {
             $existe = FALSE;
@@ -74,7 +108,6 @@
             }
             return $msg;
         }
-
 
         public function checkEmail($valid)
         {
@@ -94,7 +127,42 @@
             return $msg;
         }
 
+        public function updateUser()
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
 
+            $sql = "UPDATE usuario SET nombre = '$this->nombre', password = '$this->password', email = '$this->email', telefono = $this->telefono, imagen = '$this->imagen' WHERE idUsuario = $this->idUsuario";
+            $resultado = $conn->query($sql);
+            return $resultado;
+        }
+
+        /***** FUNCIONES PARA CONSULTAR USUARIOS EN LOS CONTROLLERS *****/
+        public static function getUser($name) 
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $user = new Usuario(); //Usuario vacio
+
+            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, bloq, password FROM usuario WHERE nombre = '$name'";
+            $resultado = $conn->query($sql);
+            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
+            return $user;
+        }
+
+        public static function getUserbyId($id)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $user = new Usuario(); //Usuario vacio
+
+            $sql = sprintf("SELECT * FROM usuario WHERE idUsuario = '$id'");
+            $resultado = $conn->query($sql);
+            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
+            return $user;
+        }
+
+        /***** FUNCIÓN PARA ACTUALIZAR EL SALDO TRAS UNA TRANSACCIÓN *****/
         public static function updateSaldo($saldo, $incSaldo, $idUsuario)
         {
             $app = Aplicacion::getSingleton();
@@ -106,48 +174,14 @@
             return $ok;
         }
 
-        public static function getUser($name) {
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-            $user = new Usuario(); //Usuario vacio
-
-            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, bloq, password FROM usuario WHERE nombre = '$name'";
-            $resultado = $conn->query($sql);
-            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
-
-            return $user;
-        }
-
-        public function updateUser(){
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-
-            $sql = "UPDATE usuario SET nombre = '$this->nombre', password = '$this->password', email = '$this->email', telefono = $this->telefono, imagen = '$this->imagen' WHERE idUsuario = $this->idUsuario";
-            $resultado = $conn->query($sql);
-
-            return $resultado;
-
-        }
-
-        public static function getUserbyId($id) {
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-            $user = new Usuario(); //Usuario vacio
-
-            $sql = sprintf("SELECT * FROM usuario WHERE idUsuario = '$id'");
-            $resultado = $conn->query($sql);
-            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
-            
-            return $user;
-        }
-
-        public static function getAllUsers()
+        /***** FUNCIONES PARA MOSTRAR USUARIOS ACTIVOS ******/
+        public static function getAllActiveUsers()
         {
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
             $map = [];
 
-            $sql = sprintf("SELECT * FROM usuario WHERE tipoUsuario = '0'");
+            $sql = sprintf("SELECT * FROM usuario WHERE tipoUsuario = '0' AND bloq = '0'");
 
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
@@ -161,13 +195,30 @@
             return $map;
         }
 
-        public static function getAllActiveUsers()
+        function mostrarXUsuarios($num)
+        {
+            $usuario = new Usuario ();
+            $map = $usuario->getAllActiveUsers();
+            $html = '';
+            foreach ($map as $link => $product_img) {
+                if($num == 0){
+                    break;
+                }else{
+                    $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+                    $num--;
+                }
+            }
+            return $html;
+        }
+
+        /*****FUNCIONES PARA MOSTRAR TODOS LOS USUARIOS (SOLO PARA ADMIN) *****/
+        public static function getAllUsers()
         {
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
             $map = [];
 
-            $sql = sprintf("SELECT * FROM usuario WHERE tipoUsuario = '0' AND bloq = '0'");
+            $sql = sprintf("SELECT * FROM usuario WHERE tipoUsuario = '0'");
 
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
@@ -192,22 +243,7 @@
             return $html;
         }
 
-        function mostrarXUsuarios($num)
-        {
-            $usuario = new Usuario ();
-            $map = $usuario->getAllActiveUsers();
-            $html = '';
-            foreach ($map as $link => $product_img) {
-                if($num == 0){
-                    break;
-                }else{
-                    $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
-                    $num--;
-                }
-            }
-            return $html;
-        }
-
+        /***** FUNCIONES PARA BUSCAR USUARIOS POR NOMBRE (SOLO PARA ADMIN) ******/
         public static function getAllUsersFromNombre($nombre)
         {
             $app = Aplicacion::getSingleton();
@@ -246,38 +282,9 @@
             }   
         } 
 
-        public function logUser()
+        /***** FUNCIONES PARA BLOQUEAR O BORRAR USUARIOS (SOLO PARA ADMIN) *****/
+        public function deleteUser($idUsuario)
         {
-            $conn = Aplicacion::getSingleton()->conexionBd();
-            
-            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen, bloq FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
-
-            if ($resultado = $conn->query($sql)) { 
-                if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
-                    $user_fetched = $resultado->fetch_assoc();
-
-                    $ok = password_verify($this->password, $user_fetched['password']); 
-                    if ($ok) {
-                        if($user_fetched['bloq'] == 1){ 
-                            return "Tu cuenta está bloqueada temporalmente.";
-                        }
-                        $_SESSION['login'] = TRUE;
-                        $_SESSION['username'] = $user_fetched['nombre'];
-                        $_SESSION['saldo'] = $user_fetched['saldo'];
-                        $_SESSION['profile_pic'] = $user_fetched['imagen'];
-                        $_SESSION['idUsuario'] = $user_fetched['idUsuario'];
-                        
-                        if ($user_fetched['tipoUsuario'] == 1) {
-                            $_SESSION['admin'] = TRUE;
-                        }
-                        return  '/';
-                    }
-                } 
-            }
-            return "Usuario o Contraseña no coinciden";
-        }
-
-        public function deleteUser($idUsuario){
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
             $sql = sprintf("DELETE FROM usuario WHERE idUsuario = '$idUsuario'");
@@ -285,7 +292,8 @@
             return $ok;
         }
 
-        public function bloqUser($idUsuario) {
+        public function bloqUser($idUsuario) 
+        {
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
             $ok = FALSE;
@@ -306,6 +314,7 @@
             return $ok;
         }
 
+        /***** FUNCIÓN PARA CREAR UN USUARIO Y DEVOLVERLO TRAS UNA CONSULTA ******/
         public function createUser($row)
         {
             $this->idUsuario = $row['idUsuario'];
