@@ -38,9 +38,8 @@ function logged()
         echo "<div><button class='btn b_margen' type='submit' name='subirProducto'>Subir Producto</button>
         <button class='btn b_margen' type='submit' name='editarPerfil'>Editar Perfil</button></div>";//botones
        
-        echo "<h3>Mis articulos</h3>"; //articulos  Cuando tengamos producto subidos hay que añadir que se muestren.
-        //echo "<div class='bperfil'><button type='submit' name='edit_btn'>Editar Productos</button>";
-
+        echo "<h3>Mis artículos</h3>";
+        
         echo "<div class='productosInicio'>";
             echo Producto::mostrarProductosUser($_SESSION['idUsuario']);
 

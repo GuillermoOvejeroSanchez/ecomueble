@@ -77,7 +77,7 @@
             
                 $ok = $product->updateProduct();
                 if($ok){
-                    return '/perfil';
+                    return "/articulo?id=".$id;
                 }
             
             return $errores;
