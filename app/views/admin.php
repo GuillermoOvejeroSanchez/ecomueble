@@ -22,7 +22,6 @@
             <h1>Consola de administración</h1>
     <?php
         }
-        //require('./controllers/admin.php'); Si dais el visto bueno borramos este script
         require('./includes/Producto.php');
         require('./includes/Usuario.php');
     ?>

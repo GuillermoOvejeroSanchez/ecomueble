@@ -64,7 +64,7 @@
                     $result[] = "Email no válido";
                 }
 
-                //Comprobar si existe user,email,tlfn
+                //Comprobar si existe user, email
                 if($user->checkUser($valid) != ""){
                     $result[] = $user->checkUser($valid) ; 
                 }
@@ -83,7 +83,6 @@
                         $userLog->nombre = $form['username'];
                         $userLog->password = $form['password'];
             
-                        //Comprobar si existe user,email,tlfn
                         return $userLog->logUser();
                     }
                 }   

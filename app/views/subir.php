@@ -1,6 +1,5 @@
 <?php
 require_once('./includes/FormularioSubir.php');
-//require_once('./includes/FormularioProducto.php');
 ?>
 
 <!DOCTYPE html>

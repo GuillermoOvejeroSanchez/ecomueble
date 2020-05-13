@@ -16,7 +16,7 @@
         {
             $this->descripcion = $descripcion; //
             $this->precio = $precio; //
-            $this->idEstado = $idEstado; //0 -> en venta 1 -> vendido 2 -> reservado
+            $this->idEstado = $idEstado; //0 -> en venta, 1 -> vendido, 2 -> reservado
             $this->idCategoria = $idCategoria; //
             $this->nombre = $nombre; //
             $this->idUsuario = $idUsuario;
@@ -250,7 +250,7 @@
             }    
         }
 
-        ///////////////////////////////////////// NO VEO PARA QUÉ USAMOS ESTA, NO SÉ CATEGORIZARLA
+        /////////////////////////////////////////
         public function getNameProduct()
         {
             $app = Aplicacion::getSingleton();
@@ -272,11 +272,11 @@
         public function createProduct($row)
         {   
             $this->idProducto = $row['idProducto'];
-            $this->descripcion = $row['descripcion']; //
-            $this->precio = $row['precio']; //
-            $this->idEstado = $row['idEstado']; //0 -> en venta 1 -> vendido 2 -> reservado
-            $this->idCategoria = $row['idCategoria']; //
-            $this->nombre = $row['nombre']; //
+            $this->descripcion = $row['descripcion'];
+            $this->precio = $row['precio'];
+            $this->idEstado = $row['idEstado']; // 0 -> en venta, 1 -> vendido, 2 -> reservado
+            $this->idCategoria = $row['idCategoria'];
+            $this->nombre = $row['nombre'];
             $this->idUsuario = $row['idUsuario'];
             $this->imagen = $row['imagen'];
         }

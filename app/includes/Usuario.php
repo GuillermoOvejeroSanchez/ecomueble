@@ -23,7 +23,7 @@
             $this->tipoUsuario = $tipoUsuario;
             $this->saldo = $saldo;
             $this->imagen = $imagen;
-            $this->bloq = $bloq;
+            $this->bloq = $bloq; //0 -> desbloqueado, 1 -> bloqueado
         }
 
         /***** FUNCIONES PARA REGISTRAR USUARIO *****/
@@ -325,6 +325,6 @@
             $this->saldo = $row['saldo'];
             $this->imagen = $row['imagen'];
             $this->password = $row['password'];
-            $this->bloq = $row['bloq'];
+            $this->bloq = $row['bloq']; //0 -> desbloqueado, 1 -> bloqueado
         }
     }

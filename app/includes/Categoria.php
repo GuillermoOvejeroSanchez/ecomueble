@@ -48,7 +48,7 @@
             if($resultado = $conn->query($sql)){
                 while ($fila = $resultado->fetch_assoc()) {
                     $tipo = $fila['tipo'];
-                    $arrayTags[$tipo] = ucfirst($tipo) . 's'; //añadimos 's' pa que sea en plural
+                    $arrayTags[$tipo] = ucfirst($tipo) . 's'; //añadimos 's' para que sea en plural
                 }
             }
             return $arrayTags;

@@ -15,7 +15,6 @@
             $imagen = "../product_img/" . $product->imagen;
             ?>
                 <?php
-                //Esto no se como ponerlo bonico
                 $html = " 
                     <fieldset>
                     <legend> Editar Producto </legend>
@@ -41,9 +40,6 @@
         }
 
         protected function procesaFormulario($form){
-            //profile, username, email, telefono, oldPass, newPass form
-
-            
 
             $id = $_GET['id']; //Cogemos id articulo para realizar consulta
             $product = Producto::getProduct($id);
@@ -54,7 +50,6 @@
                 $product->nombre = $form['nombre'];
             }
 
-            //Comprobar si existe user,email
             if(!empty($form['precio'])){
                 $product->precio = $form['precio'];
             }
@@ -71,14 +66,11 @@
                 $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
                 $product->imagen = $imgPath;
             }
-           
-
-            //$errores[] = "TEST";
             
-                $ok = $product->updateProduct();
-                if($ok){
-                    return "/articulo?id=".$id;
-                }
+            $ok = $product->updateProduct();
+            if($ok){
+                return "/articulo?id=".$id;
+            }
             
             return $errores;
     }

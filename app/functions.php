@@ -9,7 +9,7 @@ function secure_input($data){
 
 function subir(){
     //Guardar imagen del producto
-    $imgPro=saveImg("../product_img/" , $productname);
+    $imgPro=saveImg("/product_img/" , $productname);
     $imgPro = empty($imgPro) ? "default_profile.jpg" : $imgPro;  
 }
 

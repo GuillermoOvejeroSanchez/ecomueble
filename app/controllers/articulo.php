@@ -7,7 +7,6 @@ require('./includes/Usuario.php');
 $app = Aplicacion::getSingleton();
 $conn = $app->conexionBd();
 isset($_SESSION['login']) ? logged() : not_logged();
-//$conn->close(); //Importante cerrar siempre la conexion
 
 function logged()
 {

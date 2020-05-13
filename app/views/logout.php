@@ -1,6 +1,4 @@
 <?php
-    //require_once __DIR__.'/includes/config.php';
-
     //Doble seguridad: unset + destroy
     unset($_SESSION["login"]);
     unset($_SESSION["esAdmin"]);
@@ -12,8 +10,6 @@
     unset($_SESSION['idUsuario']);
     session_destroy();
     //header("Location: /");
-
-   // session_destroy();
 ?>
 
 <!DOCTYPE html>

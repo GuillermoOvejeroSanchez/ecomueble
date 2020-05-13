@@ -30,7 +30,7 @@
             $user->nombre = $form['username'];
             $user->password = $form['password'];
 
-            //Comprobar si existe user,email,tlfn
+            //Comprobar si existe user, email
             $resultado[] = "<e>¡Error al iniciar sesión!</e>";
             $resultado[] = $user->logUser();
             if(end($resultado) == "/") {

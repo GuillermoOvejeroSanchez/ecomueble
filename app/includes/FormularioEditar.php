@@ -14,7 +14,6 @@
             $imagen = "../profile_img/" . $user->imagen;
             ?>
                 <?php
-                //Esto no se como ponerlo bonico
                 $html = " 
                     <fieldset>
                     <legend> Editar Perfil </legend>
@@ -62,7 +61,7 @@
                 $errores[] = "Email no válido";
             }
 
-            //Comprobar si existe user,email
+            //Comprobar si existe user, email
             if($user->nombre !== $form['username']){
                 $user->nombre = $form['username'];
                 $error = $user->checkUsername($valid);
@@ -79,8 +78,7 @@
                 $user->imagen = $imgPath;
                 $_SESSION['profile_pic'] = $user->imagen;
             }
-            //check if email and username are duplicated
-
+            
             if($user->telefono !== $form['telefono'] && strlen($form['telefono']) < 10){
                 $user->telefono = $form['telefono'];
             }
@@ -98,8 +96,6 @@
                     $errores[] = "Las contraseñas no coinciden";
                 }
             }
-
-            //$errores[] = "TEST";
             
             if(count($errores) === 0){
                 $ok = $user->updateUser();
