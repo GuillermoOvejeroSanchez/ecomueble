@@ -2,6 +2,7 @@
 require('./includes/Usuario.php');
 require('./includes/Producto.php');
 require('./includes/Categoria.php');
+require('./includes/Transaccion.php');
 
 isset($_SESSION['login']) ? logged() : not_logged();
 
@@ -84,8 +85,13 @@ function logged()
 
         echo "<div class='productosInicio'>";
             echo Producto::mostrarProductosUser($_GET['id']);
-
         echo "</div>";
+
+        echo"<h3>Artículos comprados</h3>";
+
+        echo "<div class='productosInicio'>";
+            echo Producto::mostrarProductosComprador($_GET['id']);
+        echo"</div>";
         ?>
     </div>
     <?php

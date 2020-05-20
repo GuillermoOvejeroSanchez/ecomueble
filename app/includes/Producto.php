@@ -1,6 +1,6 @@
 <?php
     require_once __DIR__ . '/Aplicacion.php';
-
+    
     class Producto{
         public $idProducto;
         public $descripcion;
@@ -143,7 +143,7 @@
             }
             return $link_id;
         }
-
+        
         function mostrarProductosUser($idUsuario)
         {
             $producto = new Producto();
@@ -158,6 +158,39 @@
             }
             return $html;
         }
+
+        public static function getAllProductsFromComprador($idComprador)
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $sql = sprintf("SELECT * FROM producto WHERE idUsuario = '$idComprador'");
+            $link_id = [];
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()) {
+                        $product_img = "../product_img/" . $fila['imagen'];
+                        $link_articulo = "./articulo?id=" .  $fila['idProducto']; 
+                        $link_id[$link_articulo] = $product_img;
+                    }
+                }
+            }
+            return $link_id;
+        }
+        function mostrarProductosComprador($idComprador)
+        {
+            $transaccion = new Producto();
+            $links_id = $transaccion->getAllProductsFromComprador($idComprador);
+            $html = '';
+            if(count($links_id) != 0){
+                foreach ($links_id as $key => $value) {
+                    $html .= '<a href="'.$key.'">'.'<img src="'.$value.'"alt="imagen"></a>';
+                }
+            }else{
+                $html .= '<label>Este usuario no tiene artículos comprados</label>';
+            }
+            return $html;
+        }
+
 
         /***** FUNCIONES PARA MOSTRAR PRODUCTOS DE UNA CATEGORÍA O DE TODAS *****/
         public static function getAllProductsFromCategoria($idCategoria)

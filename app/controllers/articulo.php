@@ -31,7 +31,7 @@ function logged()
     $product = Producto::getProduct($id);
 
     if($product->nombre != ""){
-        $estado = $product->idEstado ? "No Disponible" : "En Venta";
+        $estado = $product->idEstado ? "No Disponible" : "En Venta" : "En Reserva"; 
         $imagen = "../product_img/" . $product->imagen;
         ?>
         <div class="container">
@@ -192,4 +192,15 @@ function comprarProducto()
             die(); 
         }
     }
+}
+
+function reservarProducto(){
+    $id = $_GET['id']; //Cogemos id articulo para realizar consulta
+    $product = Producto::getProduct($id);
+    $ok = Producto::changeStatus($id, RESERVADO);
+         if(!$ok){
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
+        }
 }
