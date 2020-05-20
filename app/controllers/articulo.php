@@ -31,7 +31,15 @@ function logged()
     $product = Producto::getProduct($id);
 
     if($product->nombre != ""){
-        $estado = $product->idEstado ? "No Disponible" : "En Venta" : "En Reserva"; 
+        if( $product->idEstado == 0){
+           $estado= "En venta";
+        }
+       else if( $product->idEstado == 1){
+            $estado= "No disponible";
+         }
+        else if( $product->idEstado == 2){
+            $estado= "Reservado";
+         }
         $imagen = "../product_img/" . $product->imagen;
         ?>
         <div class="container">
@@ -62,7 +70,8 @@ function logged()
                             echo" <button class='btn b_margen' type='submit' name='editarProducto'>Editar artículo</button></div>"; //TODO Editar P3
                         }else{ //Si no lo es mostrar comprar/contactar
                             echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
-                            echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button></div>";
+                            echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button>";
+                            echo "<button class='btn b_margen' type='submit' name='reservarProducto'>Reservar</button></div>";
                         }
                     }
 
@@ -97,7 +106,11 @@ function logged()
             }
             elseif (isset($_POST['comprarProducto'])) {
                 comprarProducto();
-            }elseif (isset($_POST['contactar'])) {
+            }
+            elseif (isset($_POST['reservarProducto'])) {
+                reservarProducto();
+            }
+            elseif (isset($_POST['contactar'])) {
                 //Contactar
                 ?>
                 <script type="text/javascript">
