@@ -98,7 +98,7 @@
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
                     while ($fila = $resultado->fetch_assoc()) {
-                        if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
+                        if($fila['idEstado'] != 1){ //Solo si no está vendido
                             $link = "./articulo?id=" .  $fila['idProducto'];
                             $product_img = "../product_img/" . $fila['imagen'];
                             $map[$link] = $product_img;
@@ -202,7 +202,7 @@
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
                     while ($fila = $resultado->fetch_assoc()) {
-                        if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
+                        if($fila['idEstado'] != 1 ){ //Solo si no está vendido 
                             $link = "./articulo?id=" .  $fila['idProducto'];
                             $product_img = "../product_img/" . $fila['imagen'];
                             $map[$link] = $product_img;
@@ -253,7 +253,7 @@
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
                     while ($fila = $resultado->fetch_assoc()) {
-                        if($fila['idEstado'] == 0){ //Solo si su idEstado es 0 -> En venta
+                        if($fila['idEstado'] != 1){ //Solo si no está vendido
                             $link = "./articulo?id=" .  $fila['idProducto'];
                             $product_img = "../product_img/" . $fila['imagen'];
                             $map[$link] = $product_img;
