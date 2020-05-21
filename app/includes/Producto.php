@@ -163,14 +163,21 @@
         {
             $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
-            $sql = sprintf("SELECT * FROM producto WHERE idUsuario = '$idComprador'");
+            $sql1 = sprintf("SELECT * FROM transacciones WHERE idComprador = '$idComprador'");
             $link_id = [];
-            if($resultado = $conn->query($sql)){
-                if($resultado->num_rows > 0){
-                    while ($fila = $resultado->fetch_assoc()) {
-                        $product_img = "../product_img/" . $fila['imagen'];
-                        $link_articulo = "./articulo?id=" .  $fila['idProducto']; 
-                        $link_id[$link_articulo] = $product_img;
+            if($resultado1 = $conn->query($sql1)){
+                while ( $p = $resultado1->fetch_assoc()) {
+               
+                    $idProducto = $p['idProducto'];
+                    $sql2 =  sprintf("SELECT * FROM producto WHERE idProducto = '$idProducto'");
+                    if($resultado2 = $conn->query($sql2)){
+                        if($resultado2->num_rows > 0){
+                            while ($fila = $resultado2->fetch_assoc()) {
+                                $product_img = "../product_img/" . $fila['imagen'];
+                                $link_articulo = "./articulo?id=" .  $fila['idProducto']; 
+                                $link_id[$link_articulo] = $product_img;
+                            }
+                        }
                     }
                 }
             }
