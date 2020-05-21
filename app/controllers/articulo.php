@@ -64,6 +64,8 @@ function logged()
                     $jscodeDelete = 'confirmAction('.json_encode($messageDelete).');';
                     $messageBuy = 'Este producto vale ' . $product->precio . ' puntos ¿Desea confimar la compra?' ;
                     $jscodeBuy = 'confirmAction('.json_encode($messageBuy).');';
+                    $messageReserva= 'Este producto vale ' . $product->precio . ' puntos ¿Desea reservarlo?' ;
+                    $jscodeReserva= 'confirmAction('.json_encode($messageReserva).');';
                     if(!$product->idEstado){ //No esta vendido o reservado
                         if($ownProduct){
                             echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Eliminar artículo</button>';
@@ -71,7 +73,7 @@ function logged()
                         }else{ //Si no lo es mostrar comprar/contactar
                             echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
                             echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button>";
-                            echo "<button class='btn b_margen' type='submit' name='reservarProducto'>Reservar</button></div>";
+                            echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeReserva).'" type="submit" name="reservarProducto">Reservar</button>';
                         }
                     }
 
@@ -211,9 +213,11 @@ function reservarProducto(){
     $id = $_GET['id']; //Cogemos id articulo para realizar consulta
     $product = Producto::getProduct($id);
     $ok = Producto::changeStatus($id, RESERVADO);
+    if($product->idEstado == 0){
          if(!$ok){
             if(!$failed)
                 $failed = TRUE;
             $conn->rollback();
         }
+    }
 }
