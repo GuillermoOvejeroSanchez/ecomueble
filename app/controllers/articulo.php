@@ -64,14 +64,21 @@ function logged()
                     $jscodeDelete = 'confirmAction('.json_encode($messageDelete).');';
                     $messageBuy = 'Este producto vale ' . $product->precio . ' puntos ¿Desea confimar la compra?' ;
                     $jscodeBuy = 'confirmAction('.json_encode($messageBuy).');';
-                    if(!$product->idEstado){ //No esta vendido o reservado
+                    $messageReserva= 'Este producto vale ' . $product->precio . ' puntos ¿Desea reservarlo?' ;
+                    $jscodeReserva= 'confirmAction('.json_encode($messageReserva).');';
+                    if($product->idEstado !=1){ //No esta vendido o reservado
                         if($ownProduct){
                             echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Eliminar artículo</button>';
                             echo" <button class='btn b_margen' type='submit' name='editarProducto'>Editar artículo</button></div>"; //TODO Editar P3
                         }else{ //Si no lo es mostrar comprar/contactar
                             echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
                             echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button>";
-                            echo "<button class='btn b_margen' type='submit' name='reservarProducto'>Reservar</button></div>";
+                            if($product->idEstado !=2) {
+                                echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeReserva).'" type="submit" name="reservarProducto">Reservar</button>';
+                            }
+                            else {
+                                echo '<div><button class="btn b_margen" onclick="return  type="submit" name="anularReserva">Anular Reserva</button>';
+                            }
                         }
                     }
 
@@ -108,7 +115,10 @@ function logged()
                 comprarProducto();
             }
             elseif (isset($_POST['reservarProducto'])) {
-                reservarProducto();
+                reservarProducto(RESERVADO);
+            }
+            elseif (isset($_POST['anularReserva'])) {
+                reservarProducto(EN_VENTA);
             }
             elseif (isset($_POST['contactar'])) {
                 //Contactar
@@ -207,13 +217,20 @@ function comprarProducto()
     }
 }
 
-function reservarProducto(){
+function reservarProducto($estado){
     $id = $_GET['id']; //Cogemos id articulo para realizar consulta
     $product = Producto::getProduct($id);
-    $ok = Producto::changeStatus($id, RESERVADO);
+    $ok = Producto::changeStatus($id, $estado);
+    if($product->idEstado == 0){
          if(!$ok){
             if(!$failed)
                 $failed = TRUE;
             $conn->rollback();
         }
+    }
+    ?>
+    <script type="text/javascript">
+    window.location.href = "/articulo?id=<?php echo $id;?>";
+    </script>
+    <?php
 }

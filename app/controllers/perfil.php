@@ -42,8 +42,13 @@ function logged()
         
         echo "<div class='productosInicio'>";
             echo Producto::mostrarProductosUser($_SESSION['idUsuario']);
-
         echo "</div>";
+
+        echo"<h3>Artículos comprados</h3>";
+
+        echo "<div class='productosInicio'>";
+            echo Producto::mostrarProductosComprador($_SESSION['idUsuario']);
+        echo"</div>";
         ?>
     </div>
     <?php
