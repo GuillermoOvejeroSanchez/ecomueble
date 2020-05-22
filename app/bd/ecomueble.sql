@@ -114,6 +114,18 @@ CREATE TABLE `transacciones` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reservas`
+--
+
+CREATE TABLE `reservas` (
+  `idReserva` int(10) NOT NULL,
+  `idProducto` int(10) NOT NULL,
+  `idComprador` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -183,6 +195,14 @@ ALTER TABLE `transacciones`
   ADD KEY `idComprador` (`idComprador`) USING BTREE;
 
 --
+-- Indexes for table `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`idReserva`),
+  ADD UNIQUE KEY `idProducto` (`idProducto`) USING BTREE,
+  ADD KEY `idComprador` (`idComprador`) USING BTREE;
+
+--
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -225,6 +245,12 @@ ALTER TABLE `transacciones`
   MODIFY `idTransaccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT for table `transacciones`
+--
+ALTER TABLE `reservas`
+  MODIFY `idReserva` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -262,6 +288,13 @@ ALTER TABLE `reporte`
 ALTER TABLE `transacciones`
   ADD CONSTRAINT `transacciones_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
   ADD CONSTRAINT `transacciones_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `reservas`
+--
+ALTER TABLE `reservas`
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
+  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `valoracion`
