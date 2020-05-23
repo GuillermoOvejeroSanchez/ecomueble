@@ -314,6 +314,28 @@
             return $ok;
         }
 
+        public function adminUser($idUsuario){
+
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $ok = FALSE;
+            $sql = "SELECT tipoUsuario FROM usuario WHERE idUsuario = '$idUsuario'";
+
+            if ($resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
+                    $user_fetched = $resultado->fetch_assoc();
+                    if($user_fetched['tipoUsuario'] == 0){
+                        $sql = "UPDATE usuario SET tipoUsuario = 1 WHERE idUsuario = '$idUsuario'";
+                    }
+                    else {
+                        $sql = "UPDATE usuario SET tipoUsuario = 0 WHERE idUsuario = '$idUsuario'";
+                    }
+                    $ok = $conn->query($sql);
+                }
+            }
+            return $ok;
+        }
+
         /***** FUNCIÓN PARA CREAR UN USUARIO Y DEVOLVERLO TRAS UNA CONSULTA ******/
         public function createUser($row)
         {
