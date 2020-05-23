@@ -38,7 +38,10 @@
 
             $sql = "SELECT * FROM reservas WHERE idProducto = '$id'";
             $resultado = $conn->query($sql);
-            $reserva->createReserva($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
+            if($resultado && $resultado->num_rows > 0) {
+                $reserva->createReserva($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
+            }
+            
             
             return $reserva;
         }
