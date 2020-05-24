@@ -264,11 +264,13 @@
                             $link = "./articulo?id=" .  $fila['idProducto'];
                             $product_img = "../product_img/" . $fila['imagen'];
                             $map[$link] = $product_img;
+                           
                         }
                     }
+                    return $map;
                 }
             }
-            return $map;
+            return null;
         }
 
         public function mostrarProductosBuscados()
