@@ -98,7 +98,8 @@
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
                     while ($fila = $resultado->fetch_assoc()) {
-                        if($fila['idEstado'] != 1){ //Solo si no está vendido
+                        $user = Usuario:: getUserbyId($fila['idUsuario']);
+                        if($fila['idEstado'] != 1 && $user->bloq == 0){ //Solo si no está vendido y el usuario de ese producto no está bloqueado
                             $link = "./articulo?id=" .  $fila['idProducto'];
                             $product_img = "../product_img/" . $fila['imagen'];
                             $map[$link] = $product_img;
@@ -209,7 +210,8 @@
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
                     while ($fila = $resultado->fetch_assoc()) {
-                        if($fila['idEstado'] != 1 ){ //Solo si no está vendido 
+                        $user = Usuario:: getUserbyId($fila['idUsuario']);
+                        if($fila['idEstado'] != 1 && $user->bloq == 0){ //Solo si no está vendido y el usuario no está bloqueado
                             $link = "./articulo?id=" .  $fila['idProducto'];
                             $product_img = "../product_img/" . $fila['imagen'];
                             $map[$link] = $product_img;
@@ -260,7 +262,8 @@
             if($resultado = $conn->query($sql)){
                 if($resultado->num_rows > 0){
                     while ($fila = $resultado->fetch_assoc()) {
-                        if($fila['idEstado'] != 1){ //Solo si no está vendido
+                        $user = Usuario:: getUserbyId($fila['idUsuario']);
+                        if($fila['idEstado'] != 1 && $user->bloq == 0){ //Solo si no está vendido y el usuario no está bloqueado
                             $link = "./articulo?id=" .  $fila['idProducto'];
                             $product_img = "../product_img/" . $fila['imagen'];
                             $map[$link] = $product_img;
