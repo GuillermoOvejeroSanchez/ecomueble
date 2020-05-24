@@ -95,7 +95,7 @@ CREATE TABLE `reporte` (
   `idProducto` int(10) NOT NULL,
   `reportador` int(10) NOT NULL,
   `fechaReporte` date NOT NULL,
-  `resolucion` tinyint(1) NOT NULL
+  `resolucion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -183,7 +183,7 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `reporte`
   ADD PRIMARY KEY (`idReporte`),
-  ADD UNIQUE KEY `reportador` (`reportador`),
+  ADD KEY `reportador` (`reportador`),
   ADD KEY `idProducto` (`idProducto`) USING BTREE;
 
 --

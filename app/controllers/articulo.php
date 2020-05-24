@@ -3,6 +3,7 @@ require('./includes/Producto.php');
 require('./includes/Categoria.php');
 require('./includes/Transaccion.php');
 require('./includes/Reserva.php');
+require('./includes/Reporte.php');
 require('./includes/Usuario.php');
 
 $app = Aplicacion::getSingleton();
@@ -85,17 +86,22 @@ function logged()
                             }
                                
                             echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button>";
+                            if(!isset($_SESSION['admin'])) echo "<div><button class='btn b_margen' type='submit' name='reportar'>Reportar producto</button>";
                             if($product->idEstado !=2) {
-                                echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeReserva).'" type="submit" name="reservarProducto">Reservar</button>';
+                                echo '<button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeReserva).'" type="submit" name="reservarProducto">Reservar</button>';
                             }
                             elseif ($ownReserva) {
-                                echo '<div><button class="btn b_margen" onclick="return  type="submit" name="anularReserva">Anular Reserva</button>';
+                                echo '<button class="btn b_margen" onclick="return  type="submit" name="anularReserva">Anular Reserva</button>';
                             }
                         }
                     }
 
                     if(isset($_SESSION['admin'])){
                         echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Eliminar artículo</button>';
+                        echo "<button class='btn b_margen' type='submit' name='resolverReporte'>Resolver reporte</button>";
+                        echo "<div class='reporte'>";
+                        Reporte:: showReports($id);
+                        echo "</div>";
                     }
                 ?>
         </div>
@@ -140,6 +146,52 @@ function logged()
                 </script>
                 <?php
                 //header("Location: /usuario?id=$vendedor->idUsuario");
+            }
+            elseif (isset($_POST['reportar'])) {
+                ?>
+                <div class='reporte'>
+                <form action="" method="post" >
+                <fieldset>
+                <legend> Reportar producto </legend>
+                <div><label>Motivo: </label> <input type="text" name="motivo"  /></div>
+                <div><button type="submit" name="submit_reportar">Reportar</button></div>
+                </fieldset>
+                </form>
+                </div>
+                <?php
+                
+            }
+            if(isset($_POST['submit_reportar'])) {
+                reportar($_POST['motivo']);
+            }
+            elseif (isset($_POST['resolverReporte'])) {
+                ?>
+                <div class="reporte">
+                <form action="" method="post" >
+                <fieldset>
+                <legend> Resolver reporte </legend>
+                <div><label>ID reporte: </label> <input type="text" name="idReporte"  /></div>
+                <div><label>Resolución: </label> <input type="text" name="resolucion"  /></div>
+                <div><button type="submit" name="submit_resolver">Resolver</button></div>
+                </fieldset>
+                </form>
+                </div>
+                <?php
+                
+            }
+            if(isset($_POST['submit_resolver'])) {
+                $reporte = Reporte::getReporte($_POST['idReporte']);
+                if(!empty($_POST['resolucion'])){
+                    $reporte->resolucion = $_POST['resolucion'];
+                }
+                $ok = $reporte->updateReporte();
+                if($ok){
+                    ?>
+                    <script type="text/javascript">
+                    window.location.href = "/articulo?id=<?php echo $id;?>";
+                    </script>
+                    <?php
+                }
             }
     }
     else{ //Buscamos un articulo que no existe (poner un parametro a mano)
@@ -287,6 +339,31 @@ function AnularReserva(){
         }
     } 
     $ok = Reserva:: borrarReserva($id); 
+    if(!$ok){
+        if(!$failed)
+            $failed = TRUE;
+        $conn->rollback();
+    }
+    if(!$failed){
+        $conn->commit();
+    }
+    else {
+        $conn->rollback();
+    }
+    ?>
+    <script type="text/javascript">
+    window.location.href = "/articulo?id=<?php echo $id;?>";
+    </script>
+    <?php
+}
+function reportar($motivo) {
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBd();
+    $conn->autocommit(FALSE);
+    $failed = FALSE;
+    $id = $_GET['id'];
+    $reporte = new Reporte($motivo, $id, $_SESSION['idUsuario'], date('Y-m-d H:i:s')); 
+    $ok = $reporte->newReporte();
     if(!$ok){
         if(!$failed)
             $failed = TRUE;
