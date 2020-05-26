@@ -130,6 +130,21 @@ function logged()
                 //header("Location: editarProducto?id=$id");
             }
             elseif (isset($_POST['comprarProducto'])) {
+                ?>
+                <div class='reporte'>
+                <form action="" method="post" >
+                <fieldset>
+                <legend> Valorar compra </legend>
+                <div><label>¿Cómo valoras el producto?(Del 0 al 10): </label> <input type="text" name="notaProducto"  /></div>
+                <div><label>¿Cómo valoras el usuario?:(Del 0 al 10) </label> <input type="text" name="notaUsuario"  /></div>
+                <div><button type="submit" name="submit_valorar">Valorar</button></div>
+                </fieldset>
+                </form>
+                </div>
+                <?php
+            }
+            if(isset($_POST['submit_valorar'])){
+                valorarCompra();
                 comprarProducto();
             }
             elseif (isset($_POST['reservarProducto'])) {
@@ -380,4 +395,11 @@ function reportar($motivo) {
     window.location.href = "/articulo?id=<?php echo $id;?>";
     </script>
     <?php
+}
+
+function valorarCompra(){
+    $media=($_POST['notaProducto']+$_POST['notaUsuario'])/2;
+    $id=$_GET['id'];
+    $producto=Producto::getProduct($id);
+    $ok=Usuario::updateValoracion($media, $producto->idUsuario);
 }

@@ -25,6 +25,7 @@ function logged()
                     <p>Nombre: <strong>$user->nombre</strong></p> 
                     <p>Email: <strong>$user->email</strong></p>
                     <p>Teléfono: <strong>$user->telefono</strong> </p>
+                    <p>Valoración: <strong>$user->valoracion</strong> </p>
                 </div>
             </div>";//Imagen de perfil y datos informativos
 

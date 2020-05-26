@@ -12,9 +12,10 @@
         public $saldo;
         public $imagen;
         public $bloq;
+        public $valoracion;
 
 
-        function __construct($nombre ="", $email = "", $telefono = "", $password = "", $tipoUsuario = 0, $saldo = 50, $imagen = 'default_profile.jpg', $bloq = 0)
+        function __construct($nombre ="", $email = "", $telefono = "", $password = "", $tipoUsuario = 0, $saldo = 50, $imagen = 'default_profile.jpg', $bloq = 0, $valoracion=10)
         {
             $this->nombre = $nombre;
             $this->email = $email;
@@ -24,6 +25,7 @@
             $this->saldo = $saldo;
             $this->imagen = $imagen;
             $this->bloq = $bloq;
+            $this->valoracion=$valoracion;
         }
 
         /***** FUNCIONES PARA REGISTRAR USUARIO *****/
@@ -49,8 +51,8 @@
         public function insertUser()
         {   
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen, bloq) 
-            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen', '$this->bloq')");
+            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen, bloq, valoracion) 
+            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen', '$this->bloq', '$this->valoracion')");
             
             if($conn->query($sql) === TRUE) {
                 return TRUE;
@@ -63,7 +65,7 @@
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
             
-            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen, bloq FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
+            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen, bloq, valoracion FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
 
             if ($resultado = $conn->query($sql)) { 
                 if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
@@ -144,7 +146,7 @@
             $conn = $app->conexionBd();
             $user = new Usuario(); //Usuario vacio
 
-            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, bloq, password FROM usuario WHERE nombre = '$name'";
+            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, bloq, valoracion, password FROM usuario WHERE nombre = '$name'";
             $resultado = $conn->query($sql);
             $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
             return $user;
@@ -170,6 +172,18 @@
 
             $saldototal = $saldo + $incSaldo;
             $sql = "UPDATE usuario SET saldo = $saldototal WHERE idUsuario = $idUsuario";
+            $ok = $conn->query($sql);
+            return $ok;
+        }
+
+        /***** FUNCION PARA SUBIR LA VALORACION ****/
+        public static function updateValoracion($valoracion, $idUsuario){
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $user=new Usuario();
+            $user->getUserbyId($idUsuario);
+            $media=($valoracion+$user->valoracion)/2;
+            $sql = "UPDATE usuario SET valoracion = $media WHERE idUsuario = $idUsuario";
             $ok = $conn->query($sql);
             return $ok;
         }
@@ -348,5 +362,6 @@
             $this->imagen = $row['imagen'];
             $this->password = $row['password'];
             $this->bloq = $row['bloq'];
+            $this->valoracion=$row['valoracion'];
         }
     }

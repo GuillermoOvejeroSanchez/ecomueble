@@ -138,22 +138,11 @@ CREATE TABLE `usuario` (
   `tipoUsuario` tinyint(1) NOT NULL DEFAULT 0,
   `saldo` int(10) NOT NULL DEFAULT 0,
   `imagen` varchar(255) DEFAULT NULL,
-  `bloq` tinyint(1) NOT NULL DEFAULT 0
+  `bloq` tinyint(1) NOT NULL DEFAULT 0,
+  `valoracion` int(10) NOT NULL DEFAULT 10
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `valoracion`
---
-
-CREATE TABLE `valoracion` (
-  `idValoracion` int(10) NOT NULL,
-  `idCliente` int(10) NOT NULL,
-  `idVendedor` int(10) NOT NULL,
-  `nota` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Indexes for dumped tables
 --
@@ -210,12 +199,6 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
 
---
--- Indexes for table `valoracion`
---
-ALTER TABLE `valoracion`
-  ADD PRIMARY KEY (`idValoracion`),
-  ADD KEY `idUsuario` (`idUsuario`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -258,12 +241,6 @@ ALTER TABLE `usuario`
   MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `valoracion`
---
-ALTER TABLE `valoracion`
-  MODIFY `idValoracion` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- Constraints for dumped tables
 --
 
@@ -298,10 +275,7 @@ ALTER TABLE `reservas`
   ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
 
 --
--- Constraints for table `valoracion`
 --
-ALTER TABLE `valoracion`
-  ADD CONSTRAINT `valoracion_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
