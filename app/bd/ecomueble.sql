@@ -149,7 +149,8 @@ CREATE TABLE `usuario` (
 
 CREATE TABLE `valoracion` (
   `idValoracion` int(10) NOT NULL,
-  `idUsuario` int(10) NOT NULL,
+  `idCliente` int(10) NOT NULL,
+  `idVendedor` int(10) NOT NULL,
   `nota` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
