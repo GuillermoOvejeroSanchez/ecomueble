@@ -92,38 +92,52 @@
             return "Usuario o Contraseña no coinciden";
         }
 
-        /***** FUNCIONES PARA COMPROBAR QUE NO SE REPITAN NOMBRE O EMAIL AL ACTUALIZAR PERFIL *****/
-        public function checkUsername($valid)
+        /***** FUNCIONES PARA COMPROBAR QUE NO SE REPITAN NOMBRE, EMAIL O TELÉFONO AL CREAR O ACTUALIZAR PERFIL *****/
+        public function checkUsername($nombre)
         {
-            $existe = FALSE;
-            $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre'";
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            
+            $sql = "SELECT idUsuario, nombre FROM usuario WHERE nombre = '$nombre'";
             $msg ="";
-            if ($valid and $resultado = $conn->query($sql)) { 
+            if ($resultado = $conn->query($sql)) {
                 if ($resultado->num_rows > 0) {
-                    $existe = TRUE;
-                    $msg = "Ya existe un usuario con ese ";
-                    //Comprobar cuales son los repetidos
                     $user_fetched = $resultado->fetch_assoc();
-                    if($user_fetched['nombre'] == $this->nombre) $msg .= "nombre ";
+                    if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                        $msg = "Ya existe un usuario con ese nombre.";
+                    }
+                }
+            }
+            return $msg;
+        }
+
+        public function checkEmail($email)
+        {
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            $sql = "SELECT idUsuario, email FROM usuario WHERE email = '$email'";
+            $msg ="";
+            if ($resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0) {
+                    $user_fetched = $resultado->fetch_assoc();
+                    if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                        $msg = "Ya existe un usuario con ese email.";
+                    }
                 } 
             }
             return $msg;
         }
 
-        public function checkEmail($valid)
+        public function checkTlfn($telefono)
         {
-            $existe = FALSE;
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = "SELECT nombre, email, telefono FROM usuario WHERE email = '$this->email'";
+            $sql = "SELECT idUsuario, telefono FROM usuario WHERE telefono = '$telefono'";
             $msg ="";
-            if ($valid and $resultado = $conn->query($sql)) { 
+            if ($resultado = $conn->query($sql)) { 
                 if ($resultado->num_rows > 0) {
-                    $existe = TRUE;
-                    $msg = "Ya existe un usuario con ese ";
-                    //Comprobar cuales son los repetidos
                     $user_fetched = $resultado->fetch_assoc();
-                    if($user_fetched['email'] == $this->email) $msg .= "email ";
+                    if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                        $msg = "Ya existe un usuario con ese teléfono.";
+                    }
                 } 
             }
             return $msg;
@@ -256,6 +270,7 @@
             }
             return $html;
         }
+        
         /*****FUNCIONES PARA MOSTRAR LOS USUARIOS BLOQUEADOS (SOLO PARA ADMIN) *****/
         public static function getBloqUsers()
         {

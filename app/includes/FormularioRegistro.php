@@ -35,37 +35,25 @@
 
     function procesaFormularioReg($form) {
         $result = array();
-        $valid = TRUE;
 
         $result[] = "<e>¡Error al Registrarse!</e>";
 
-        //Campos introducidos en el form
-        $user = new Usuario($form['username'], $form['email'], $form['tlfn']);
         $hash = password_hash($form['password'], PASSWORD_BCRYPT);
         $user->password = $hash;
-        
-        //Comprobar si existe user,email,tlfn
-        if($user->checkUser($valid) != ""){
-            $result[] = $user->checkUser($valid) ; 
-        }
-        
-        //Es valido y no existe
-        if($valid and count($result) === 1) {
-            require('./img.php');
-            //Guardar img en server y session de la imagen
-            $imgPath = saveImg("./profile_img/" , $user->nombre, "profile");
-            $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
-            $user->imagen = $imgPath;
 
-            //Query SQL
-            if($user->insertUser()) {
-                $userLog = new Usuario();
-                $userLog->nombre = $form['username'];
-                $userLog->password = $form['password'];
+        require('./img.php');
+        //Guardar img en server y session de la imagen
+        $imgPath = saveImg("./profile_img/" , $user->nombre, "profile");
+        $imgPath = empty($imgPath) ? "default_profile.jpg" : $imgPath; //Si no ponemos imagen o no es valida, nos selecciona una por defecto
+        $user->imagen = $imgPath;
 
-                return $userLog->logUser();
-            }
+        //Query SQL
+        if($user->insertUser()) {
+            $userLog = new Usuario();
+            $userLog->nombre = $form['username'];
+            $userLog->password = $form['password'];
+
+            return $userLog->logUser();
         }
         return $result;
     }
-

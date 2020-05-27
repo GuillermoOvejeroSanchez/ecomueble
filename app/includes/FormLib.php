@@ -88,6 +88,20 @@ function formulario($formId, $opciones = array() )
                 exit();
             }
         }
+
+        elseif($formId == "formEditar") {
+            $result = procesaFormularioEditar($_POST);    
+            if (is_array($result)) {
+                echo generaFormulario($formId, $action, $enctype, $result, $_POST);                
+            } else {
+                ?>
+                <script type="text/javascript">
+                window.location.href = "<?php echo $result;?>";
+                </script>
+                <?php
+                exit();
+            }
+        }
     } 
 }
 

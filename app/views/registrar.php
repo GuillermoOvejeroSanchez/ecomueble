@@ -26,47 +26,73 @@ require_once('./includes/FormularioRegistro.php');
             $emailOk = false;
             $tlfnOk = false;
             $passOk = false;
-            
+
             $("#username").change(function() {
+                //Comprobamos que el nombre de usuario cumpla los requisitos mínimos
                 if ( usernameCheck($("#username").val()) ) {
-                    $("#error1").hide();
-                    $("#ok1").show();
-                    $usernameOk = true;
-                } else {
-                    $("#ok1").hide();
-                    $("#error1").show();
-                    $("#username").focus();
-                    $usernameOk = false;
+                    //Comprobamos que no exista un usuario con ese nombre
+                    var url="./controllers/comprobaciones.php?username=" + $("#username").val();
+                    $.get(url, function(response, status) {
+                        if(response != "") {
+                            alert("Error: " + response);
+                            $("#ok1").hide();
+                            $("#error1").show();
+                            $("#username").focus();
+                            $usernameOk = false;
+                        }
+                        else {
+                            $("#error1").hide();
+                            $("#ok1").show();
+                            $usernameOk = true;
+                        }
+                    });
                 }
             });
 
             $("#email").change(function() {
+                //Comprobamos que el email cumpla los requisitos mínimos
                 if ( emailCheck($("#email").val()) ) {
-                    $("#error2").hide();
-                    $("#ok2").show();
-                    $emailOk = true;
-                } else {
-                    $("#ok2").hide();
-                    $("#error2").show();
-                    $("#email").focus();
-                    $emailOk = false;
+                    //Comprobamos que no exista un usuario con ese email
+                    var url="./controllers/comprobaciones.php?email=" + $("#email").val();
+                    $.get(url, function(response, status) {
+                        if(response != "") {
+                            alert("Error: " + response);
+                            $("#ok2").hide();
+                            $("#error2").show();
+                            $("#email").focus();
+                            $emailOk = false;
+                        } else {
+                            $("#error2").hide();
+                            $("#ok2").show();
+                            $emailOk = true;
+                        }
+                    });
                 }
             });
 
             $("#tlfn").change(function() {
+                //Comprobamos que el teléfono cumpla los requisitos mínimos
                 if ( telefonoCheck($("#tlfn").val()) ) {
-                    $("#error3").hide();
-                    $("#ok3").show();
-                    $tlfnOk = true;
-                } else {
-                    $("#ok3").hide();
-                    $("#error3").show();
-                    $("#tlfn").focus();
-                    $tlfnOk = false;
+                    //Comprobamos que no exista un usuario con ese teléfono
+                    var url="./controllers/comprobaciones.php?tlfn=" + $("#tlfn").val();
+                    $.get(url, function(response, status) {
+                        if(response != "") {
+                            alert("Error: " + response);
+                            $("#ok3").hide();
+                            $("#error3").show();
+                            $("#tlfn").focus();
+                            $tlfnOk = false;
+                        } else {
+                            $("#error3").hide();
+                            $("#ok3").show();
+                            $tlfnOk = true;
+                        }
+                    });
                 }
             });
 
             $("#pass").change(function() {
+                //Comprobamos que la password cumpla los requisitos mínimos
                 if ( passwordCheck($("#pass").val()) ) {
                     $("#error4").hide();
                     $("#ok4").show();

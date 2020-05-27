@@ -43,3 +43,12 @@ function passwordCheck(password) {
         return true;
     }
 }
+
+function newPasswordCheck(password1, password2) {
+    if(password1 != password2) {
+        alert("Las contraseñas no coinciden.");
+        return false;
+    } else {
+        return true;
+    }
+}
