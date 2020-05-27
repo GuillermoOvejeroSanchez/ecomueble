@@ -125,7 +125,7 @@
             }
             return $html;
         }
-
+        
         /***** FUNCIONES PARA MOSTRAR PRODUCTOS DE UN USUARIO *****/
         public static function getAllProductsFromUser($idUsuario)
         {

@@ -256,6 +256,37 @@
             }
             return $html;
         }
+        /*****FUNCIONES PARA MOSTRAR LOS USUARIOS BLOQUEADOS (SOLO PARA ADMIN) *****/
+        public static function getBloqUsers()
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $map = [];
+
+            $sql = sprintf("SELECT * FROM usuario WHERE bloq = '1'");
+
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()  ) {
+                        $link = "./usuario?id=" .  $fila['idUsuario']; 
+                        $product_img = "../profile_img/" . $fila['imagen'];
+                        $map[$link] = $product_img;
+                    }
+                }
+            }
+            return $map;
+        }
+
+        function mostrarBloqUsuarios()
+        {
+            $usuario = new Usuario ();
+            $map = $usuario->getBloqUsers();
+            $html = '';
+            foreach ($map as $link => $product_img) {
+                $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+            }
+            return $html;
+        }
 
         /***** FUNCIONES PARA BUSCAR USUARIOS POR NOMBRE (SOLO PARA ADMIN) ******/
         public static function getAllUsersFromNombre($nombre)
