@@ -127,7 +127,7 @@
 
         <th class='productosInicio'> 
             <?php
-            echo Reporte::mostrarReportProductos(10);
+            echo Producto::mostrarReportProductos(10);
                     }
             ?>
         </th> 

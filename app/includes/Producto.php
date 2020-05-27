@@ -199,6 +199,45 @@
             return $html;
         }
 
+        /***** FUNCIONES PARA MOSTRAR PRODUCTOS CON REPORTE *****/
+        public static function getReportProducts()
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $sql1 = sprintf("SELECT * FROM reporte");
+            $link_id = [];
+            if($resultado1 = $conn->query($sql1)){
+                while ( $p = $resultado1->fetch_assoc()) {
+               
+                    $idProducto = $p['idProducto'];
+                    $sql2 =  sprintf("SELECT * FROM producto WHERE idProducto = '$idProducto'");
+                    if($resultado2 = $conn->query($sql2)){
+                        if($resultado2->num_rows > 0){
+                            while ($fila = $resultado2->fetch_assoc()) {
+                                $product_img = "../product_img/" . $fila['imagen'];
+                                $link_articulo = "./articulo?id=" .  $fila['idProducto']; 
+                                $link_id[$link_articulo] = $product_img;
+                            }
+                        }
+                    }
+                }
+            }
+            return $link_id;
+        }
+        function mostrarReportProductos()
+        {
+            $reportado = new Producto();
+            $links_id = $reportado->getReportProducts();
+            $html = '';
+            if(count($links_id) != 0){
+                foreach ($links_id as $key => $value) {
+                    $html .= '<a href="'.$key.'">'.'<img src="'.$value.'"alt="imagen"></a>';
+                }
+            }else{
+                $html .= '<label>No hay ningún producto con reporte</label>';
+            }
+            return $html;
+        }
 
         /***** FUNCIONES PARA MOSTRAR PRODUCTOS DE UNA CATEGORÍA O DE TODAS *****/
         public static function getAllProductsFromCategoria($idCategoria)
