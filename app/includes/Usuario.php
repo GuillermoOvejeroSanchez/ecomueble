@@ -297,8 +297,13 @@
             $usuario = new Usuario ();
             $map = $usuario->getBloqUsers();
             $html = '';
-            foreach ($map as $link => $product_img) {
-                $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+            if(count($map) != 0){
+                foreach ($map as $link => $product_img) {
+                    $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+                }
+            }
+            else {
+                $html .= '<label>No hay ningún usuario bloqueado</label>';
             }
             return $html;
         }
