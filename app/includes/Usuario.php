@@ -93,53 +93,85 @@
         }
 
         /***** FUNCIONES PARA COMPROBAR QUE NO SE REPITAN NOMBRE, EMAIL O TELÉFONO AL CREAR O ACTUALIZAR PERFIL *****/
-        public function checkUsername($nombre)
+        public function checkUsername($nombre, $form)
         {
-            $app = Aplicacion::getSingleton();
-            $conn = $app->conexionBd();
-            
-            $sql = "SELECT idUsuario, nombre FROM usuario WHERE nombre = '$nombre'";
+            $conn = Aplicacion::getSingleton()->conexionBd();
             $msg ="";
-            if ($resultado = $conn->query($sql)) {
-                if ($resultado->num_rows > 0) {
-                    $user_fetched = $resultado->fetch_assoc();
-                    if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+            if($form == "reg") {
+                $sql = "SELECT nombre FROM usuario WHERE nombre = '$nombre'";
+                if ($resultado = $conn->query($sql)) {
+                    if ($resultado->num_rows > 0) {
                         $msg = "Ya existe un usuario con ese nombre.";
                     }
                 }
+            } else if ($form == "edit") {
+                $sql = "SELECT idUsuario, nombre FROM usuario WHERE nombre = '$nombre'";
+                if ($resultado = $conn->query($sql)) {
+                    if ($resultado->num_rows > 0) {
+                        $user_fetched = $resultado->fetch_assoc();
+                        if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                            $msg = "Ya existe un usuario con ese nombre.";
+                        }
+                    }
+                }
+            } else {
+                $msg = "Error comprobando nombre de usuario.";
             }
             return $msg;
         }
 
-        public function checkEmail($email)
+        public function checkEmail($email, $form)
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = "SELECT idUsuario, email FROM usuario WHERE email = '$email'";
             $msg ="";
-            if ($resultado = $conn->query($sql)) { 
-                if ($resultado->num_rows > 0) {
-                    $user_fetched = $resultado->fetch_assoc();
-                    if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+            if($form == "reg") {
+                $sql = "SELECT email FROM usuario WHERE email = '$email'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
                         $msg = "Ya existe un usuario con ese email.";
                     }
-                } 
+                }
+            } else if ($form == "edit") {
+                $sql = "SELECT idUsuario, email FROM usuario WHERE email = '$email'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
+                        $user_fetched = $resultado->fetch_assoc();
+                        if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                            $msg = "Ya existe un usuario con ese email.";
+                        }
+                    } 
+                }
+            } else {
+                $msg = "Error comprobando email de usuario.";
             }
             return $msg;
         }
 
-        public function checkTlfn($telefono)
+        public function checkTlfn($telefono, $form)
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = "SELECT idUsuario, telefono FROM usuario WHERE telefono = '$telefono'";
             $msg ="";
-            if ($resultado = $conn->query($sql)) { 
-                if ($resultado->num_rows > 0) {
-                    $user_fetched = $resultado->fetch_assoc();
-                    if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+            if($form == "reg") {
+                $sql = "SELECT telefono FROM usuario WHERE telefono = '$telefono'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
                         $msg = "Ya existe un usuario con ese teléfono.";
-                    }
-                } 
+                    } 
+                }
+            } else if ($form == "edit") {
+                $sql = "SELECT idUsuario, telefono FROM usuario WHERE telefono = '$telefono'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
+                        $user_fetched = $resultado->fetch_assoc();
+                        if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                            $msg = "Ya existe un usuario con ese teléfono.";
+                        }
+                    } 
+                }
+            } else {
+                $msg = "Error comprobando teléfono de usuario.";
             }
+
             return $msg;
         }
 

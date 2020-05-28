@@ -31,7 +31,7 @@ require_once('./includes/FormularioRegistro.php');
                 //Comprobamos que el nombre de usuario cumpla los requisitos mínimos
                 if ( usernameCheck($("#username").val()) ) {
                     //Comprobamos que no exista un usuario con ese nombre
-                    var url="./controllers/comprobaciones.php?username=" + $("#username").val();
+                    var url="./controllers/comprobaciones.php?usernameReg=" + $("#username").val();
                     $.get(url, function(response, status) {
                         if(response != "") {
                             alert("Error: " + response);
@@ -53,7 +53,7 @@ require_once('./includes/FormularioRegistro.php');
                 //Comprobamos que el email cumpla los requisitos mínimos
                 if ( emailCheck($("#email").val()) ) {
                     //Comprobamos que no exista un usuario con ese email
-                    var url="./controllers/comprobaciones.php?email=" + $("#email").val();
+                    var url="./controllers/comprobaciones.php?emailReg=" + $("#email").val();
                     $.get(url, function(response, status) {
                         if(response != "") {
                             alert("Error: " + response);
@@ -74,7 +74,7 @@ require_once('./includes/FormularioRegistro.php');
                 //Comprobamos que el teléfono cumpla los requisitos mínimos
                 if ( telefonoCheck($("#tlfn").val()) ) {
                     //Comprobamos que no exista un usuario con ese teléfono
-                    var url="./controllers/comprobaciones.php?tlfn=" + $("#tlfn").val();
+                    var url="./controllers/comprobaciones.php?tlfnReg=" + $("#tlfn").val();
                     $.get(url, function(response, status) {
                         if(response != "") {
                             alert("Error: " + response);
