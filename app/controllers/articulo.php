@@ -144,7 +144,9 @@ function logged()
                 <?php
             }
             if(isset($_POST['submit_valorar'])){
-                valorarCompra();
+                if(!empty($_POST['notaProducto']) && !empty($_POST['notaUsuario'])) {
+                    valorarCompra();
+                }
                 comprarProducto();
             }
             elseif (isset($_POST['reservarProducto'])) {
