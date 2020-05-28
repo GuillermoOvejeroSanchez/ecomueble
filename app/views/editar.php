@@ -28,9 +28,9 @@ require_once('./includes/FormularioEditar.php');
             $usernameOk = true;
             $emailOk = true;
             $tlfnOk = true;
-            $oldPassOk = false;
-            $pass1Ok = false;
-            $pass2Ok = false;
+            $oldPassOk = true;
+            $pass1Ok = true;
+            $pass2Ok = true;
 
             $("#username").change(function() {
                 //Comprobamos que el nombre de usuario cumpla los requisitos mínimos

@@ -38,6 +38,11 @@
 
         $result[] = "<e>¡Error al Registrarse!</e>";
 
+        $user = new Usuario();
+        $user->nombre = $form['username'];
+        $user->email = $form['email'];
+        $user->telefono = $form['tlfn'];
+
         $hash = password_hash($form['password'], PASSWORD_BCRYPT);
         $user->password = $hash;
 
