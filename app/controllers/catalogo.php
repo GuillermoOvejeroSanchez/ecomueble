@@ -1,6 +1,8 @@
 <?php
     require('./includes/Producto.php');
     require('./includes/Categoria.php');
+    require('./includes/Usuario.php');
+
 
     $arrayTags = Categoria::getAllTags();
 

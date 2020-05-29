@@ -11,18 +11,17 @@
     
     <?php
         require('./includes/common/cabecera.php');
-        //require('./controllers/home.php'); Si dais el visto bueno borramos este script
         require('./includes/Producto.php');
         require('./includes/Usuario.php');
     ?>
         <div class='container'>
-                <div class='ini'> Productos </div>
+                <div class='ini'> Algunos de los productos subidos</div>
                 <div class='productosInicio pad'>
                     <?php echo Producto::mostrarXProductos(20); ?>
                 </div> 
         </div> 
         <div class="container"> 
-                <div class='ini'> Usuarios </div> 
+                <div class='ini'> Algunos de los usuarios registrados</div> 
 
                 <div class='usuariosInicio pad'>
                     <?php echo Usuario::mostrarXUsuarios(20); ?>             

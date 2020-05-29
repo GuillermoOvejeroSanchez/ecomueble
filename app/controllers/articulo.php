@@ -2,6 +2,8 @@
 require('./includes/Producto.php');
 require('./includes/Categoria.php');
 require('./includes/Transaccion.php');
+require('./includes/Reserva.php');
+require('./includes/Reporte.php');
 require('./includes/Usuario.php');
 
 $app = Aplicacion::getSingleton();
@@ -31,7 +33,15 @@ function logged()
     $product = Producto::getProduct($id);
 
     if($product->nombre != ""){
-        $estado = $product->idEstado ? "No Disponible" : "En Venta";
+        if( $product->idEstado == 0){
+           $estado= "En venta";
+        }
+       else if( $product->idEstado == 1){
+            $estado= "No disponible";
+         }
+        else if( $product->idEstado == 2){
+            $estado= "Reservado";
+         }
         $imagen = "../product_img/" . $product->imagen;
         ?>
         <div class="container">
@@ -52,22 +62,46 @@ function logged()
                     </div>";
 
                     $ownProduct = ($_SESSION['idUsuario'] == $product->idUsuario);
+                    $reserva = Reserva:: getidComprador($id);
+                    $ownReserva = ($_SESSION['idUsuario'] == $reserva->idComprador);
                     $messageDelete = '¿Seguro que quieres borrar el producto?';
                     $jscodeDelete = 'confirmAction('.json_encode($messageDelete).');';
                     $messageBuy = 'Este producto vale ' . $product->precio . ' puntos ¿Desea confimar la compra?' ;
                     $jscodeBuy = 'confirmAction('.json_encode($messageBuy).');';
-                    if(!$product->idEstado){ //No esta vendido o reservado
+                    $messageReserva= 'Este producto vale ' . $product->precio . ' puntos ¿Desea reservarlo?' ;
+                    $jscodeReserva= 'confirmAction('.json_encode($messageReserva).');';
+                    if($product->idEstado !=1){ //No esta vendido o reservado
                         if($ownProduct){
                             echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Eliminar artículo</button>';
                             echo" <button class='btn b_margen' type='submit' name='editarProducto'>Editar artículo</button></div>"; //TODO Editar P3
+                      
                         }else{ //Si no lo es mostrar comprar/contactar
-                            echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
-                            echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button></div>";
+                            if($product->idEstado == 2) {
+                                if($ownReserva) {
+                                    echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';  
+                                }
+                            }
+                            else {
+                                echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBuy).'" type="submit" name="comprarProducto">Comprar</button>';
+                            }
+                               
+                            echo "<button class='btn b_margen' type='submit' name='contactar'>Contactar</button>";
+                            if(!isset($_SESSION['admin'])) echo "<div><button class='btn b_margen' type='submit' name='reportar'>Reportar producto</button>";
+                            if($product->idEstado !=2) {
+                                echo '<button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeReserva).'" type="submit" name="reservarProducto">Reservar</button>';
+                            }
+                            elseif ($ownReserva) {
+                                echo '<button class="btn b_margen" onclick="return  type="submit" name="anularReserva">Anular Reserva</button>';
+                            }
                         }
                     }
 
                     if(isset($_SESSION['admin'])){
                         echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeDelete).'" type="submit" name="borrarProducto">Eliminar artículo</button>';
+                        echo "<button class='btn b_margen' type='submit' name='resolverReporte'>Resolver reporte</button>";
+                        echo "<div class='reporte'>";
+                        Reporte:: showReports($id);
+                        echo "</div>";
                     }
                 ?>
         </div>
@@ -96,8 +130,32 @@ function logged()
                 //header("Location: editarProducto?id=$id");
             }
             elseif (isset($_POST['comprarProducto'])) {
+                ?>
+                <div class='reporte'>
+                <form action="" method="post" >
+                <fieldset>
+                <legend> Valorar compra </legend>
+                <div><label>¿Cómo valoras el producto?(Del 0 al 10): </label> <input type="text" name="notaProducto"  /></div>
+                <div><label>¿Cómo valoras el usuario?:(Del 0 al 10) </label> <input type="text" name="notaUsuario"  /></div>
+                <div><button type="submit" name="submit_valorar">Valorar</button></div>
+                </fieldset>
+                </form>
+                </div>
+                <?php
+            }
+            if(isset($_POST['submit_valorar'])){
+                if(!empty($_POST['notaProducto']) && !empty($_POST['notaUsuario'])) {
+                    valorarCompra();
+                }
                 comprarProducto();
-            }elseif (isset($_POST['contactar'])) {
+            }
+            elseif (isset($_POST['reservarProducto'])) {
+                reservarProducto();
+            }
+            elseif (isset($_POST['anularReserva'])) {
+                AnularReserva();
+            }
+            elseif (isset($_POST['contactar'])) {
                 //Contactar
                 ?>
                 <script type="text/javascript">
@@ -105,6 +163,52 @@ function logged()
                 </script>
                 <?php
                 //header("Location: /usuario?id=$vendedor->idUsuario");
+            }
+            elseif (isset($_POST['reportar'])) {
+                ?>
+                <div class='reporte'>
+                <form action="" method="post" >
+                <fieldset>
+                <legend> Reportar producto </legend>
+                <div><label>Motivo: </label> <input type="text" name="motivo"  /></div>
+                <div><button type="submit" name="submit_reportar">Reportar</button></div>
+                </fieldset>
+                </form>
+                </div>
+                <?php
+                
+            }
+            if(isset($_POST['submit_reportar'])) {
+                reportar($_POST['motivo']);
+            }
+            elseif (isset($_POST['resolverReporte'])) {
+                ?>
+                <div class="reporte">
+                <form action="" method="post" >
+                <fieldset>
+                <legend> Resolver reporte </legend>
+                <div><label>ID reporte: </label> <input type="text" name="idReporte"  /></div>
+                <div><label>Resolución: </label> <input type="text" name="resolucion"  /></div>
+                <div><button type="submit" name="submit_resolver">Resolver</button></div>
+                </fieldset>
+                </form>
+                </div>
+                <?php
+                
+            }
+            if(isset($_POST['submit_resolver'])) {
+                $reporte = Reporte::getReporte($_POST['idReporte']);
+                if(!empty($_POST['resolucion'])){
+                    $reporte->resolucion = $_POST['resolucion'];
+                }
+                $ok = $reporte->updateReporte();
+                if($ok){
+                    ?>
+                    <script type="text/javascript">
+                    window.location.href = "/articulo?id=<?php echo $id;?>";
+                    </script>
+                    <?php
+                }
             }
     }
     else{ //Buscamos un articulo que no existe (poner un parametro a mano)
@@ -127,7 +231,7 @@ function comprarProducto()
     $transaccion = new Transaccion($id, $_SESSION['idUsuario'], date('Y-m-d')); //World Wide Web Consortium (ejemplo: 2005-08-15T15:52:01+00:00)
 
     //Comprobar si tenemos monedas (monedas >= precio)
-    if($_SESSION['saldo'] >= $product->precio && $product->idEstado == 0){
+    if($_SESSION['saldo'] >= $product->precio && $product->idEstado != 1){
        
         //? START TRANSACTION            
         $app = Aplicacion::getSingleton();
@@ -154,6 +258,13 @@ function comprarProducto()
         //Eliminar producto (cambiar status a vendido)
         //? ROLLBACK IF FAILED
         $ok = Producto::changeStatus($id, VENDIDO);
+        if(!$ok){
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
+        }
+
+        $ok = Reserva:: borrarReserva($id); 
         if(!$ok){
             if(!$failed)
                 $failed = TRUE;
@@ -192,4 +303,105 @@ function comprarProducto()
             die(); 
         }
     }
+}
+
+function reservarProducto(){
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBd();
+    $conn->autocommit(FALSE);
+    $failed = FALSE;
+    $id = $_GET['id']; //Cogemos id articulo para realizar consulta
+    $product = Producto::getProduct($id);
+    $reserva = new Reserva($id, $_SESSION['idUsuario']); 
+    $ok = Producto::changeStatus($id, RESERVADO);
+    if($product->idEstado == 0){
+        if(!$ok){
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
+        }
+    }
+    $ok = $reserva->newReserva();
+    if(!$ok){
+        if(!$failed)
+            $failed = TRUE;
+        $conn->rollback();
+    }
+    if(!$failed){
+        $conn->commit();
+    }
+    else {
+        $conn->rollback();
+    }
+    ?>
+    <script type="text/javascript">
+    window.location.href = "/articulo?id=<?php echo $id;?>";
+    </script>
+    <?php
+}
+function AnularReserva(){
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBd();
+    $conn->autocommit(FALSE);
+    $failed = FALSE;
+    $id = $_GET['id']; //Cogemos id articulo para realizar consulta
+    $product = Producto::getProduct($id);
+   
+    $ok = Producto::changeStatus($id, EN_VENTA);
+    if($product->idEstado == 0){
+        if(!$ok){
+            if(!$failed)
+                $failed = TRUE;
+            $conn->rollback();
+        }
+    } 
+    $ok = Reserva:: borrarReserva($id); 
+    if(!$ok){
+        if(!$failed)
+            $failed = TRUE;
+        $conn->rollback();
+    }
+    if(!$failed){
+        $conn->commit();
+    }
+    else {
+        $conn->rollback();
+    }
+    ?>
+    <script type="text/javascript">
+    window.location.href = "/articulo?id=<?php echo $id;?>";
+    </script>
+    <?php
+}
+function reportar($motivo) {
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBd();
+    $conn->autocommit(FALSE);
+    $failed = FALSE;
+    $id = $_GET['id'];
+    $reporte = new Reporte($motivo, $id, $_SESSION['idUsuario'], date('Y-m-d H:i:s')); 
+    $ok = $reporte->newReporte();
+    if(!$ok){
+        if(!$failed)
+            $failed = TRUE;
+        $conn->rollback();
+    }
+    if(!$failed){
+        $conn->commit();
+    }
+    else {
+        $conn->rollback();
+    }
+    ?>
+    <script type="text/javascript">
+    window.location.href = "/articulo?id=<?php echo $id;?>";
+    </script>
+    <?php
+}
+
+function valorarCompra(){
+    $media=($_POST['notaProducto']+$_POST['notaUsuario'])/2;
+    $id=$_GET['id'];
+    $producto=Producto::getProduct($id);
+    $ok=Usuario::updateValoracion($media, $producto->idUsuario);
 }

@@ -218,6 +218,11 @@ label {
 fieldset{
   border-color: rgb(34, 104, 81);
 }
+.reporte {
+    margin-left: 3%;
+    margin-right: 3%;
+    background-color:rgb(5, 100, 37);
+}
 .contenido form{
 	width:30%;
 	padding:3%;

@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . '/Aplicacion.php';
+    
 
     class Transaccion{
         public $idTransaccion;
@@ -24,4 +25,5 @@
             $ok = $conn->query($sql);
             return $ok;
         }
+        
     }

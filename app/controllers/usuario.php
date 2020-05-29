@@ -2,6 +2,7 @@
 require('./includes/Usuario.php');
 require('./includes/Producto.php');
 require('./includes/Categoria.php');
+require('./includes/Transaccion.php');
 
 isset($_SESSION['login']) ? logged() : not_logged();
 
@@ -24,6 +25,7 @@ function logged()
                     <p>Nombre: <strong>$user->nombre</strong></p> 
                     <p>Email: <strong>$user->email</strong></p>
                     <p>Teléfono: <strong>$user->telefono</strong> </p>
+                    <p>Valoración: <strong>$user->valoracion</strong> </p>
                 </div>
             </div>";//Imagen de perfil y datos informativos
 
@@ -48,6 +50,16 @@ function logged()
                 $jscodeBloq = 'confirmAction('.json_encode($messageBloq).');';
                 echo '<button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeBloq).'" type="submit" name="DesbloqUsuario">Desbloquear usuario</button></div>';
             }
+            if($user->tipoUsuario==0){
+                $messageAdmin='¿Seguro que quieres hacer admin a este usuario?';
+                $jscodeAdmin='confirmAction('.json_encode($messageAdmin).');';
+                echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeAdmin).'" type="submit" name="adminUsuario">Admin usuario</button>';
+            }else{
+                $messageAdmin='¿Seguro que quieres que deje de ser admin este usuario?';
+                $jscodeAdmin='confirmAction('.json_encode($messageAdmin).');';
+                echo '<div><button class="btn b_margen" onclick="return '.htmlspecialchars($jscodeAdmin).'" type="submit" name="DesAdmin">Deshacer admin</button>';
+            }
+            
 
             if (isset($_POST['borrarUsuario'])) {
                 $ok = Usuario::deleteUser($p);
@@ -75,17 +87,35 @@ function logged()
                 </script>
                 <?php
                 //header("Location: /usuario?id=".$p);
-
-            }   
-
+            }else if (isset($_POST['adminUsuario'])){
+                $ok = Usuario::adminUser($p);
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/usuario?id=<?php echo $p;?>";
+                </script>
+                <?php
+            }else if(isset($_POST['DesAdmin'])){
+                $ok = Usuario::adminUser($p);
+                ?>
+                <script type="text/javascript">
+                window.location.href = "/usuario?id=<?php echo $p;?>";
+                </script>
+                <?php
+            }
+ 
         }
         
         echo "<h3>Mis artículos</h3>";
 
         echo "<div class='productosInicio'>";
             echo Producto::mostrarProductosUser($_GET['id']);
-
         echo "</div>";
+
+        echo"<h3>Artículos comprados</h3>";
+
+        echo "<div class='productosInicio'>";
+            echo Producto::mostrarProductosComprador($_GET['id']);
+        echo"</div>";
         ?>
     </div>
     <?php

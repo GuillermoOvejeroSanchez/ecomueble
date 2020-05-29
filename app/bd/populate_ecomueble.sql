@@ -9,29 +9,29 @@ ALTER TABLE `usuario`
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `telefono`, `password`, `tipoUsuario`, `saldo`, `imagen`, `bloq`) VALUES
-(1, 'admin', 'ecomueble.admin@gmail.com', 602548003, '$2y$10$DDQBORmx7lzkGnvdVUXYfuWV7sXxHdMQOUiIF.c5pHqnnptc8ssX2', 1, 500, 'default_profile.jpg', 0),
-(2, 'Sara P', 'saraperez@gmail.com', 612654687, '$2y$10$wOkGu7zqU24qAEapKEAANefv15T1z0gMEKmIY66vFjFJv99POBm66', 0, 85, 'Sara P_profile.jpg', 0),
-(3, 'Carlos12', 'carsanper@hotmail.es', 658459632, '$2y$10$eqq0JRhNlC6.BJqEYnS5eOfDpowfQjp1VfoOIs/VlhLxzWgLKvqjq', 0, 20, 'Carlos12_profile.jpg', 0),
-(4, 'Patripat', 'plopez97@gmail.com', 622588947, '$2y$10$3SHlmZ7Z8Rt.b3Z5GWmn7OUkmMkwTb2lifk/IS6Gntk.Fz1.KLCc2', 0, 90, 'Patripat_profile.jpg', 0),
-(5, 'Amueblador', 'amueblador_27@gmail.com', 644589325, '$2y$10$QxZonX/ZxaPxv1.nY9GAHO6gJdO9DW5Co8iv2yatuD6RKgnVD1RQi', 0, 30, 'Amueblador_profile.JPG', 0),
-(6, 'elee.03', 'elenagonzalez@yahoo.es', 687523149, '$2y$10$rzQEhneSA1OCxX5/mtVGEu0rLYcxUGoS2GvdxB4AquXy/AKgCMYjq', 0, 15, 'elee.03_profile.jpg', 0),
-(7, '.Ana.', 'a.lopsan@gmail.com', 685214789, '$2y$10$H/oD4t1.qWxN/mXbgapn0.hvqRuTjonsCjXVRDZwkeZQ8XEPnPj2y', 0, 50, '.Ana._profile.jpg', 0),
-(8, 'JoseSanz', 'jsanz547@yahoo.es', 614365896, '$2y$10$Gck6CWJGivuavrrTK4dP1.VPi3wkMrNkns2ua4LNlWjOsVLJQTxIK', 0, 50, 'JoseSanz_profile.JPG', 0),
-(9, 'ZamoranoMartin', 'l.zammart@hotmail.com', 648752369, '$2y$10$4aS5fwMycvzKe4Os9sdzze1kAlyOc2mX.OGeVTA1ktUoEqawa.Use', 0, 70, 'ZamoranoMartin_profile.jpg', 0),
-(10, 'm.sanchez', 'm.sanchez@msn.com', 648752396, '$2y$10$GwMV45Mac9lquoDLfAR/XeDa4rTovBGRJhQdY58.AmlJyGu1JtAzu', 0, 15, 'm.sanchez_profile.jpg', 0),
-(11, 'armariodeschrodinger', 'armariodeschrodinger@gmail.com', 632658941, '$2y$10$54s1XAXTBbWJesi8nyZlbuGmRer8tEvYs4sJikkieqU1Y9VquZMZW', 0, 85, 'armariodeschrodinger_profile.JPG', 0),
-(12, 'Yass', 'yas.badalyan@gmail.com', 698745210, '$2y$10$7TArxHqTNcCiA8T/M533.uDoajzIy20500PHZG9I9kVWdP3.7L31q', 0, 55, 'Yass_profile.JPG', 0),
-(13, 'Fran.53', 'franciscomenendez@hotmail.com', 674123658, '$2y$10$GPF1JQqCDH8Appe98A3gwOfH9aTy0hDmqZGE/gwmBfk7a1Ap1C9lG', 0, 75, 'Fran.53_profile.jpg', 0),
-(14, 'maaryhelen', 'el.dominguez@gmail.com', 612584369, '$2y$10$Uz8uK34E1xdSas/aoFkRlOEeGQ1m02GaohK4ZpzutdgSkp4fQA4/.', 0, 25, 'maaryhelen_profile.jpg', 0),
-(15, 'd_sanlo', 'd_sanlo@hotmail.com', 602584130, '$2y$10$MrXMkOs05wL7TVgpWnhhzO0pvDg/hEok9Yj2ZII5BXzPHLzbUCJgO', 0, 25, 'd_sanlo_profile.jpg', 0),
-(16, 'begooooooo', 'begolopmart@msn.com', 667859632, '$2y$10$Q97XYj95g3YKogIHpWzB3elJNkMTdCB.e0y4e3M5Izeao72LrLCum', 0, 70, 'begooooooo_profile.jpg', 0),
-(17, 'lamesadepablo', 'pablodiaz5396@gmail.com', 600214589, '$2y$10$.hNWj1MALfWdfAlo3zV6OerMGOH5033EqnHdbsCWyEoPMggS9TKAi', 0, 115, 'lamesadepablo_profile.jpg', 0),
-(18, 'monillo_loco', 'm.ruizcardiel@hotmail.com', 630258965, '$2y$10$QP04FYvu5ECzqHlpGL9uL.nIELteynfhyVGQg89lm4pBspy1zDfga', 0, 50, 'monillo_loco_profile.JPG', 0),
-(19, 'j.vazquez', 'j.vazquez@gmail.com', 645201369, '$2y$10$saKsWHL/uLBQbdAS5geMV.ddK2kDsllvzmQE56bHnxjXCP0EhyhJS', 0, 15, 'j.vazquez_profile.jpg', 0),
-(20, 'Natalia_94', 'nat_rodriguez_94@gmail.com', 658902313, '$2y$10$465TIzAyxfvk3lBnSQOf1OxQ0iOyr6.uGFlUYPMeKEc6Y7UKCcmrC', 0, 10, 'Natalia_94_profile.jpg', 0),
-(21, 'wilson', 'guilleov@ucm.es', 684216696, '$2y$10$h681e.VAdpki37HrDiRlF.lG5v9W420s1QAfFxcWjLVjNgleAVqUa', 1, 999, 'wilson.png', 0),
-(22, 'prueba', 'prueba@prueba.com', 657845213, '$2y$10$A36aJIWPRxz7oEkhZoKzveiYxtmPKqu4eczI/sn8qJYDX3.tfszH6', 1, 999, 'default_profile.jpg', 0);
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `telefono`, `password`, `tipoUsuario`, `saldo`, `imagen`, `bloq`, `valoracion`) VALUES
+(1, 'admin', 'ecomueble.admin@gmail.com', 602548003, '$2y$10$DDQBORmx7lzkGnvdVUXYfuWV7sXxHdMQOUiIF.c5pHqnnptc8ssX2', 1, 500, 'default_profile.jpg', 0, 10),
+(2, 'Sara P', 'saraperez@gmail.com', 612654687, '$2y$10$wOkGu7zqU24qAEapKEAANefv15T1z0gMEKmIY66vFjFJv99POBm66', 0, 85, 'Sara P_profile.jpg', 0, 10),
+(3, 'Carlos12', 'carsanper@hotmail.es', 658459632, '$2y$10$eqq0JRhNlC6.BJqEYnS5eOfDpowfQjp1VfoOIs/VlhLxzWgLKvqjq', 0, 20, 'Carlos12_profile.jpg', 0, 10),
+(4, 'Patripat', 'plopez97@gmail.com', 622588947, '$2y$10$3SHlmZ7Z8Rt.b3Z5GWmn7OUkmMkwTb2lifk/IS6Gntk.Fz1.KLCc2', 0, 90, 'Patripat_profile.jpg', 0, 10),
+(5, 'Amueblador', 'amueblador_27@gmail.com', 644589325, '$2y$10$QxZonX/ZxaPxv1.nY9GAHO6gJdO9DW5Co8iv2yatuD6RKgnVD1RQi', 0, 30, 'Amueblador_profile.JPG', 0, 10),
+(6, 'elee.03', 'elenagonzalez@yahoo.es', 687523149, '$2y$10$rzQEhneSA1OCxX5/mtVGEu0rLYcxUGoS2GvdxB4AquXy/AKgCMYjq', 0, 15, 'elee.03_profile.jpg', 0, 10),
+(7, '.Ana.', 'a.lopsan@gmail.com', 685214789, '$2y$10$H/oD4t1.qWxN/mXbgapn0.hvqRuTjonsCjXVRDZwkeZQ8XEPnPj2y', 0, 50, '.Ana._profile.jpg', 0, 10),
+(8, 'JoseSanz', 'jsanz547@yahoo.es', 614365896, '$2y$10$Gck6CWJGivuavrrTK4dP1.VPi3wkMrNkns2ua4LNlWjOsVLJQTxIK', 0, 50, 'JoseSanz_profile.JPG', 0, 10),
+(9, 'ZamoranoMartin', 'l.zammart@hotmail.com', 648752369, '$2y$10$4aS5fwMycvzKe4Os9sdzze1kAlyOc2mX.OGeVTA1ktUoEqawa.Use', 0, 70, 'ZamoranoMartin_profile.jpg', 0, 10),
+(10, 'm.sanchez', 'm.sanchez@msn.com', 648752396, '$2y$10$GwMV45Mac9lquoDLfAR/XeDa4rTovBGRJhQdY58.AmlJyGu1JtAzu', 0, 15, 'm.sanchez_profile.jpg', 0, 10),
+(11, 'armariodeschrodinger', 'armariodeschrodinger@gmail.com', 632658941, '$2y$10$54s1XAXTBbWJesi8nyZlbuGmRer8tEvYs4sJikkieqU1Y9VquZMZW', 0, 85, 'armariodeschrodinger_profile.JPG', 0, 10),
+(12, 'Yass', 'yas.badalyan@gmail.com', 698745210, '$2y$10$7TArxHqTNcCiA8T/M533.uDoajzIy20500PHZG9I9kVWdP3.7L31q', 0, 55, 'Yass_profile.JPG', 0, 10),
+(13, 'Fran.53', 'franciscomenendez@hotmail.com', 674123658, '$2y$10$GPF1JQqCDH8Appe98A3gwOfH9aTy0hDmqZGE/gwmBfk7a1Ap1C9lG', 0, 75, 'Fran.53_profile.jpg', 0, 10),
+(14, 'maaryhelen', 'el.dominguez@gmail.com', 612584369, '$2y$10$Uz8uK34E1xdSas/aoFkRlOEeGQ1m02GaohK4ZpzutdgSkp4fQA4/.', 0, 25, 'maaryhelen_profile.jpg', 0, 10),
+(15, 'd_sanlo', 'd_sanlo@hotmail.com', 602584130, '$2y$10$MrXMkOs05wL7TVgpWnhhzO0pvDg/hEok9Yj2ZII5BXzPHLzbUCJgO', 0, 25, 'd_sanlo_profile.jpg', 0, 10),
+(16, 'begooooooo', 'begolopmart@msn.com', 667859632, '$2y$10$Q97XYj95g3YKogIHpWzB3elJNkMTdCB.e0y4e3M5Izeao72LrLCum', 0, 70, 'begooooooo_profile.jpg', 0, 10),
+(17, 'lamesadepablo', 'pablodiaz5396@gmail.com', 600214589, '$2y$10$.hNWj1MALfWdfAlo3zV6OerMGOH5033EqnHdbsCWyEoPMggS9TKAi', 0, 115, 'lamesadepablo_profile.jpg', 0, 10),
+(18, 'monillo_loco', 'm.ruizcardiel@hotmail.com', 630258965, '$2y$10$QP04FYvu5ECzqHlpGL9uL.nIELteynfhyVGQg89lm4pBspy1zDfga', 0, 50, 'monillo_loco_profile.JPG', 0, 10),
+(19, 'j.vazquez', 'j.vazquez@gmail.com', 645201369, '$2y$10$saKsWHL/uLBQbdAS5geMV.ddK2kDsllvzmQE56bHnxjXCP0EhyhJS', 0, 15, 'j.vazquez_profile.jpg', 0, 10),
+(20, 'Natalia_94', 'nat_rodriguez_94@gmail.com', 658902313, '$2y$10$465TIzAyxfvk3lBnSQOf1OxQ0iOyr6.uGFlUYPMeKEc6Y7UKCcmrC', 0, 10, 'Natalia_94_profile.jpg', 0, 10),
+(21, 'wilson', 'guilleov@ucm.es', 684216696, '$2y$10$h681e.VAdpki37HrDiRlF.lG5v9W420s1QAfFxcWjLVjNgleAVqUa', 1, 999, 'wilson.png', 0, 10),
+(22, 'prueba', 'prueba@prueba.com', 657845213, '$2y$10$A36aJIWPRxz7oEkhZoKzveiYxtmPKqu4eczI/sn8qJYDX3.tfszH6', 1, 999, 'default_profile.jpg', 0, 10);
 
 -- --------------------------------------------------------
 

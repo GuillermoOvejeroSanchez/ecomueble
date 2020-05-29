@@ -1,41 +1,46 @@
 <?php
-    require_once __DIR__.'/Form.php';
+    require_once __DIR__.'/FormLib.php';
     require_once __DIR__.'/Usuario.php';
     require_once __DIR__.'/Aplicacion.php';
 
-    class FormularioLogin extends Form{
-
-        public function __construct(){
-            parent:: __construct('loginForm', ['action' =>'login']);
-        }
-
-        protected function generaCamposFormulario($form){
-            $nombre='';
-            if($form){
-                $nombre=isset($form['nombre']) ? $form['nombre'] : $nombre;
-            }
-            $html='
-            <fieldset>
-                <legend> Iniciar Sesión </legend>
-                <div><label>Nombre de usuario</label><input type="text" name="username"/></div>
-                <div><label>Password</label><input type="password" name="password" /></div>
-                <div><button  type="submit" name="submit_login">Entrar</button></div>
-            </fieldset>';
-            return $html;
-        }
-
-        protected function procesaFormulario($form){
-            //Campos introducidos en el form
-            $user = new Usuario();
-            $user->nombre = $form['username'];
-            $user->password = $form['password'];
-
-            //Comprobar si existe user,email,tlfn
-            $resultado[] = "<e>¡Error al iniciar sesión!</e>";
-            $resultado[] = $user->logUser();
-            if(end($resultado) == "/") {
-                return "/";
-            }
-            return $resultado;
-        }
+    function formularioLogin() {
+        formulario('loginForm', ['action' =>'login']);
     }
+
+    function generaCamposFormulario($form) {
+        $nombre='';
+        if($form) {
+            $nombre=isset($form['nombre']) ? $form['nombre'] : $nombre;
+        }
+        $html='
+        <fieldset>
+            <legend> Iniciar Sesión </legend>
+            <div><label>Nombre de usuario</label><input type="text" id="username" name="username"/>
+            <img id="error1" src="/img/no.png" />
+            <img id="ok1" src="/img/ok.png" /></div>
+            <div><label>Password</label><input type="password" id="pass" name="password" />
+            <img id="error2" src="/img/no.png" />
+            <img id="ok2" src="/img/ok.png" /></div>
+            <div><button  type="submit" id="submit_login" name="submit_login">Entrar</button></div>
+        </fieldset>';
+        return $html;
+    }
+
+    function procesaFormularioLogin($form) {
+
+        $resultado = array();
+            
+        $user = new Usuario();
+        $user->nombre = $form['username'];
+        $user->password = $form['password'];
+
+        $resultado[] = $user->logUser();
+        if(end($resultado) == "/") {
+            return "/";
+        } else {
+            $resultado[] = "<e>¡Error al iniciar sesión!</e>";
+        }
+
+        return $resultado;
+    }
+

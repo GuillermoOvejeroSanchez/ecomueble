@@ -5,16 +5,20 @@ Proyecto de Aplicaciones Web realizado con PHP
 - Todo lo relacionado con la aplicacion esta dentro de la subcarpeta *app/*
 ```
 ├───app
-|   |   bd.php
+│   │   functions.php
+│   │   img.php
 │   │   config.php
 │   │   index.php
 │   │   routes.php
-│   ├───controllers  
-│   ├───models   
-│   ├───views  
-│   ├───css  
-│   ├───img   
-│   └───common  
+│   │   status_redirect.php
+│   │   new.css
+│   ├───bd   
+│   ├───controllers   
+│   ├───views   
+│   ├───img
+│   ├───js	
+│   └───includes  
+        └───common 
 ```
 Los ficheros que nos interesan son *index.php* y *routes.php*  
 
@@ -70,9 +74,8 @@ Se nos abriria la vista del perfil
 Ademas tenemos 3 carpetas donde las funcionalidades principales van
 - controllers
     - Los archivos dentro de controllers se comunican con los modelos y devuelven los datos a la vista
-- models
-    - El modelo se comunica con la base de datos y manipula los datos para devolverselos formateados a el controlador  
-    - [x] Clase de modelos para cada tabla
+- includes
+    - Los archivos que desempeñan todas las funcionalidades de las clases
 - views
     - La vista simplemente genera codigo html segun lo que el controlador le pase
 
@@ -140,8 +143,8 @@ Uso de 2 branches principales
 - master: donde va el codigo que funciona y listo para usar
 - development: codigo que estemos desarrollando
 - branch extra: con nuestro nombre por ejemplo, la podemos usar para cuando trabajemos en algo especifico, o estemos probando cosas
-
-Una vez tengamos una feature desarrollada, podremos hacer un *pull request* y un *merge* a la branch de master
+- VPS: Rama de produccion que corre en el VPS de la UCM
+Una vez tengamos una feature desarrollada, podremos hacer un *pull request* y *merge* a la branch de master
 
 ## Issues
 
