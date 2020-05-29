@@ -206,7 +206,10 @@
 
             $sql = sprintf("SELECT * FROM usuario WHERE idUsuario = '$id'");
             $resultado = $conn->query($sql);
-            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
+            $row = $resultado->fetch_assoc();
+            if($row != NULL){
+                $user->createUser($row); //Creamos un objeto user con los datos de la consulta
+            }
             return $user;
         }
 

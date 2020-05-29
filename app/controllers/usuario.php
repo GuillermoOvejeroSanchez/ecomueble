@@ -14,6 +14,8 @@ function logged()
     $user = Usuario::getUserbyId($p);
     $imagen = "../profile_img/" . $user->imagen;
 
+
+    if($user->nombre != ""){
     ?>
     
     <div class="container">
@@ -119,7 +121,14 @@ function logged()
         ?>
     </div>
     <?php
-    
+    } else{ //Buscamos un usuario que no existe (poner un parametro a mano)
+        ?>
+        <div class="noReg">
+            <img src="img/warning.png" alt="Atención">
+            <p>El usuario que buscas no existe</p>
+        </div>
+        <?php
+    }
 
 
 }    
