@@ -257,8 +257,8 @@ ALTER TABLE `producto`
 -- Constraints for table `reporte`
 --
 ALTER TABLE `reporte`
-  ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
-  ADD CONSTRAINT `reporte_ibfk_2` FOREIGN KEY (`reportador`) REFERENCES `usuario` (`idUsuario`);
+  ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reporte_ibfk_2` FOREIGN KEY (`reportador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `transacciones`
