@@ -73,7 +73,10 @@
 
             $sql = "SELECT idProducto, descripcion, precio, idEstado, idCategoria, nombre, idUsuario, imagen FROM producto WHERE idProducto = '$id'";
             $resultado = $conn->query($sql);
-            $product->createProduct($resultado->fetch_assoc()); //Creamos un objeto Producto con los datos de la consulta
+            $row = $resultado->fetch_assoc();
+            if($row != NULL){
+                $product->createProduct($row); //Creamos un objeto Producto con los datos de la consulta
+            }
             
             return $product;
         }
