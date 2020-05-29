@@ -5,15 +5,12 @@
         public $idCategoria;
         public $tipo;
 
-
         function __construct($tipo, $idCategoria = "")
         {
             $this->idCategoria = $idCategoria;
             $this->tipo = $tipo;
         }
 
-        //TODO No usamos esto, pero para el admin puede estar bien
-        //Si el usuario no tiene una categoria que inserte una
         public function insertCategoria()
         {
             $sql = "INSERT INTO categoria(tipo) VALUES '$this->tipo'";
