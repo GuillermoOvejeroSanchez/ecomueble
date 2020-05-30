@@ -95,7 +95,7 @@ CREATE TABLE `reporte` (
   `idProducto` int(10) NOT NULL,
   `reportador` int(10) NOT NULL,
   `fechaReporte` date NOT NULL,
-  `resolucion` tinyint(1) NOT NULL
+  `resolucion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -114,6 +114,18 @@ CREATE TABLE `transacciones` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reservas`
+--
+
+CREATE TABLE `reservas` (
+  `idReserva` int(10) NOT NULL,
+  `idProducto` int(10) NOT NULL,
+  `idComprador` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -126,21 +138,11 @@ CREATE TABLE `usuario` (
   `tipoUsuario` tinyint(1) NOT NULL DEFAULT 0,
   `saldo` int(10) NOT NULL DEFAULT 0,
   `imagen` varchar(255) DEFAULT NULL,
-  `bloq` tinyint(1) NOT NULL DEFAULT 0
+  `bloq` tinyint(1) NOT NULL DEFAULT 0,
+  `valoracion` int(10) NOT NULL DEFAULT 10
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `valoracion`
---
-
-CREATE TABLE `valoracion` (
-  `idValoracion` int(10) NOT NULL,
-  `idUsuario` int(10) NOT NULL,
-  `nota` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Indexes for dumped tables
 --
@@ -171,7 +173,7 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `reporte`
   ADD PRIMARY KEY (`idReporte`),
-  ADD UNIQUE KEY `reportador` (`reportador`),
+  ADD KEY `reportador` (`reportador`),
   ADD KEY `idProducto` (`idProducto`) USING BTREE;
 
 --
@@ -183,18 +185,20 @@ ALTER TABLE `transacciones`
   ADD KEY `idComprador` (`idComprador`) USING BTREE;
 
 --
+-- Indexes for table `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`idReserva`),
+  ADD UNIQUE KEY `idProducto` (`idProducto`) USING BTREE,
+  ADD KEY `idComprador` (`idComprador`) USING BTREE;
+
+--
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
 
---
--- Indexes for table `valoracion`
---
-ALTER TABLE `valoracion`
-  ADD PRIMARY KEY (`idValoracion`),
-  ADD KEY `idUsuario` (`idUsuario`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -225,16 +229,16 @@ ALTER TABLE `transacciones`
   MODIFY `idTransaccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT for table `transacciones`
+--
+ALTER TABLE `reservas`
+  MODIFY `idReserva` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `valoracion`
---
-ALTER TABLE `valoracion`
-  MODIFY `idValoracion` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -253,8 +257,8 @@ ALTER TABLE `producto`
 -- Constraints for table `reporte`
 --
 ALTER TABLE `reporte`
-  ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
-  ADD CONSTRAINT `reporte_ibfk_2` FOREIGN KEY (`reportador`) REFERENCES `usuario` (`idUsuario`);
+  ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reporte_ibfk_2` FOREIGN KEY (`reportador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `transacciones`
@@ -264,10 +268,14 @@ ALTER TABLE `transacciones`
   ADD CONSTRAINT `transacciones_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
 
 --
--- Constraints for table `valoracion`
+-- Constraints for table `reservas`
 --
-ALTER TABLE `valoracion`
-  ADD CONSTRAINT `valoracion_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
+ALTER TABLE `reservas`
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
+  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`idComprador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
+
+--
+--
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

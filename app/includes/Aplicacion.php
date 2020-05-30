@@ -1,6 +1,4 @@
 <?php
-
-
 class Aplicacion
 {
 	private static $instancia = null;

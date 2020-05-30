@@ -12,9 +12,10 @@
         public $saldo;
         public $imagen;
         public $bloq;
+        public $valoracion;
 
 
-        function __construct($nombre ="", $email = "", $telefono = "", $password = "", $tipoUsuario = 0, $saldo = 50, $imagen = 'default_profile.jpg', $bloq = 0)
+        function __construct($nombre ="", $email = "", $telefono = "", $password = "", $tipoUsuario = 0, $saldo = 50, $imagen = 'default_profile.jpg', $bloq = 0, $valoracion=10)
         {
             $this->nombre = $nombre;
             $this->email = $email;
@@ -23,7 +24,8 @@
             $this->tipoUsuario = $tipoUsuario;
             $this->saldo = $saldo;
             $this->imagen = $imagen;
-            $this->bloq = $bloq; //0 -> desbloqueado, 1 -> bloqueado
+            $this->bloq = $bloq;
+            $this->valoracion=$valoracion;
         }
 
         /***** FUNCIONES PARA REGISTRAR USUARIO *****/
@@ -49,8 +51,8 @@
         public function insertUser()
         {   
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen, bloq) 
-            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen', '$this->bloq')");
+            $sql = sprintf("INSERT INTO usuario( nombre, email, telefono, password, tipoUsuario, saldo, imagen, bloq, valoracion) 
+            VALUES ( '$this->nombre', '$this->email', '$this->telefono' , '$this->password', '$this->tipoUsuario', '$this->saldo', '$this->imagen', '$this->bloq', '$this->valoracion')");
             
             if($conn->query($sql) === TRUE) {
                 return TRUE;
@@ -63,7 +65,7 @@
         {
             $conn = Aplicacion::getSingleton()->conexionBd();
             
-            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen, bloq FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
+            $sql = "SELECT idUsuario, nombre, password,tipoUsuario, saldo, imagen, bloq, valoracion FROM usuario WHERE (nombre = '$this->nombre' OR email = '$this->nombre')";
 
             if ($resultado = $conn->query($sql)) { 
                 if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
@@ -90,40 +92,86 @@
             return "Usuario o Contraseña no coinciden";
         }
 
-        /***** FUNCIONES PARA COMPROBAR QUE NO SE REPITAN NOMBRE O EMAIL AL ACTUALIZAR PERFIL *****/
-        public function checkUsername($valid)
+        /***** FUNCIONES PARA COMPROBAR QUE NO SE REPITAN NOMBRE, EMAIL O TELÉFONO AL CREAR O ACTUALIZAR PERFIL *****/
+        public function checkUsername($nombre, $form)
         {
-            $existe = FALSE;
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = "SELECT nombre, email, telefono FROM usuario WHERE nombre = '$this->nombre'";
             $msg ="";
-            if ($valid and $resultado = $conn->query($sql)) { 
-                if ($resultado->num_rows > 0) {
-                    $existe = TRUE;
-                    $msg = "Ya existe un usuario con ese ";
-                    //Comprobar cuales son los repetidos
-                    $user_fetched = $resultado->fetch_assoc();
-                    if($user_fetched['nombre'] == $this->nombre) $msg .= "nombre ";
-                } 
+            if($form == "reg") {
+                $sql = "SELECT nombre FROM usuario WHERE nombre = '$nombre'";
+                if ($resultado = $conn->query($sql)) {
+                    if ($resultado->num_rows > 0) {
+                        $msg = "Ya existe un usuario con ese nombre.";
+                    }
+                }
+            } else if ($form == "edit") {
+                $sql = "SELECT idUsuario, nombre FROM usuario WHERE nombre = '$nombre'";
+                if ($resultado = $conn->query($sql)) {
+                    if ($resultado->num_rows > 0) {
+                        $user_fetched = $resultado->fetch_assoc();
+                        if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                            $msg = "Ya existe un usuario con ese nombre.";
+                        }
+                    }
+                }
+            } else {
+                $msg = "Error comprobando nombre de usuario.";
             }
             return $msg;
         }
 
-        public function checkEmail($valid)
+        public function checkEmail($email, $form)
         {
-            $existe = FALSE;
             $conn = Aplicacion::getSingleton()->conexionBd();
-            $sql = "SELECT nombre, email, telefono FROM usuario WHERE email = '$this->email'";
             $msg ="";
-            if ($valid and $resultado = $conn->query($sql)) { 
-                if ($resultado->num_rows > 0) {
-                    $existe = TRUE;
-                    $msg = "Ya existe un usuario con ese ";
-                    //Comprobar cuales son los repetidos
-                    $user_fetched = $resultado->fetch_assoc();
-                    if($user_fetched['email'] == $this->email) $msg .= "email ";
-                } 
+            if($form == "reg") {
+                $sql = "SELECT email FROM usuario WHERE email = '$email'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
+                        $msg = "Ya existe un usuario con ese email.";
+                    }
+                }
+            } else if ($form == "edit") {
+                $sql = "SELECT idUsuario, email FROM usuario WHERE email = '$email'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
+                        $user_fetched = $resultado->fetch_assoc();
+                        if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                            $msg = "Ya existe un usuario con ese email.";
+                        }
+                    } 
+                }
+            } else {
+                $msg = "Error comprobando email de usuario.";
             }
+            return $msg;
+        }
+
+        public function checkTlfn($telefono, $form)
+        {
+            $conn = Aplicacion::getSingleton()->conexionBd();
+            $msg ="";
+            if($form == "reg") {
+                $sql = "SELECT telefono FROM usuario WHERE telefono = '$telefono'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
+                        $msg = "Ya existe un usuario con ese teléfono.";
+                    } 
+                }
+            } else if ($form == "edit") {
+                $sql = "SELECT idUsuario, telefono FROM usuario WHERE telefono = '$telefono'";
+                if ($resultado = $conn->query($sql)) { 
+                    if ($resultado->num_rows > 0) {
+                        $user_fetched = $resultado->fetch_assoc();
+                        if($user_fetched['idUsuario'] != $_SESSION['idUsuario']) {
+                            $msg = "Ya existe un usuario con ese teléfono.";
+                        }
+                    } 
+                }
+            } else {
+                $msg = "Error comprobando teléfono de usuario.";
+            }
+
             return $msg;
         }
 
@@ -144,7 +192,7 @@
             $conn = $app->conexionBd();
             $user = new Usuario(); //Usuario vacio
 
-            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, bloq, password FROM usuario WHERE nombre = '$name'";
+            $sql = "SELECT idUsuario, nombre, email, telefono, tipoUsuario, saldo, imagen, bloq, valoracion, password FROM usuario WHERE nombre = '$name'";
             $resultado = $conn->query($sql);
             $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
             return $user;
@@ -158,7 +206,10 @@
 
             $sql = sprintf("SELECT * FROM usuario WHERE idUsuario = '$id'");
             $resultado = $conn->query($sql);
-            $user->createUser($resultado->fetch_assoc()); //Creamos un objeto user con los datos de la consulta
+            $row = $resultado->fetch_assoc();
+            if($row != NULL){
+                $user->createUser($row); //Creamos un objeto user con los datos de la consulta
+            }
             return $user;
         }
 
@@ -170,6 +221,18 @@
 
             $saldototal = $saldo + $incSaldo;
             $sql = "UPDATE usuario SET saldo = $saldototal WHERE idUsuario = $idUsuario";
+            $ok = $conn->query($sql);
+            return $ok;
+        }
+
+        /***** FUNCION PARA SUBIR LA VALORACION ****/
+        public static function updateValoracion($valoracion, $idUsuario){
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $user=new Usuario();
+            $user->getUserbyId($idUsuario);
+            $media=($valoracion+$user->valoracion)/2;
+            $sql = "UPDATE usuario SET valoracion = $media WHERE idUsuario = $idUsuario";
             $ok = $conn->query($sql);
             return $ok;
         }
@@ -239,6 +302,43 @@
             $html = '';
             foreach ($map as $link => $product_img) {
                 $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+            }
+            return $html;
+        }
+        
+        /*****FUNCIONES PARA MOSTRAR LOS USUARIOS BLOQUEADOS (SOLO PARA ADMIN) *****/
+        public static function getBloqUsers()
+        {
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $map = [];
+
+            $sql = sprintf("SELECT * FROM usuario WHERE bloq = '1'");
+
+            if($resultado = $conn->query($sql)){
+                if($resultado->num_rows > 0){
+                    while ($fila = $resultado->fetch_assoc()  ) {
+                        $link = "./usuario?id=" .  $fila['idUsuario']; 
+                        $product_img = "../profile_img/" . $fila['imagen'];
+                        $map[$link] = $product_img;
+                    }
+                }
+            }
+            return $map;
+        }
+
+        function mostrarBloqUsuarios()
+        {
+            $usuario = new Usuario ();
+            $map = $usuario->getBloqUsers();
+            $html = '';
+            if(count($map) != 0){
+                foreach ($map as $link => $product_img) {
+                    $html .= '<a href="'.$link.'">'.'<img src="'.$product_img.'"alt="imagen"></a>';
+                }
+            }
+            else {
+                $html .= '<label>No hay ningún usuario bloqueado</label>';
             }
             return $html;
         }
@@ -314,6 +414,28 @@
             return $ok;
         }
 
+        public function adminUser($idUsuario){
+
+            $app = Aplicacion::getSingleton();
+            $conn = $app->conexionBd();
+            $ok = FALSE;
+            $sql = "SELECT tipoUsuario FROM usuario WHERE idUsuario = '$idUsuario'";
+
+            if ($resultado = $conn->query($sql)) { 
+                if ($resultado->num_rows > 0 and $resultado->num_rows === 1) {
+                    $user_fetched = $resultado->fetch_assoc();
+                    if($user_fetched['tipoUsuario'] == 0){
+                        $sql = "UPDATE usuario SET tipoUsuario = 1 WHERE idUsuario = '$idUsuario'";
+                    }
+                    else {
+                        $sql = "UPDATE usuario SET tipoUsuario = 0 WHERE idUsuario = '$idUsuario'";
+                    }
+                    $ok = $conn->query($sql);
+                }
+            }
+            return $ok;
+        }
+
         /***** FUNCIÓN PARA CREAR UN USUARIO Y DEVOLVERLO TRAS UNA CONSULTA ******/
         public function createUser($row)
         {
@@ -325,6 +447,7 @@
             $this->saldo = $row['saldo'];
             $this->imagen = $row['imagen'];
             $this->password = $row['password'];
-            $this->bloq = $row['bloq']; //0 -> desbloqueado, 1 -> bloqueado
+            $this->bloq = $row['bloq'];
+            $this->valoracion=$row['valoracion'];
         }
     }

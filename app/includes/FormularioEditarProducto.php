@@ -40,6 +40,7 @@
         }
 
         protected function procesaFormulario($form){
+            //profile, username, email, telefono, oldPass, newPass form
 
             $id = $_GET['id']; //Cogemos id articulo para realizar consulta
             $product = Producto::getProduct($id);

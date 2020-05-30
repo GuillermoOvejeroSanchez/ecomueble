@@ -13,6 +13,21 @@ function swalBuy(accepted) {
     })
   }
 }
+function swalReserva(accepted) {
+  if(accepted){
+    swal({
+      title: "Has reservado el producto",
+      icon: "success",
+      timer: 5000,
+    })
+  }else{
+    swal({
+      title: "Fallo al reservar el producto",
+      icon: "error",
+      timer: 5000,
+    })
+  }
+}
 
 function swalUpload() {
     swal({

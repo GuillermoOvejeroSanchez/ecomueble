@@ -76,30 +76,62 @@
     </tr>
     <tr>
         
-        <th  class='usuariosInicio'> <?php
-                                echo Usuario::mostrarTodosUsuarios();
-                                ?>
-                            </th>                 
-                        </tr> 
-                        <tr> 
-                            <th class='ini'> Productos </th> 
-                        </tr>
-                        <tr>
+        <th  class='usuariosInicio'> 
+            <?php
+                echo Usuario::mostrarTodosUsuarios();
+            ?>
+            </th>                 
+    </tr>
 
-                            <th class="buscar">
-                                <form method="POST"> 
-                                    <div><label> Busca un producto por su nombre: </label><input type="text" name="nombreProducto"/>
-                                    <button class="btn" type="submit" name="submit_buscarNombre">Buscar</button></div>
-                                </form>
-                            </th>
-                        </tr>
-                        <tr>
+    <tr>
+        <th class='ini'> Usuarios bloqueados </th>
+    </tr> 
+    <tr>
+        
+        <th  class='usuariosInicio'> 
+            <?php
+                echo Usuario::mostrarBloqUsuarios();
+            ?>
+            </th>                 
+    </tr>
 
-                            <th class='productosInicio'> <?php
-                                echo Producto::mostrarXProductos(10);
-                } ?>
-                </th> 
-            </tr> 
+    <tr> 
+        <th class='ini'> Productos </th> 
+    </tr>
+
+    <tr>
+
+        <th class="buscar">
+            <form method="POST"> 
+            <div><label> Busca un producto por su nombre: </label><input type="text" name="nombreProducto"/>
+            <button class="btn" type="submit" name="submit_buscarNombre">Buscar</button></div>
+            </form>
+        </th>
+
+    </tr>
+
+    <tr>
+
+        <th class='productosInicio'> 
+            <?php
+            echo Producto::mostrarXProductos(10);
+            ?>
+        </th> 
+    </tr> 
+
+    <tr> 
+        <th class='ini'> Productos reportados </th> 
+    </tr>
+
+    <tr>
+
+        <th class='productosInicio'> 
+            <?php
+            echo Producto::mostrarReportProductos(10);
+                    }
+            ?>
+        </th> 
+    </tr>
         </table>
 	</div>
           
