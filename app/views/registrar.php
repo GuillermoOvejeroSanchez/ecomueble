@@ -46,6 +46,11 @@ require_once('./includes/FormularioRegistro.php');
                             $usernameOk = true;
                         }
                     });
+                } else {
+                    $("#ok1").hide();
+                    $("#error1").show();
+                    $("#username").focus();
+                    $usernameOk = false;
                 }
             });
 
@@ -67,6 +72,11 @@ require_once('./includes/FormularioRegistro.php');
                             $emailOk = true;
                         }
                     });
+                } else {
+                    $("#ok2").hide();
+                    $("#error2").show();
+                    $("#email").focus();
+                    $emailOk = false;
                 }
             });
 
@@ -88,6 +98,11 @@ require_once('./includes/FormularioRegistro.php');
                             $tlfnOk = true;
                         }
                     });
+                } else {
+                    $("#ok3").hide();
+                    $("#error3").show();
+                    $("#tlfn").focus();
+                    $tlfnOk = false;
                 }
             });
 
