@@ -104,7 +104,7 @@ INSERT INTO `producto` (`idProducto`, `descripcion`, `precio`, `idEstado`, `idCa
 (56, 'Estantería con estructura metálica y ruedas', '25', 0, 4, 'Estantería con ruedas', 11, 'Estanteria con ruedas_56.jpg'),
 (57, 'Librería con escalera', '65', 0, 4, 'Librería-estantería', 2, 'Libreria-estanteria_57.jpg'),
 (58, 'Aparador de pared para vajilla', '10', 0, 4, 'Baldas para vajilla', 3, 'Baldas para vajilla_58.jpg'),
-(59, 'Estantería de diseño con almacenaje', '40', 0, 4, 'Estantería de diseño', 10, 'Estanteria de diseño_59.jpg'),
+(59, 'Estantería de diseño con almacenaje', '40', 0, 4, 'Estantería de diseño', 10, 'Estanteria de diseno_59.jpg'),
 (60, 'Estantería infantil de madera pintada de azul', '15', 0, 4, 'Estantería infantil', 12, 'Estanteria infantil_60.jpg'),
 (61, 'Armario grande con baldas y cajonera baja', '70', 0, 2, 'Armario blanco', 8, 'Armario blanco_61.jpg'),
 (62, 'Armario con doble puerta y cierre con tope', '40', 0, 2, 'Armario rústico', 19, 'Armario rustico_62.jpg'),
